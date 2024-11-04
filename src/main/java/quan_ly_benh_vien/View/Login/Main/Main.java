@@ -28,7 +28,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backgroundLogin1 = new quan_ly_benh_vien.View.Login.Component.BackgroundLogin();
+        backgroundLogin1 = new quan_ly_benh_vien.View.Login.Component.Login();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +86,6 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private quan_ly_benh_vien.View.Login.Component.BackgroundLogin backgroundLogin1;
+    private quan_ly_benh_vien.View.Login.Component.Login backgroundLogin1;
     // End of variables declaration//GEN-END:variables
 }
