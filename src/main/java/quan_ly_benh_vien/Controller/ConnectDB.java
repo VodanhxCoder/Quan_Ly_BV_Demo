@@ -4,7 +4,7 @@
  */
 package quan_ly_benh_vien.Controller;
 
-import java.sql.Driver;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -13,14 +13,19 @@ import javax.swing.JOptionPane;
  *
  * @author khue1
  */
-public class Connection {
-      public java.sql.Connection conn = null;
+public class ConnectDB {
 
-    public java.sql.Connection connectSQL() throws SQLException {
+    public ConnectDB() {
+    }
+
+    public static Connection getConnection() {
+        //khoi tao doi tuong connect
+        Connection conn = null;
         try {
             String userName = "sa";
             String password = "123456";
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=QLSanpham;encrypt=true;trustServerCertificate=true";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBV;encrypt=true;trustServerCertificate=true";
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(url, userName, password);
             return conn;
@@ -31,7 +36,18 @@ public class Connection {
             JOptionPane.showMessageDialog(null, "Không thể kết nối đến CSDL. Vui lòng kiểm tra URL, tên người dùng hoặc mật khẩu.", "Thông báo", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
-        return null;
+        return conn; //th ko kn đc tự động trả về null
     }
 
+    public static void closeConnection(Connection conn) {
+        try {
+            // neu đang có connect thì đóng connect lại 
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

@@ -1,6 +1,8 @@
 package quan_ly_benh_vien.View.Login.Component;
 
+import Data_Access_Object.QuanLyTaiKhoanDao;
 import java.awt.AlphaComposite;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -13,16 +15,30 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
-import java.rmi.server.ObjID;
-import java.sql.PreparedStatement;
+
+import java.io.UnsupportedEncodingException;
+
+import java.security.NoSuchAlgorithmException;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import javax.swing.SwingUtilities;
+import quan_ly_benh_vien.Controller.TaiKhoanController;
 
 public class Login extends javax.swing.JPanel {
+
+    public CardLayout cardLayout;
 
     public Login() {
         initComponents();
         setOpaque(false);
+
         JpLogin.setVisible(true);
         JpquenMatKhau.setVisible(false);
         JpdangKy.setVisible(false);
@@ -30,8 +46,7 @@ public class Login extends javax.swing.JPanel {
         SetColorlb(lbDangky);
         SetColorlb(lbQuenMatKhau);
         SetColorlb(lbThaydoiMatkhau);
-     
-
+        cardLayout = (CardLayout) JpComponent.getLayout();
     }
 
     public void SetColorlb(javax.swing.JLabel lb) {
@@ -195,10 +210,10 @@ public class Login extends javax.swing.JPanel {
 
         JpLoginLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtPassword, txtUser});
 
-        JpComponent.add(JpLogin, "card2");
-        JpComponent.add(JpdangKy, "card2");
-        JpComponent.add(JpquenMatKhau, "card3");
-        JpComponent.add(JpThayMatKhau, "card4");
+        JpComponent.add(JpLogin, "cardLogin");
+        JpComponent.add(JpdangKy, "cardDangky");
+        JpComponent.add(JpquenMatKhau, "cardQuenMK");
+        JpComponent.add(JpThayMatKhau, "cardThayMK");
 
         javax.swing.GroupLayout panelLogin1Layout = new javax.swing.GroupLayout(panelLogin1);
         panelLogin1.setLayout(panelLogin1Layout);
@@ -231,6 +246,9 @@ public class Login extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //Xác thuc dang nhap
+    public static String xacNhanDangNhap;
+    public static String xacNhanMatKhau;
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
@@ -241,10 +259,9 @@ public class Login extends javax.swing.JPanel {
 
     private void lbDangkyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangkyMouseClicked
         // TODO add your handling code here:
-        JpLogin.setVisible(false);
-        JpquenMatKhau.setVisible(false);
-        JpdangKy.setVisible(true);
-        JpThayMatKhau.setVisible(false);
+        //gọi card đăng ký
+        cardLayout.show(JpComponent, "cardDangky");
+
     }//GEN-LAST:event_lbDangkyMouseClicked
 
     private void lbDangkyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lbDangkyFocusGained
@@ -253,10 +270,53 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_lbDangkyFocusGained
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
-        String taukhoan = txtUser.getText();
-        String matkhau = txtPassword.getText();
-        //Kiem tra dang nhap
+        String tenDangNhap = txtUser.getText().trim();
+        String matKhau = new String(txtPassword.getPassword()).trim();
+
+        if (tenDangNhap.isEmpty() || matKhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập và mật khẩu không được để trống.");
+            return;
+        }
+
+// Kiểm tra định dạng tên đăng nhập
+        String regexTenDangNhap = "^[a-zA-Z0-9]{4,50}$";// chấp nhận chữ và số 
+        if (!tenDangNhap.matches(regexTenDangNhap)) {
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập chỉ chứa chữ cái, số và có độ dài từ 4-50 ký tự.");
+            return;
+        }
+
+// Kiểm tra độ dài mật khẩu
+        if (matKhau.length() < 8) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu phải có ít nhất 8 ký tự.");
+            return;
+        }
+
+// Mã hóa tên đăng nhập và mật khẩu
+        String enrTenDangNhap = null;
+        String enrMatKhau = null;
+        try {
+            enrTenDangNhap = QuanLyTaiKhoanDao.MD5Encryptor(tenDangNhap);
+            enrMatKhau = QuanLyTaiKhoanDao.MD5Encryptor(matKhau);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            return; // Dừng lại nếu có lỗi trong quá trình mã hóa
+        }
+
+// Kiểm tra thông tin đăng nhập
+        TaiKhoanController dangNhapController = new TaiKhoanController();
+        boolean dangNhapThanhCong = dangNhapController.kiemTraDangNhap(enrTenDangNhap, enrMatKhau);
+
+        if (dangNhapThanhCong) {
+            Login.xacNhanDangNhap = tenDangNhap;
+            JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
+            JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(Login.this);
+            if (mainFrame != null) {
+                mainFrame.dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Đăng nhập thất bại! Vui lòng kiểm tra lại tên đăng nhập và mật khẩu.");
+        }
+
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
@@ -265,18 +325,13 @@ public class Login extends javax.swing.JPanel {
 
     private void lbQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQuenMatKhauMouseClicked
         // TODO add your handling code here:
-        JpLogin.setVisible(false);
-        JpquenMatKhau.setVisible(true);
-        JpdangKy.setVisible(false);
-        JpThayMatKhau.setVisible(false);
+        cardLayout.show(JpComponent, "cardQuenMK");
     }//GEN-LAST:event_lbQuenMatKhauMouseClicked
 
     private void lbThaydoiMatkhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbThaydoiMatkhauMouseClicked
         // TODO add your handling code here:
-        JpLogin.setVisible(false);
-        JpquenMatKhau.setVisible(false);
-        JpdangKy.setVisible(false);
-        JpThayMatKhau.setVisible(true);
+        cardLayout.show(JpComponent, "cardThayMK");
+
     }//GEN-LAST:event_lbThaydoiMatkhauMouseClicked
 
     @Override
@@ -342,4 +397,5 @@ public class Login extends javax.swing.JPanel {
     private quan_ly_benh_vien.View.Login.subComponent.MyPassword txtPassword;
     private quan_ly_benh_vien.View.Login.subComponent.MyTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
 }

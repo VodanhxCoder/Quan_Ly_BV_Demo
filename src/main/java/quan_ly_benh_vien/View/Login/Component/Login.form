@@ -64,7 +64,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="card2"/>
+                  <CardConstraints cardName="cardLogin"/>
                 </Constraint>
               </Constraints>
 
@@ -225,21 +225,21 @@
             <Component class="quan_ly_benh_vien.View.Login.Component.DangKy" name="JpdangKy">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="card2"/>
+                  <CardConstraints cardName="cardDangky"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="quan_ly_benh_vien.View.Login.Component.QuenMatKhau" name="JpquenMatKhau">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="card3"/>
+                  <CardConstraints cardName="cardQuenMK"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Container class="quan_ly_benh_vien.View.Login.Component.ThayMatKhau" name="JpThayMatKhau">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="card4"/>
+                  <CardConstraints cardName="cardThayMK"/>
                 </Constraint>
               </Constraints>
 
