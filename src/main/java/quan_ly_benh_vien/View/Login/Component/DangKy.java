@@ -4,9 +4,18 @@
  */
 package quan_ly_benh_vien.View.Login.Component;
 
+import static Data_Access_Object.QuanLyTaiKhoanDao.MD5Encryptor;
 import java.awt.Image;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import quan_ly_benh_vien.Controller.TaiKhoanController;
+import quan_ly_benh_vien.Model.QuanLyTaiKhoanModel;
 
 /**
  *
@@ -34,97 +43,111 @@ public class DangKy extends javax.swing.JPanel {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        myTextField1 = new quan_ly_benh_vien.View.Login.subComponent.MyTextField();
-        myTextField4 = new quan_ly_benh_vien.View.Login.subComponent.MyTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        myPassword1 = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
-        myPassword2 = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
-        jLabel1 = new javax.swing.JLabel();
+        txtTenDangNhap = new quan_ly_benh_vien.View.Login.subComponent.MyTextField();
+        txtEmail = new quan_ly_benh_vien.View.Login.subComponent.MyTextField();
+        radNam = new javax.swing.JRadioButton();
+        radNu = new javax.swing.JRadioButton();
+        checkDieuKhoan = new javax.swing.JCheckBox();
+        btnDangKy = new javax.swing.JButton();
+        btnTroLai = new javax.swing.JButton();
+        txtMatKhau = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
+        txtXacNhanMatKhau = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
+        lbTitle = new javax.swing.JLabel();
+        txtHoVaTen = new quan_ly_benh_vien.View.Login.subComponent.MyTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.CardLayout());
 
-        myTextField1.setHint("Tên đăng nhập");
-        myTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtTenDangNhap.setHint("Tên đăng nhập");
+        txtTenDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myTextField1ActionPerformed(evt);
+                txtTenDangNhapActionPerformed(evt);
             }
         });
 
-        myTextField4.setHint("Email");
-        myTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.setHint("Email");
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myTextField4ActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Nam");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(radNam);
+        radNam.setText("Nam");
+        radNam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                radNamActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Nữ");
+        buttonGroup1.add(radNu);
+        radNu.setText("Nữ");
 
-        jCheckBox1.setText("Đồng ý với điều khoản");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        checkDieuKhoan.setText("Đồng ý với điều khoản");
+        checkDieuKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                checkDieuKhoanActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 102, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Đăng ký");
-        jButton1.setMaximumSize(new java.awt.Dimension(118, 23));
-        jButton1.setMinimumSize(new java.awt.Dimension(118, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(118, 23));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDangKy.setBackground(new java.awt.Color(255, 102, 102));
+        btnDangKy.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDangKy.setForeground(new java.awt.Color(255, 255, 255));
+        btnDangKy.setText("Đăng ký");
+        btnDangKy.setMaximumSize(new java.awt.Dimension(118, 23));
+        btnDangKy.setMinimumSize(new java.awt.Dimension(118, 23));
+        btnDangKy.setPreferredSize(new java.awt.Dimension(118, 23));
+        btnDangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDangKyActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Trở lại");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnTroLai.setBackground(new java.awt.Color(255, 102, 102));
+        btnTroLai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnTroLai.setForeground(new java.awt.Color(255, 255, 255));
+        btnTroLai.setText("Trở lại");
+        btnTroLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnTroLaiActionPerformed(evt);
             }
         });
 
-        myPassword1.setHint("Nhập mật khẩu");
-        myPassword1.addActionListener(new java.awt.event.ActionListener() {
+        txtMatKhau.setHint("Nhập mật khẩu");
+        txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myPassword1ActionPerformed(evt);
+                txtMatKhauActionPerformed(evt);
             }
         });
 
-        myPassword2.setHint("Nhập lại mật khẩu");
+        txtXacNhanMatKhau.setHint("Nhập lại mật khẩu");
+        txtXacNhanMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtXacNhanMatKhauActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Đăng Ký");
+        lbTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbTitle.setText("Đăng Ký");
 
-        jLayeredPane1.setLayer(myTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(myTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jRadioButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jRadioButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jCheckBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(myPassword1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(myPassword2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        txtHoVaTen.setHint("Họ và Tên");
+        txtHoVaTen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHoVaTenActionPerformed(evt);
+            }
+        });
+
+        jLayeredPane1.setLayer(txtTenDangNhap, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtEmail, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(radNam, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(radNu, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(checkDieuKhoan, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(btnDangKy, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(btnTroLai, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtMatKhau, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtXacNhanMatKhau, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(lbTitle, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtHoVaTen, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -136,100 +159,206 @@ public class DangKy extends javax.swing.JPanel {
                         .addGap(37, 37, 37)
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(myPassword1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                    .addComponent(jRadioButton1)
+                                    .addComponent(radNam)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jRadioButton2)
+                                    .addComponent(radNu)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jCheckBox1))
-                                .addComponent(myTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(myPassword2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(myTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(checkDieuKhoan))
+                                .addComponent(txtTenDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtXacNhanMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtHoVaTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnTroLai, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGap(121, 121, 121)
-                        .addComponent(jLabel1)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addComponent(lbTitle)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addComponent(myTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(myPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtHoVaTen, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(myPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(myTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtXacNhanMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jCheckBox1))
+                    .addComponent(radNu)
+                    .addComponent(radNam)
+                    .addComponent(checkDieuKhoan))
                 .addGap(12, 12, 12)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(btnTroLai, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLayeredPane1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {myPassword1, myPassword2, myTextField1, myTextField4});
+        jLayeredPane1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtEmail, txtMatKhau, txtTenDangNhap, txtXacNhanMatKhau});
 
         add(jLayeredPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
+// xử lý cách trg hợp ko đungs định dạng 
 
-    private void myTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myTextField1ActionPerformed
+    private boolean isInputValid(String hoVaTen, String tenDangNhap, String matKhau, String reMatKhau, String email) {
+        if (hoVaTen.isEmpty() || tenDangNhap.isEmpty() || matKhau.isEmpty() || reMatKhau.isEmpty() || email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa nhập đủ thông tin!");
+            return false;
+        }
+        if (!matKhau.equals(reMatKhau)) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu không khớp!");
+            return false;
+        }
+        if (!email.matches(".+@gmail\\.com")) {
+            JOptionPane.showMessageDialog(null, "Email chưa đúng định dạng!");
+            return false;
+        }
+        return true;
+    }
+// xử lys radio giới tính 
+
+    private String getGioiTinh() {
+        ButtonModel selectedButton = buttonGroup1.getSelection();
+        if (selectedButton == null) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn giới tính!");
+            return null;
+        }
+        return (selectedButton == radNam.getModel()) ? "Nam" : "Nữ";
+    }
+    private void txtTenDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenDangNhapActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_myTextField1ActionPerformed
+    }//GEN-LAST:event_txtTenDangNhapActionPerformed
 
-    private void myTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myTextField4ActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_myTextField4ActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void radNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_radNamActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void checkDieuKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkDieuKhoanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_checkDieuKhoanActionPerformed
 
-    private void myPassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myPassword1ActionPerformed
+    private void txtMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_myPassword1ActionPerformed
+    }//GEN-LAST:event_txtMatKhauActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        System.out.println(myTextField1.getText());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
+        String hoVaTen = txtHoVaTen.getText();
+        String tenDangNhap = txtTenDangNhap.getText();
+        String matKhau = new String(txtMatKhau.getPassword());
+        String email = txtEmail.getText();
+        String reMatKhau = new String(txtXacNhanMatKhau.getPassword());
+        String gioiTinh;
+        // Kiểm tra các điều kiện trước khi thực hiện đăng ký
+        if (!isInputValid(hoVaTen, tenDangNhap, matKhau, reMatKhau, email)) {
+            return; // Dừng lại nếu thông tin không hợp lệ
+        }
+        // Kiểm tra định dạng tên đăng nhập
+        String regexTenDangNhap = "^[a-zA-Z0-9]{4,50}$";// chấp nhận chữ và số 
+        if (!tenDangNhap.matches(regexTenDangNhap)) {
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập chỉ chứa chữ cái, số và có độ dài từ 4-50 ký tự.");
+            return;
+        }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Kiểm tra độ dài mật khẩu (ít nhất 8 ký tự)
+        if (matKhau.length() < 8) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu phải có ít nhất 8 ký tự.");
+            return;
+        }
+
+        gioiTinh = getGioiTinh();
+        if (gioiTinh == null) {
+            return; // Dừng lại nếu không chọn giới tính
+        }
+
+// Kiểm tra tên đăng nhập và email đã tồn tại
+        TaiKhoanController dangKyController = new TaiKhoanController();
+        boolean tenDaTonTai = dangKyController.kiemTraTenDangNhapTrung(tenDangNhap);
+        boolean emailDaTonTai = dangKyController.kiemTraEmailTrung(email);
+
+        if (tenDaTonTai) {
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại!");
+        } else if (emailDaTonTai) {
+            JOptionPane.showMessageDialog(null, "Email đã tồn tại!");
+        } else {
+            String enrTenDangNhap = null;
+            String enrMatKhau = null;
+            try {
+                // Tạo đối tượng đăng ký và kiểm tra điều khoản"
+                enrTenDangNhap = MD5Encryptor(tenDangNhap);
+                enrMatKhau = MD5Encryptor(matKhau);
+
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(DangKy.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(DangKy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            QuanLyTaiKhoanModel dangKy = new QuanLyTaiKhoanModel(hoVaTen, enrTenDangNhap, enrMatKhau, email, gioiTinh);
+            //Kiem tra dieu khoản đã đc chọn hay chưa 
+            if (!checkDieuKhoan.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Bạn chưa đồng ý với điều khoản!");
+            } else {
+                // Gọi controller để thực hiện đăng ký
+                int rowsAffected = dangKyController.dangKyTaiKhoan(dangKy);
+                if (rowsAffected > 0) { //Khi đăng ký thành công sẽ trả về 1 
+                    JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thành công!");
+                    Login JpLogin = new Login();
+                    JpLogin.setVisible(true);
+                    setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thất bại!");
+                }
+            }
+        }
+
+        System.out.println(txtTenDangNhap.getText());
+    }//GEN-LAST:event_btnDangKyActionPerformed
+
+    private void btnTroLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTroLaiActionPerformed
         // TODO add your handling code here:
         Login JpLogin = new Login();
         JpLogin.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnTroLaiActionPerformed
+
+    private void txtHoVaTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoVaTenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHoVaTenActionPerformed
+
+    private void txtXacNhanMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXacNhanMatKhauActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtXacNhanMatKhauActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDangKy;
+    private javax.swing.JButton btnTroLai;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JCheckBox checkDieuKhoan;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private quan_ly_benh_vien.View.Login.subComponent.MyPassword myPassword1;
-    private quan_ly_benh_vien.View.Login.subComponent.MyPassword myPassword2;
-    private quan_ly_benh_vien.View.Login.subComponent.MyTextField myTextField1;
-    private quan_ly_benh_vien.View.Login.subComponent.MyTextField myTextField4;
+    private javax.swing.JLabel lbTitle;
+    private javax.swing.JRadioButton radNam;
+    private javax.swing.JRadioButton radNu;
+    private quan_ly_benh_vien.View.Login.subComponent.MyTextField txtEmail;
+    private quan_ly_benh_vien.View.Login.subComponent.MyTextField txtHoVaTen;
+    private quan_ly_benh_vien.View.Login.subComponent.MyPassword txtMatKhau;
+    private quan_ly_benh_vien.View.Login.subComponent.MyTextField txtTenDangNhap;
+    private quan_ly_benh_vien.View.Login.subComponent.MyPassword txtXacNhanMatKhau;
     // End of variables declaration//GEN-END:variables
 }

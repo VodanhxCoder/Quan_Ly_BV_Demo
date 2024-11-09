@@ -4,6 +4,15 @@
  */
 package quan_ly_benh_vien.View.Login.Component;
 
+import Data_Access_Object.QuanLyTaiKhoanDao;
+import static Data_Access_Object.QuanLyTaiKhoanDao.MD5Encryptor;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import quan_ly_benh_vien.Controller.TaiKhoanController;
+
 /**
  *
  * @author khue1
@@ -26,14 +35,17 @@ public class ThayMatKhau extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        myTextField1 = new quan_ly_benh_vien.View.Login.subComponent.MyTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         btnBack = new javax.swing.JButton();
         btnThayDoi = new javax.swing.JButton();
-        txtEmail = new quan_ly_benh_vien.View.Login.subComponent.MyTextField();
-        txtMatKhaucu = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
-        txtMatkhaumoiCheck = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
+        txtMatKhau = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
+        txtreMatKhauMoi = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
         lbTitle = new javax.swing.JLabel();
-        txtMatkhaumoi = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
+        txtMatKhauMoi = new quan_ly_benh_vien.View.Login.subComponent.MyPassword();
+        txtTenDangNhap = new quan_ly_benh_vien.View.Login.subComponent.MyTextField();
+
+        myTextField1.setText("myTextField1");
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.CardLayout());
@@ -54,36 +66,40 @@ public class ThayMatKhau extends javax.swing.JPanel {
         btnThayDoi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnThayDoi.setForeground(new java.awt.Color(255, 255, 255));
         btnThayDoi.setText("Thay đổi ");
-
-        txtEmail.setEditable(false);
-        txtEmail.setHint("Email");
-
-        txtMatKhaucu.setHint("Nhập Mật khẩu cũ");
-        txtMatKhaucu.addActionListener(new java.awt.event.ActionListener() {
+        btnThayDoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatKhaucuActionPerformed(evt);
+                btnThayDoiActionPerformed(evt);
             }
         });
 
-        txtMatkhaumoiCheck.setHint("Nhập lại mật khẩu mới");
+        txtMatKhau.setHint("Nhập Mật khẩu cũ");
+        txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMatKhauActionPerformed(evt);
+            }
+        });
+
+        txtreMatKhauMoi.setHint("Nhập lại mật khẩu mới");
 
         lbTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbTitle.setText("Thay Đổi Mật Khẩu");
 
-        txtMatkhaumoi.setHint("Nhập Mật khẩu mới");
-        txtMatkhaumoi.addActionListener(new java.awt.event.ActionListener() {
+        txtMatKhauMoi.setHint("Nhập Mật khẩu mới");
+        txtMatKhauMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatkhaumoiActionPerformed(evt);
+                txtMatKhauMoiActionPerformed(evt);
             }
         });
 
+        txtTenDangNhap.setHint("Tên Đăng Nhập");
+
         jLayeredPane1.setLayer(btnBack, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(btnThayDoi, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(txtEmail, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(txtMatKhaucu, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(txtMatkhaumoiCheck, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtMatKhau, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtreMatKhauMoi, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(lbTitle, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(txtMatkhaumoi, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtMatKhauMoi, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtTenDangNhap, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -96,37 +112,44 @@ public class ThayMatKhau extends javax.swing.JPanel {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMatkhaumoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMatkhaumoiCheck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMatKhaucu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(btnThayDoi, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtreMatKhauMoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMatKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(btnThayDoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(50, 50, 50))))
         );
+
+        jLayeredPane1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtMatKhau, txtMatKhauMoi, txtTenDangNhap, txtreMatKhauMoi});
+
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lbTitle)
-                .addGap(33, 33, 33)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMatKhaucu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMatkhaumoi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMatkhaumoiCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(txtreMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThayDoi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
         );
 
-        jLayeredPane1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtEmail, txtMatKhaucu, txtMatkhaumoiCheck});
+        jLayeredPane1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtMatKhau, txtMatKhauMoi, txtTenDangNhap, txtreMatKhauMoi});
 
         add(jLayeredPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
@@ -138,13 +161,68 @@ public class ThayMatKhau extends javax.swing.JPanel {
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtMatKhaucuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhaucuActionPerformed
+    private void txtMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatKhaucuActionPerformed
+    }//GEN-LAST:event_txtMatKhauActionPerformed
 
-    private void txtMatkhaumoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatkhaumoiActionPerformed
+    private void txtMatKhauMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauMoiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatkhaumoiActionPerformed
+    }//GEN-LAST:event_txtMatKhauMoiActionPerformed
+
+    private void btnThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThayDoiActionPerformed
+        // TODO add your handling code here:
+        String tenDangNhap = txtTenDangNhap.getText();
+        String matKhauCu = new String(txtMatKhau.getPassword());
+        String matKhauMoi = new String(txtMatKhauMoi.getPassword());
+        String reMatKhauMoi = new String(txtreMatKhauMoi.getPassword());
+        if (tenDangNhap.isEmpty() || matKhauCu.isEmpty() || matKhauMoi.isEmpty() || reMatKhauMoi.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa nhập đủ thông tin!");
+            return;
+        }
+        // Kiểm tra độ dài mật khẩu (ít nhất 8 ký tự)
+        if (matKhauCu.length() < 8 || matKhauMoi.length() < 8) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu phải có ít nhất 8 ký tự.");
+            return;
+        }
+        if (!matKhauMoi.equals(reMatKhauMoi)) {
+            JOptionPane.showMessageDialog(null, "Xác nhận mật khẩu mới không khớp!");
+            return;
+        }
+        // Kiểm tra định dạng tên đăng nhập
+        String regexTenDangNhap = "^[a-zA-Z0-9]{4,50}$";// chấp nhận chữ và số 
+        if (!tenDangNhap.matches(regexTenDangNhap)) {
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập chỉ chứa chữ cái, số và có độ dài từ 4-50 ký tự.");
+            return;
+        }
+
+        String enrTenDangNhap = null;
+        String enrMatKhauCu = null;
+        String enrMatKhauMoi = null;
+        try {
+            enrTenDangNhap = MD5Encryptor(tenDangNhap);
+            enrMatKhauCu = MD5Encryptor(matKhauCu);
+            enrMatKhauMoi = MD5Encryptor(matKhauMoi);
+
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ThayMatKhau.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ThayMatKhau.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(enrTenDangNhap+";"+enrMatKhauCu);
+
+        // Kiểm tra xem tên đăng nhập và mật khẩu cũ có khớp với tài khoản đã đăng ký hay không
+        TaiKhoanController doiMatKhauController = new TaiKhoanController();
+        boolean doiMatKhauThanhCong = doiMatKhauController.doiMatKhau(enrTenDangNhap, enrMatKhauCu, enrMatKhauMoi);
+        System.out.println(doiMatKhauThanhCong);
+        if (doiMatKhauThanhCong) {
+            JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
+            Login JpLogin = new Login();
+            JpLogin.setVisible(true);
+            setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Đổi mật khẩu thất bại! Vui lòng kiểm tra lại tên đăng nhập và mật khẩu cũ.");
+        }
+    }//GEN-LAST:event_btnThayDoiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -152,9 +230,10 @@ public class ThayMatKhau extends javax.swing.JPanel {
     private javax.swing.JButton btnThayDoi;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel lbTitle;
-    private quan_ly_benh_vien.View.Login.subComponent.MyTextField txtEmail;
-    private quan_ly_benh_vien.View.Login.subComponent.MyPassword txtMatKhaucu;
-    private quan_ly_benh_vien.View.Login.subComponent.MyPassword txtMatkhaumoi;
-    private quan_ly_benh_vien.View.Login.subComponent.MyPassword txtMatkhaumoiCheck;
+    private quan_ly_benh_vien.View.Login.subComponent.MyTextField myTextField1;
+    private quan_ly_benh_vien.View.Login.subComponent.MyPassword txtMatKhau;
+    private quan_ly_benh_vien.View.Login.subComponent.MyPassword txtMatKhauMoi;
+    private quan_ly_benh_vien.View.Login.subComponent.MyTextField txtTenDangNhap;
+    private quan_ly_benh_vien.View.Login.subComponent.MyPassword txtreMatKhauMoi;
     // End of variables declaration//GEN-END:variables
 }

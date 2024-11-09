@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="quan_ly_benh_vien.View.Login.subComponent.MyTextField" name="myTextField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="myTextField1"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -44,17 +51,24 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtMatkhaumoi" max="32767" attributes="0"/>
-                      <Component id="txtMatkhaumoiCheck" alignment="1" max="32767" attributes="0"/>
-                      <Component id="txtMatKhaucu" alignment="1" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnThayDoi" pref="140" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnBack" min="-2" pref="103" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="txtTenDangNhap" linkSize="4" min="-2" pref="240" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtMatKhauMoi" linkSize="4" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Component id="txtreMatKhauMoi" linkSize="4" alignment="1" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Component id="txtMatKhau" linkSize="4" alignment="1" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="btnThayDoi" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnBack" min="-2" pref="103" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -63,15 +77,15 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="lbTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="txtEmail" linkSize="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="txtTenDangNhap" linkSize="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtMatKhaucu" linkSize="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="txtMatKhau" linkSize="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtMatkhaumoi" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="txtMatKhauMoi" linkSize="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtMatkhaumoiCheck" linkSize="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                  <Component id="txtreMatKhauMoi" linkSize="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnBack" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btnThayDoi" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
@@ -112,22 +126,19 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Thay &#x111;&#x1ed5;i "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThayDoiActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="quan_ly_benh_vien.View.Login.subComponent.MyTextField" name="txtEmail">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="hint" type="java.lang.String" value="Email"/>
-          </Properties>
-        </Component>
-        <Component class="quan_ly_benh_vien.View.Login.subComponent.MyPassword" name="txtMatKhaucu">
+        <Component class="quan_ly_benh_vien.View.Login.subComponent.MyPassword" name="txtMatKhau">
           <Properties>
             <Property name="hint" type="java.lang.String" value="Nh&#x1ead;p M&#x1ead;t kh&#x1ea9;u c&#x169;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMatKhaucuActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMatKhauActionPerformed"/>
           </Events>
         </Component>
-        <Component class="quan_ly_benh_vien.View.Login.subComponent.MyPassword" name="txtMatkhaumoiCheck">
+        <Component class="quan_ly_benh_vien.View.Login.subComponent.MyPassword" name="txtreMatKhauMoi">
           <Properties>
             <Property name="hint" type="java.lang.String" value="Nh&#x1ead;p l&#x1ea1;i m&#x1ead;t kh&#x1ea9;u m&#x1edb;i"/>
           </Properties>
@@ -140,13 +151,18 @@
             <Property name="text" type="java.lang.String" value="Thay &#x110;&#x1ed5;i M&#x1ead;t Kh&#x1ea9;u"/>
           </Properties>
         </Component>
-        <Component class="quan_ly_benh_vien.View.Login.subComponent.MyPassword" name="txtMatkhaumoi">
+        <Component class="quan_ly_benh_vien.View.Login.subComponent.MyPassword" name="txtMatKhauMoi">
           <Properties>
             <Property name="hint" type="java.lang.String" value="Nh&#x1ead;p M&#x1ead;t kh&#x1ea9;u m&#x1edb;i"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMatkhaumoiActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMatKhauMoiActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="quan_ly_benh_vien.View.Login.subComponent.MyTextField" name="txtTenDangNhap">
+          <Properties>
+            <Property name="hint" type="java.lang.String" value="T&#xea;n &#x110;&#x103;ng Nh&#x1ead;p"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
