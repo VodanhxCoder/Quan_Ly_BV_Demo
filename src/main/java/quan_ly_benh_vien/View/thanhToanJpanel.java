@@ -2,11 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package view;
+package quan_ly_benh_vien.View;
 
-import controller.*;
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import quan_ly_benh_vien.Controller.*;
 import javax.swing.JOptionPane;
-import model.*;
+import quan_ly_benh_vien.Model.*;
+import static quan_ly_benh_vien.View.DatLichKhampanel.maDatLichList;
+import quan_ly_benh_vien.View.Login.Component.Login;
 
 /**
  *
@@ -15,6 +20,7 @@ import model.*;
 public class thanhToanJpanel extends javax.swing.JPanel {
     public thanhToanJpanel() {
         initComponents();
+        loadData();
     }
 
   
@@ -62,11 +68,11 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         jLabel2.setText("Thẻ Tín Dụng/Ghi Nợ");
         jLabel2.setOpaque(true);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Mastercard-icon.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhAnh/Mastercard-icon.png"))); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Visa-icon.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhAnh/Visa-icon.png"))); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Paypal-icon.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhAnh/Paypal-icon.png"))); // NOI18N
 
         jLabel6.setText("Thời Gian Giao Dịch");
 
@@ -125,16 +131,16 @@ public class thanhToanJpanel extends javax.swing.JPanel {
 
         jLabel22.setText("Nội Dung Chuyển Khoản : Tên Tài Khoản + Mã Giao Dịch");
 
-        lbThoiGian.setBackground(new java.awt.Color(204, 255, 255));
+        lbThoiGian.setBackground(new java.awt.Color(153, 153, 153));
         lbThoiGian.setOpaque(true);
 
-        lbMaGiaoDich.setBackground(new java.awt.Color(204, 255, 255));
+        lbMaGiaoDich.setBackground(new java.awt.Color(153, 153, 153));
         lbMaGiaoDich.setOpaque(true);
 
-        lbTongTien.setBackground(new java.awt.Color(204, 255, 255));
+        lbTongTien.setBackground(new java.awt.Color(153, 153, 153));
         lbTongTien.setOpaque(true);
 
-        lbSoLuong.setBackground(new java.awt.Color(204, 255, 255));
+        lbSoLuong.setBackground(new java.awt.Color(153, 153, 153));
         lbSoLuong.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -175,17 +181,17 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                         .addContainerGap(631, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(105, 105, 105)
+                                .addComponent(jLabel4)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addGap(130, 130, 130)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,16 +206,12 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(104, 104, 104))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(79, 79, 79)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextField9)
-                                                    .addComponent(jTextField8)))))
+                                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jTextField8)
+                                                .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -262,10 +264,10 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbMaGiaoDich, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
@@ -307,7 +309,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         String tenTaiKhoan =txtTenDangNhap.getText();
         String tenNganHang ="";
         String thoiGianThanhToan = lbThoiGian.getText();
-        String tenDangNhap = null;
+        String tenDangNhap = Login.xacNhanDangNhap;
         
         Object selectedNganHang = cbbNganHang.getSelectedItem();
         if(selectedNganHang == null || selectedNganHang.toString().isEmpty()){
@@ -316,7 +318,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         else{
             tenNganHang = selectedNganHang.toString();
         }
-        
+                // Kiểm tra các trường dữ liệu bị bỏ trống
         if(maGiaoDich.isEmpty() || soTaiKhoan.isEmpty() || tenTaiKhoan.isEmpty()||thoiGianThanhToan.isEmpty() ){
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin");
         }else{
@@ -324,9 +326,9 @@ public class thanhToanJpanel extends javax.swing.JPanel {
             thanhToanController tt = new thanhToanController();
             tt.insertThanhToan(thanhToan);
             
-//                DatLichKhamController datLichKhamController = new DatLichKhamController();
-//                datLichKhamController.capNhatTrangThaiThanhToan(maDatLichList);
-//                System.out.println(maDatLichList);
+                DatLichKhamController datLichKhamController = new DatLichKhamController();
+                datLichKhamController.capNhatTrangThaiThanhToan(maDatLichList);
+                System.out.println(maDatLichList);
             String mess = "Chúc mừng bạn " + tenDangNhap + " đã thanh toán thành công !\n"
                         + "Tổng số tiền: " + lbTongTien.getText() + " và số lượng lịch: " + lbSoLuong.getText() + "\n"
                         + "Mã giao dịch: " + lbMaGiaoDich.getText() + ", thời gian: " + thoiGianThanhToan;
@@ -334,46 +336,46 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbThanhToanActionPerformed
   
-//     private void loadData() {
-//        String hienThiSoLuong = Integer.toString(QuanLyDatLich.soLuongLichDat);
-//        lblSoLich.setText(hienThiSoLuong);
-//        lblSoLich2.setText(hienThiSoLuong);
-//
-//        float tongSoTienThanhToan = QuanLyDatLich.soLuongLichDat * 300000;
-//        String hienThiSoTien = " " + tongSoTienThanhToan;
-//        lblTongTien.setText(hienThiSoTien);
-//        lblTongTien_.setText(hienThiSoTien);
-//
-//        String maGiaoDich = generateRandomCode();
-//        lblMaGiaoDich.setText(maGiaoDich);
-//        lblMaGiaoDichQr.setText(maGiaoDich);
-//
-//        String thoiGianGiaoDich = getCurrentDateTime();
-//        lblThoiGian.setText(thoiGianGiaoDich);
-//        lblThoiGian2.setText(thoiGianGiaoDich);
-//    }
-//
-//    //    tạo 1 hàm random ra mã đặt lịch
-//    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-//    private static final int CODE_LENGTH = 5;
-//    private static final SecureRandom random = new SecureRandom();
-//
-//    public static String generateRandomCode() {
-//        StringBuilder code = new StringBuilder(CODE_LENGTH);
-//        for (int i = 0; i < CODE_LENGTH; i++) {
-//            int randomIndex = random.nextInt(CHARACTERS.length());
-//            char randomChar = CHARACTERS.charAt(randomIndex);
-//            code.append(randomChar);
-//        }
-//        return code.toString().toUpperCase();
-//    }
-//
-//    public static String getCurrentDateTime() {
-//        LocalDateTime now = LocalDateTime.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
-//        String formattedDateTime = now.format(formatter);
-//        return formattedDateTime;
-//    }
+     private void loadData() {
+        String hienThiSoLuong = Integer.toString(DatLichKhampanel.soLuongLichDat);
+        lbSoLuong.setText(hienThiSoLuong);
+     
+
+        float tongSoTienThanhToan = DatLichKhampanel.soLuongLichDat * 300000;
+        String hienThiSoTien = " " + tongSoTienThanhToan;
+        lbTongTien.setText(hienThiSoTien);
+  
+
+        String maGiaoDich = generateRandomCode();
+        lbMaGiaoDich.setText(maGiaoDich);
+    
+
+        String thoiGianGiaoDich = getCurrentDateTime();
+        lbThoiGian.setText(thoiGianGiaoDich);
+      
+    }
+
+    //    tạo 1 hàm random ra mã đặt lịch
+    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final int CODE_LENGTH = 5;
+    private static final SecureRandom random = new SecureRandom();
+
+    public static String generateRandomCode() {
+        StringBuilder code = new StringBuilder(CODE_LENGTH);
+        for (int i = 0; i < CODE_LENGTH; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            code.append(randomChar);
+        }
+        return code.toString().toUpperCase();
+    }
+
+    public static String getCurrentDateTime() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+        return formattedDateTime;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
