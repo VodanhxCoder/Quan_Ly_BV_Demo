@@ -13,15 +13,15 @@ import java.util.ArrayList;
 
 //Quyết định các chức năng chính cho chương trình 
 public interface DaoInterface<T> {
-    public int insert(T t);
+    public int insert(T t); //Thêm  
 
-    public int update(T t, String id);
+    public int update(T t, String id);//Sửa với id  
 
-    public int deleteById(String id);
+    public int deleteById(String id);//Xóa vói id 
     
-    public void deleteAll();
+    public void deleteAll();    //Xóa tất cả    
 
-    public ArrayList<T> selectAll();
+    public ArrayList<T> selectAll();    //Lấy tất cả 
 
-    public T selectById(String id);
+    public T selectById(String id); // Tìm kiếm bởi id-> chỉnh thành tìm kiếm bằng tùy chọn 
 }

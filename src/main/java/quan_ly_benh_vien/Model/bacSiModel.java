@@ -1,7 +1,9 @@
 package quan_ly_benh_vien.Model;
 
+import java.util.Date;
 
-public class bacSiModel extends nguoiModel{
+public class bacSiModel extends nguoiModel {
+
     private String ma;
     private String chuyenKhoa;
     private String kinhNghiemLamViec;
@@ -10,20 +12,23 @@ public class bacSiModel extends nguoiModel{
     public bacSiModel() {
     }
 
-   
     public bacSiModel(String ma, String chuyenKhoa, String kinhNghiemLamViec, String hocVan) {
         this.ma = ma;
         this.chuyenKhoa = chuyenKhoa;
         this.kinhNghiemLamViec = kinhNghiemLamViec;
         this.hocVan = hocVan;
     }
-public bacSiModel(String ma, String chuyenKhoa, String kinhNghiemLamViec, String hocVan, String hoVaTen, String soDienThoai, String email, String gioiTinh, String diachi, String hinhAnh) {
-        super(hoVaTen, soDienThoai, email, gioiTinh, hinhAnh, diachi);
+
+    public bacSiModel(String ma, String hoVaTen, String soDienThoai, String email, Date ngaySinh,
+            String diaChi, String gioiTinh, String chuyenKhoa, String kinhNghiemLamViec,
+            String hocVan, String hinhAnh) {
+        super(hoVaTen, soDienThoai, email, ngaySinh, gioiTinh, hinhAnh, diaChi);
         this.ma = ma;
         this.chuyenKhoa = chuyenKhoa;
         this.kinhNghiemLamViec = kinhNghiemLamViec;
         this.hocVan = hocVan;
     }
+
     public String getMaBacSi() {
         return ma;
     }

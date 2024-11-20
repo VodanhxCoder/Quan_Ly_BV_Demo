@@ -210,33 +210,72 @@ public class DangKy extends javax.swing.JPanel {
 
         add(jLayeredPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
-// xử lý cách trg hợp ko đungs định dạng 
 
-    private boolean isInputValid(String hoVaTen, String tenDangNhap, String matKhau, String reMatKhau, String email) {
-        if (hoVaTen.isEmpty() || tenDangNhap.isEmpty() || matKhau.isEmpty() || reMatKhau.isEmpty() || email.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Bạn chưa nhập đủ thông tin!");
+    public static boolean validateHotenAndEmail(String hoVaTen, String email, String gioiTinh) {
+        // Kiểm tra họ và tên
+        if (hoVaTen == null || hoVaTen.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Họ và tên không được để trống.");
             return false;
         }
-        if (!matKhau.equals(reMatKhau)) {
-            JOptionPane.showMessageDialog(null, "Mật khẩu không khớp!");
-            return false;
-        }
-        if (!email.matches(".+@gmail\\.com")) {
-            JOptionPane.showMessageDialog(null, "Email chưa đúng định dạng!");
-            return false;
-        }
-        return true;
-    }
-// xử lys radio giới tính 
 
-    private String getGioiTinh() {
-        ButtonModel selectedButton = buttonGroup1.getSelection();
-        if (selectedButton == null) {
+        // Kiểm tra email
+        if (email == null || email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Email không được để trống.");
+            return false;
+        }
+
+        String regexEmail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        if (!email.matches(regexEmail)) {
+            JOptionPane.showMessageDialog(null, "Email không đúng định dạng.");
+            return false;
+        }
+
+        // Kiểm tra giới tính
+        if (gioiTinh == null || gioiTinh.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa chọn giới tính!");
-            return null;
+            return false;
         }
-        return (selectedButton == radNam.getModel()) ? "Nam" : "Nữ";
+
+        return true; // Tất cả thông tin hợp lệ
     }
+
+    public static boolean validateRegistration(String hoVaTen, String tenDangNhap, String matKhau, String email, String gioiTinh) {
+        // Regex định dạng tên đăng nhập
+        String regexTenDangNhap = "^[a-zA-Z0-9]{4,50}$";
+
+        // Regex định dạng mật khẩu
+        String regexMatKhau = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,50}$";
+        // Kiểm tra thông tin cơ bản
+
+        if (tenDangNhap == null || tenDangNhap.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập không được để trống.");
+            return false;
+        }
+
+        // Kiểm tra định dạng tên đăng nhập
+        if (!tenDangNhap.matches(regexTenDangNhap)) {
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập chỉ chứa chữ cái, số và có độ dài từ 4-50 ký tự.");
+            return false;
+        }
+        if (!DangKy.validateHotenAndEmail(hoVaTen, email, gioiTinh)) {
+            return false;
+        }
+        if (matKhau == null || matKhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu không được để trống.");
+            return false;
+        }
+
+        // Kiểm tra định dạng mật khẩu
+        if (!matKhau.matches(regexMatKhau)) {
+            JOptionPane.showMessageDialog(null,
+                    "Mật khẩu phải chứa ít nhất một chữ cái thường, một chữ cái hoa, một chữ số, một ký tự đặc biệt, và dài từ 8-50 ký tự.");
+            return false;
+        }
+
+        return true; // Thông tin hợp lệ
+    }
+
+
     private void txtTenDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenDangNhapActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenDangNhapActionPerformed
@@ -263,32 +302,37 @@ public class DangKy extends javax.swing.JPanel {
         String matKhau = new String(txtMatKhau.getPassword());
         String email = txtEmail.getText();
         String reMatKhau = new String(txtXacNhanMatKhau.getPassword());
-        String gioiTinh;
-        // Kiểm tra các điều kiện trước khi thực hiện đăng ký
-        if (!isInputValid(hoVaTen, tenDangNhap, matKhau, reMatKhau, email)) {
-            return; // Dừng lại nếu thông tin không hợp lệ
+        String gioiTinh= null;
+        
+        if (radNam.isSelected()) {
+            gioiTinh = "Nam";
+        } else if (radNu.isSelected()) {
+            gioiTinh = "Nữ";
         }
-        // Kiểm tra định dạng tên đăng nhập
-        String regexTenDangNhap = "^[a-zA-Z0-9]{4,50}$";// chấp nhận chữ và số 
-        if (!tenDangNhap.matches(regexTenDangNhap)) {
-            JOptionPane.showMessageDialog(null, "Tên đăng nhập chỉ chứa chữ cái, số và có độ dài từ 4-50 ký tự.");
+        if (!validateRegistration(hoVaTen, tenDangNhap, matKhau, email, gioiTinh)) {
             return;
         }
-
-        // Kiểm tra độ dài mật khẩu (ít nhất 8 ký tự)
-        if (matKhau.length() < 8) {
-            JOptionPane.showMessageDialog(null, "Mật khẩu phải có ít nhất 8 ký tự.");
+        if (!matKhau.equals(reMatKhau)) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu nhập lại không khớp.");
             return;
         }
+        //Tạo mã hóa
+        String enrTenDangNhap = null;
+        String enrMatKhau = null;
+        try {
+            // Tạo đối tượng đăng ký và kiểm tra điều khoản"
+            enrTenDangNhap = MD5Encryptor(tenDangNhap);
+            enrMatKhau = MD5Encryptor(matKhau);
 
-        gioiTinh = getGioiTinh();
-        if (gioiTinh == null) {
-            return; // Dừng lại nếu không chọn giới tính
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(DangKy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(DangKy.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 // Kiểm tra tên đăng nhập và email đã tồn tại
         TaiKhoanController dangKyController = new TaiKhoanController();
-        boolean tenDaTonTai = dangKyController.kiemTraTenDangNhapTrung(tenDangNhap);
+        boolean tenDaTonTai = dangKyController.kiemTraTenDangNhapTrung(enrTenDangNhap);
         boolean emailDaTonTai = dangKyController.kiemTraEmailTrung(email);
 
         if (tenDaTonTai) {
@@ -296,28 +340,16 @@ public class DangKy extends javax.swing.JPanel {
         } else if (emailDaTonTai) {
             JOptionPane.showMessageDialog(null, "Email đã tồn tại!");
         } else {
-            String enrTenDangNhap = null;
-            String enrMatKhau = null;
-            try {
-                // Tạo đối tượng đăng ký và kiểm tra điều khoản"
-                enrTenDangNhap = MD5Encryptor(tenDangNhap);
-                enrMatKhau = MD5Encryptor(matKhau);
-
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(DangKy.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (UnsupportedEncodingException ex) {
-                Logger.getLogger(DangKy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
             QuanLyTaiKhoanModel dangKy = new QuanLyTaiKhoanModel(hoVaTen, enrTenDangNhap, enrMatKhau, email, gioiTinh);
             //Kiem tra dieu khoản đã đc chọn hay chưa 
             if (!checkDieuKhoan.isSelected()) {
                 JOptionPane.showMessageDialog(null, "Bạn chưa đồng ý với điều khoản!");
             } else {
                 // Gọi controller để thực hiện đăng ký
-                int rowsAffected = dangKyController.dangKyTaiKhoan(dangKy);
+                int rowsAffected = dangKyController.dangKyTaiKhoan(dangKy, false);
                 if (rowsAffected > 0) { //Khi đăng ký thành công sẽ trả về 1 
                     JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thành công!");
+                    System.out.println(txtTenDangNhap.getText());
                     Login JpLogin = new Login();
                     JpLogin.setVisible(true);
                     setVisible(false);
@@ -327,7 +359,7 @@ public class DangKy extends javax.swing.JPanel {
             }
         }
 
-        System.out.println(txtTenDangNhap.getText());
+
     }//GEN-LAST:event_btnDangKyActionPerformed
 
     private void btnTroLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTroLaiActionPerformed

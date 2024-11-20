@@ -250,7 +250,8 @@ public class Login extends javax.swing.JPanel {
 
     //Xác thuc dang nhap
     public static String xacNhanDangNhap;
-    public static String xacNhanMatKhau;
+    public static String xacNhanUser;
+    
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
@@ -307,9 +308,13 @@ public class Login extends javax.swing.JPanel {
 // Kiểm tra thông tin đăng nhập
         TaiKhoanController dangNhapController = new TaiKhoanController();
         boolean dangNhapThanhCong = dangNhapController.kiemTraDangNhap(enrTenDangNhap, enrMatKhau);
+        
+        
 
         if (dangNhapThanhCong) {
             Login.xacNhanDangNhap = tenDangNhap;
+            String XacNhanUser1=dangNhapController.ktraTypeUser(enrTenDangNhap);
+            Login.xacNhanUser = XacNhanUser1;
             JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
             JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(Login.this);
             if (mainFrame != null) {

@@ -27,10 +27,11 @@ public class QuanLyTaiKhoanDao implements DaoInterface<QuanLyTaiKhoanModel> {
 
     public QuanLyTaiKhoanDao() {
     }
+
     //Mã hóa thông tin khi đưa vào database 
     public static String MD5Encryptor(String srcText) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         //khởi tạo enrText lấy mã đầu cuối 
-        String enrText; 
+        String enrText;
         // Sử dụng lớp MessageDigest trong java.security để mã hóa 
         MessageDigest msd = MessageDigest.getInstance("MD5");
         //chuyển srcText thành mảng các byte với tham số UTF-8 để đocj đc chữ unicode 
@@ -249,8 +250,8 @@ public class QuanLyTaiKhoanDao implements DaoInterface<QuanLyTaiKhoanModel> {
     }
     //----------------------------------------------------------
 
-    @Override
-    public int insert(QuanLyTaiKhoanModel t) {
+
+    public int insertBenhNhan(QuanLyTaiKhoanModel t,boolean check) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         int rowsAffected = 0;
@@ -258,9 +259,8 @@ public class QuanLyTaiKhoanDao implements DaoInterface<QuanLyTaiKhoanModel> {
         try {
             // Lấy kết nối tới cơ sở dữ liệu
             connection = ConnectDB.getConnection();
-
             // Chuẩn bị câu truy vấn SQL để chèn dữ liệu
-            String sql = "INSERT INTO TaiKhoan (hoVaTen, tenDangNhap, matKhau, email, GioiTinh) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO TaiKhoan (hoVaTen, tenDangNhap, matKhau, email, GioiTinh,typeUser) VALUES (?, ?, ?, ?, ?,?)";
             preparedStatement = connection.prepareStatement(sql);
 
             // Đặt các tham số cho câu truy vấn SQL từ đối tượng DangKy
@@ -269,13 +269,78 @@ public class QuanLyTaiKhoanDao implements DaoInterface<QuanLyTaiKhoanModel> {
             preparedStatement.setString(3, t.getMatKhau());
             preparedStatement.setString(4, t.getEmail());
             preparedStatement.setString(5, t.getGioiTinh());
+            preparedStatement.setString(6, "user");
 
             // Thực hiện chèn dữ liệu và lấy số dòng bị ảnh hưởng
             rowsAffected = preparedStatement.executeUpdate();
+
+            // Nếu việc chèn tài khoản thành công, tiếp tục chèn dữ liệu vào bảng BenhNhan
+            if (rowsAffected > 0&&!check) {
+                String sqlBenhNhan = "INSERT INTO BenhNhan (hovaTen, gioiTinh, diaChi, soDienThoai, email, tenDangNhap) VALUES (?, ?, ?, ?, ?, ?)";
+                preparedStatement = connection.prepareStatement(sqlBenhNhan);
+
+                // Đặt các tham số cho câu truy vấn SQL từ đối tượng DangKy
+                preparedStatement.setString(1, t.getHoVaTen());  // Giả sử tên bệnh nhân là tên người đăng ký
+                preparedStatement.setString(2, t.getGioiTinh());
+                preparedStatement.setString(3, null);  // Giả sử bạn có địa chỉ từ form đăng ký
+                preparedStatement.setString(4, null);  // Số điện thoại từ form đăng ký
+                preparedStatement.setString(5, t.getEmail());  // Email từ form đăng ký
+                preparedStatement.setString(6, t.getTenDangNhap());  // Lấy tên đăng nhập từ tài khoản đã đăng ký
+
+                // Thực hiện chèn dữ liệu vào bảng BenhNhan
+                rowsAffected = preparedStatement.executeUpdate();
+            }
+
+            // Kiểm tra số dòng bị ảnh hưởng và thông báo
+            if (rowsAffected > 0) {
+                System.out.println("Đăng ký và chèn dữ liệu thành công!");
+            } else {
+                System.out.println("Đăng ký thất bại!");
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Lỗi trong quá trình đăng ký hoặc thêm bệnh nhân.");
         } finally {
-            // Đóng kết nối và tài nguyên
+            // Đảm bảo đóng tài nguyên
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return rowsAffected;
+    }
+
+    public String ktraUser(String tenDangNhap) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectDB.getConnection();
+
+            String checkLoginQuery = "SELECT typeUser FROM taikhoan WHERE tenDangNhap=?";
+            preparedStatement = connection.prepareStatement(checkLoginQuery);
+            preparedStatement.setString(1, tenDangNhap);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                System.out.println(resultSet.getString("typeUser"));
+                return resultSet.getString("typeUser");
+
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null; // Lỗi xảy ra
+        } finally {
+            // Đóng tài nguyên
             ConnectDB.closeConnection(connection);
             if (preparedStatement != null) {
                 try {
@@ -285,7 +350,7 @@ public class QuanLyTaiKhoanDao implements DaoInterface<QuanLyTaiKhoanModel> {
                 }
             }
         }
-        return rowsAffected;
+
     }
 
     @Override
@@ -310,6 +375,11 @@ public class QuanLyTaiKhoanDao implements DaoInterface<QuanLyTaiKhoanModel> {
 
     @Override
     public QuanLyTaiKhoanModel selectById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int insert(QuanLyTaiKhoanModel t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

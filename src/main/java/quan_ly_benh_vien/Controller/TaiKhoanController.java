@@ -20,9 +20,9 @@ public class TaiKhoanController {
         dangKyDao = QuanLyTaiKhoanDao.getInstance();
     }
 
-    public int dangKyTaiKhoan(QuanLyTaiKhoanModel dangKy) {
+    public int dangKyTaiKhoan(QuanLyTaiKhoanModel dangKy, boolean check) {
         // Gọi phương thức insert của QuanLyTaiKhoanDao để thêm dữ liệu vào cơ sở dữ liệu
-        int rowsAffected = dangKyDao.insert(dangKy);
+        int rowsAffected = dangKyDao.insertBenhNhan(dangKy,check);
 
         if (rowsAffected > 0) {
             System.out.println("Đăng ký thành công!");
@@ -54,6 +54,10 @@ public class TaiKhoanController {
     public String layMatKhauMoi(String tenDangNhap, String email) {
         QuanLyTaiKhoanDao layMatKhauMoiDao = new QuanLyTaiKhoanDao();
         return layMatKhauMoiDao.layMatKhauMoi(tenDangNhap, email);
+    }
+    
+    public String ktraTypeUser(String tenDangNhap){
+        return dangKyDao.ktraUser(tenDangNhap);
     }
 
 }

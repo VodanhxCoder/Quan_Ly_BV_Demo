@@ -32,7 +32,7 @@ public class QuanLyBenhAnDAO implements DaoInterface<hosoBenhAnModel> {
 
         try {
             connection = ConnectDB.getConnection();
-            String checkExistQuery = "SELECT * FROM hosobenhan WHERE maHoSo=?";
+            String checkExistQuery = "SELECT * FROM hosobenhnhan WHERE maHoSo=?";
             preparedStatement = connection.prepareStatement(checkExistQuery);
             preparedStatement.setString(1, maHoSo);
             resultSet = preparedStatement.executeQuery();
@@ -67,15 +67,15 @@ public class QuanLyBenhAnDAO implements DaoInterface<hosoBenhAnModel> {
 
         try {
             connection = ConnectDB.getConnection();
-            String sql = "INSERT INTO hosobenhnhan (maHoSo, tienSuBenhAn, trieuChung, chuanDoan, ketLuan, maBenhNhan, maBacSi) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO hosobenhnhan ( tienSuBenhAn, trieuChung, chuanDoan, ketLuan, maBenhNhan, maBacSi) VALUES ( ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, t.getMaHoSo());
-            preparedStatement.setString(2, t.getTienSuBenhAn());
-            preparedStatement.setString(3, t.getTrieuChung());
-            preparedStatement.setString(4, t.getChuanDoan());
-            preparedStatement.setString(5, t.getKetLuan());
-            preparedStatement.setString(6, t.getMaBenhNhan());
-            preparedStatement.setString(7, t.getMaBacSi());
+         
+            preparedStatement.setString(1, t.getTienSuBenhAn());
+            preparedStatement.setString(2, t.getTrieuChung());
+            preparedStatement.setString(3, t.getChuanDoan());
+            preparedStatement.setString(4, t.getKetLuan());
+            preparedStatement.setString(5, t.getMaBenhNhan());
+            preparedStatement.setString(6, t.getMaBacSi());
             rowsAffected = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,16 +100,15 @@ public class QuanLyBenhAnDAO implements DaoInterface<hosoBenhAnModel> {
 
         try {
             connection = ConnectDB.getConnection();
-            String sql = "UPDATE hosobenhnhan SET maHoSo = ?, tienSuBenhAn = ?, trieuChung = ?, chuanDoan = ?, ketLuan = ?, maBenhNhan = ?, maBacSi = ? WHERE maHoSo = ?";
+            String sql = "UPDATE hosobenhnhan SET  tienSuBenhAn = ?, trieuChung = ?, chuanDoan = ?, ketLuan = ?, maBenhNhan = ?, maBacSi = ? WHERE maHoSo = ?";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, t.getMaHoSo());
-            preparedStatement.setString(2, t.getTienSuBenhAn());
-            preparedStatement.setString(3, t.getTrieuChung());
-            preparedStatement.setString(4, t.getChuanDoan());
-            preparedStatement.setString(5, t.getKetLuan());
+            preparedStatement.setString(1, t.getTienSuBenhAn());
+            preparedStatement.setString(2, t.getTrieuChung());
+            preparedStatement.setString(3, t.getChuanDoan());
+            preparedStatement.setString(4, t.getKetLuan());
+            preparedStatement.setString(5, t.getMaBenhNhan());
             preparedStatement.setString(6, t.getMaBacSi());
-            preparedStatement.setString(7, t.getMaBacSi());
-            preparedStatement.setString(8, id);
+            preparedStatement.setString(7, id);
             rowsAffected = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace(); // Xem xét xử lý lỗi chi tiết hơn ở đây

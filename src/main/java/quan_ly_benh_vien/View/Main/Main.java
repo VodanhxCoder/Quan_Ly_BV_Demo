@@ -15,6 +15,7 @@ import quan_ly_benh_vien.View.Main.Component.EventMenuSelected;
 import quan_ly_benh_vien.View.benhNhanJpanel;
 import quan_ly_benh_vien.View.DatLichKhampanel;
 import quan_ly_benh_vien.View.thanhToanJpanel;
+import quan_ly_benh_vien.View.thongTinTaiKhoanPanel;
 
 
 /**
@@ -29,13 +30,15 @@ public class Main extends javax.swing.JFrame {
     private DatLichKhampanel jpDatLich;
     private bacSiJpanel jpBacSi;
     private benhNhanJpanel jpBenhNhan;
+    private thongTinTaiKhoanPanel jpThongTin;
 
     public Main() throws SQLException {
         initComponents();
         jpDatLich = new DatLichKhampanel();
         jpBacSi = new bacSiJpanel();
         jpBenhNhan = new benhNhanJpanel();
-      
+        jpThongTin = new thongTinTaiKhoanPanel();
+       
 
         menu1.initMoving(Main.this);
         menu1.addEventMenuSelected(new EventMenuSelected() {
@@ -50,6 +53,9 @@ public class Main extends javax.swing.JFrame {
                     setForm(jpBenhNhan);
                 } else if (index == 3) {
                     setForm(jpBacSi);
+                }
+                else if (index ==6 ) {
+                    setForm(jpThongTin);
                 }
             }
         });
@@ -96,7 +102,7 @@ public class Main extends javax.swing.JFrame {
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 531, Short.MAX_VALUE)
+            .addGap(0, 590, Short.MAX_VALUE)
         );
 
         mainPanel.add(jLayeredPane1, java.awt.BorderLayout.CENTER);
@@ -113,7 +119,7 @@ public class Main extends javax.swing.JFrame {
         jpBackgroudLayout.setVerticalGroup(
             jpBackgroudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

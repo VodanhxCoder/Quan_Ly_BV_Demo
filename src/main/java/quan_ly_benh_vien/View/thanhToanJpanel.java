@@ -4,13 +4,9 @@
  */
 package quan_ly_benh_vien.View;
 
-import java.security.SecureRandom;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import quan_ly_benh_vien.Controller.*;
 import javax.swing.JOptionPane;
 import quan_ly_benh_vien.Model.*;
-import static quan_ly_benh_vien.View.DatLichKhampanel.maDatLichList;
 
 /**
  *
@@ -305,7 +301,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         String tenTaiKhoan =txtTenDangNhap.getText();
         String tenNganHang ="";
         String thoiGianThanhToan = lbThoiGian.getText();
-        String tenDangNhap = null ;
+        String tenDangNhap = null;
         
         Object selectedNganHang = cbbNganHang.getSelectedItem();
         if(selectedNganHang == null || selectedNganHang.toString().isEmpty()){
@@ -322,9 +318,9 @@ public class thanhToanJpanel extends javax.swing.JPanel {
             thanhToanController tt = new thanhToanController();
             tt.insertThanhToan(thanhToan);
             
-                DatLichKhamController datLichKhamController = new DatLichKhamController();
-                datLichKhamController.capNhatTrangThaiThanhToan(maDatLichList);
-                System.out.println(maDatLichList);
+//                DatLichKhamController datLichKhamController = new DatLichKhamController();
+//                datLichKhamController.capNhatTrangThaiThanhToan(maDatLichList);
+//                System.out.println(maDatLichList);
             String mess = "Chúc mừng bạn " + tenDangNhap + " đã thanh toán thành công !\n"
                         + "Tổng số tiền: " + lbTongTien.getText() + " và số lượng lịch: " + lbSoLuong.getText() + "\n"
                         + "Mã giao dịch: " + lbMaGiaoDich.getText() + ", thời gian: " + thoiGianThanhToan;
@@ -332,46 +328,46 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbThanhToanActionPerformed
   
-     private void loadData() {
-        String hienThiSoLuong = Integer.toString(DatLichKhampanel.soLuongLichDat);
-       lbSoLuong .setText(hienThiSoLuong);
-       
-
-        float tongSoTienThanhToan = DatLichKhampanel.soLuongLichDat * 300000;
-        String hienThiSoTien = " " + tongSoTienThanhToan;
-        lbTongTien.setText(hienThiSoTien);
-    
-
-        String maGiaoDich = generateRandomCode();
-        lbMaGiaoDich.setText(maGiaoDich);
-       
-
-        String thoiGianGiaoDich = getCurrentDateTime();
-        lbThoiGian.setText(thoiGianGiaoDich);
-      
-    }
-
-    //    tạo 1 hàm random ra mã đặt lịch
-    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private static final int CODE_LENGTH = 5;
-    private static final SecureRandom random = new SecureRandom();
-
-    public static String generateRandomCode() {
-        StringBuilder code = new StringBuilder(CODE_LENGTH);
-        for (int i = 0; i < CODE_LENGTH; i++) {
-            int randomIndex = random.nextInt(CHARACTERS.length());
-            char randomChar = CHARACTERS.charAt(randomIndex);
-            code.append(randomChar);
-        }
-        return code.toString().toUpperCase();
-    }
-
-    public static String getCurrentDateTime() {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
-        String formattedDateTime = now.format(formatter);
-        return formattedDateTime;
-    }
+//     private void loadData() {
+//        String hienThiSoLuong = Integer.toString(QuanLyDatLich.soLuongLichDat);
+//        lblSoLich.setText(hienThiSoLuong);
+//        lblSoLich2.setText(hienThiSoLuong);
+//
+//        float tongSoTienThanhToan = QuanLyDatLich.soLuongLichDat * 300000;
+//        String hienThiSoTien = " " + tongSoTienThanhToan;
+//        lblTongTien.setText(hienThiSoTien);
+//        lblTongTien_.setText(hienThiSoTien);
+//
+//        String maGiaoDich = generateRandomCode();
+//        lblMaGiaoDich.setText(maGiaoDich);
+//        lblMaGiaoDichQr.setText(maGiaoDich);
+//
+//        String thoiGianGiaoDich = getCurrentDateTime();
+//        lblThoiGian.setText(thoiGianGiaoDich);
+//        lblThoiGian2.setText(thoiGianGiaoDich);
+//    }
+//
+//    //    tạo 1 hàm random ra mã đặt lịch
+//    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+//    private static final int CODE_LENGTH = 5;
+//    private static final SecureRandom random = new SecureRandom();
+//
+//    public static String generateRandomCode() {
+//        StringBuilder code = new StringBuilder(CODE_LENGTH);
+//        for (int i = 0; i < CODE_LENGTH; i++) {
+//            int randomIndex = random.nextInt(CHARACTERS.length());
+//            char randomChar = CHARACTERS.charAt(randomIndex);
+//            code.append(randomChar);
+//        }
+//        return code.toString().toUpperCase();
+//    }
+//
+//    public static String getCurrentDateTime() {
+//        LocalDateTime now = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+//        String formattedDateTime = now.format(formatter);
+//        return formattedDateTime;
+//    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

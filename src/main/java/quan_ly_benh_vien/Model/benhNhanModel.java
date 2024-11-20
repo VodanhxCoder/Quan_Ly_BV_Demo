@@ -4,6 +4,8 @@
  */
 package quan_ly_benh_vien.Model;
 
+import java.util.Date;
+
 /**
  *
  * @author LAPTOP
@@ -16,11 +18,23 @@ public class benhNhanModel extends nguoiModel{
         this.maBenhNhan = maBenhNhan;
         this.tenDangnhap = tenDangnhap;
     }
-    public benhNhanModel( String maBenhNhan, String tenDangnhap,String hoVaTen, String soDienThoai, String email, String gioiTinh, String diachi, String hinhAnh) {
+    
+    public benhNhanModel( String tenDangnhap,String hoVaTen, String soDienThoai, String email,Date ngaySinh, String gioiTinh, String diachi, String hinhAnh) {
+        super(hoVaTen, soDienThoai, email,ngaySinh, gioiTinh, hinhAnh, diachi);
+        this.maBenhNhan = maBenhNhan;
+        this.tenDangnhap = tenDangnhap;
+    }
+    public benhNhanModel( String maBenhNhan, String tenDangnhap,String hoVaTen, String soDienThoai, String email,Date ngaySinh, String gioiTinh, String diachi, String hinhAnh) {
+        super(hoVaTen, soDienThoai, email,ngaySinh, gioiTinh, hinhAnh, diachi);
+        this.maBenhNhan = maBenhNhan;
+        this.tenDangnhap = tenDangnhap;
+    }
+     public benhNhanModel( String tenDangnhap,String hoVaTen, String soDienThoai, String email, String gioiTinh, String diachi, String hinhAnh) {
         super(hoVaTen, soDienThoai, email, gioiTinh, hinhAnh, diachi);
         this.maBenhNhan = maBenhNhan;
         this.tenDangnhap = tenDangnhap;
     }
+     
 
     
 

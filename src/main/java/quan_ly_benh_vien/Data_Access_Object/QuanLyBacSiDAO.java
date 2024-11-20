@@ -1,4 +1,3 @@
-
 package quan_ly_benh_vien.Data_Access_Object;
 
 import quan_ly_benh_vien.Model.bacSiModel;
@@ -6,6 +5,7 @@ import quan_ly_benh_vien.Model.nguoiModel;
 import quan_ly_benh_vien.Controller.ConnectDB;
 import quan_ly_benh_vien.Data_Access_Object.DaoInterface;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,10 +27,8 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
         return instance;
     }
 
-
-
 //    kiểm tra mã bác sĩ bị trùng
-    public boolean maBacSiTrung(String maBacSi) {
+    public boolean KtraTrungLap(String thuocTinhKtra, String giaTriKtra) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -39,9 +37,9 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
             connection = ConnectDB.getConnection();
 
             // Kiểm tra xem mã bác sĩ đã tồn tại chưa
-            String checkExistQuery = "SELECT * FROM bacsi WHERE maBacSi=?";
+            String checkExistQuery = "SELECT * FROM bacsi WHERE " + thuocTinhKtra + "=?";
             preparedStatement = connection.prepareStatement(checkExistQuery);
-            preparedStatement.setString(1, maBacSi);
+            preparedStatement.setString(1, giaTriKtra);
             resultSet = preparedStatement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
@@ -75,9 +73,16 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
         try {
             // Lấy kết nối tới cơ sở dữ liệu
             connection = ConnectDB.getConnection();
-
+            java.sql.Date sqlDate = null;
+            // Kiểm tra nếu ngày không null
+            if (bacSi.getNgaySinh() != null) {
+                // Chuyển đổi từ java.util.Date sang java.sql.Date
+                sqlDate = new java.sql.Date(bacSi.getNgaySinh().getTime());
+                // Sử dụng sqlDate trong câu lệnh SQL
+                System.out.println("Ngày đã chuyển đổi thành java.sql.Date: " + sqlDate);
+            }
             // Chuẩn bị câu truy vấn SQL để chèn dữ liệu
-            String sql = "INSERT INTO bacsi (maBacSi, hoVaTen, soDienThoai, email,diaChi, gioiTinh, chuyenKhoa, kinhNghiemLamViec, hocVan, hinhAnh) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO bacsi (maBacSi, hoVaTen, soDienThoai, email,ngaySinh,diaChi, gioiTinh, chuyenKhoa, kinhNghiemLamViec, hocVan, hinhAnh) VALUES ( ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(sql);
 
             // Đặt các tham số cho câu truy vấn SQL từ đối tượng BacSiModel
@@ -85,14 +90,13 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
             preparedStatement.setString(2, bacSi.getHoVaTen());
             preparedStatement.setString(3, bacSi.getSoDienThoai());
             preparedStatement.setString(4, bacSi.getEmail());
-            preparedStatement.setString(5, bacSi.getDiachi());
-            preparedStatement.setString(6, bacSi.getGioiTinh());
-            preparedStatement.setString(7, bacSi.getChuyenKhoa());
-            preparedStatement.setString(8, bacSi.getKinhNghiemLamViec());
-            preparedStatement.setString(9, bacSi.getHocVan());
-            preparedStatement.setString(10,bacSi.getHinhAnh());
-  
-            
+            preparedStatement.setDate(5, sqlDate);
+            preparedStatement.setString(6, bacSi.getDiachi());
+            preparedStatement.setString(7, bacSi.getGioiTinh());
+            preparedStatement.setString(8, bacSi.getChuyenKhoa());
+            preparedStatement.setString(9, bacSi.getKinhNghiemLamViec());
+            preparedStatement.setString(10, bacSi.getHocVan());
+            preparedStatement.setString(11, bacSi.getHinhAnh());
 
             // Thực hiện chèn dữ liệu và lấy số dòng bị ảnh hưởng
             rowsAffected = preparedStatement.executeUpdate();
@@ -121,8 +125,19 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
         try {
             // Lấy kết nối tới cơ sở dữ liệu
             connection = ConnectDB.getConnection();
+
+            connection = ConnectDB.getConnection();
+            java.sql.Date sqlDate = null;
+            // Kiểm tra nếu ngày không null
+            if (bacSi.getNgaySinh() != null) {
+                // Chuyển đổi từ java.util.Date sang java.sql.Date
+                sqlDate = new java.sql.Date(bacSi.getNgaySinh().getTime());
+                // Sử dụng sqlDate trong câu lệnh SQL
+                System.out.println("Ngày đã chuyển đổi thành java.sql.Date: " + sqlDate);
+            }
+
             // Chuẩn bị câu truy vấn SQL để cập nhật dữ liệu
-            String sql = "UPDATE bacsi SET maBacSi = ?, hoVaTen = ?, soDienThoai = ?, email = ?, diaChi = ?, gioiTinh = ?, chuyenKhoa = ?, kinhNghiemLamViec = ?, hocVan = ?, hinhAnh = ? WHERE maBacSi = ?";
+            String sql = "UPDATE bacsi SET maBacSi = ?, hoVaTen = ?, soDienThoai = ?, email = ?,ngaySinh=?, diaChi = ?, gioiTinh = ?, chuyenKhoa = ?, kinhNghiemLamViec = ?, hocVan = ?, hinhAnh = ? WHERE maBacSi = ?";
             preparedStatement = connection.prepareStatement(sql);
 
             // Đặt các tham số cho câu truy vấn SQL từ đối tượng T
@@ -130,15 +145,16 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
             preparedStatement.setString(2, bacSi.getHoVaTen());
             preparedStatement.setString(3, bacSi.getSoDienThoai());
             preparedStatement.setString(4, bacSi.getEmail());
-            preparedStatement.setString(5, bacSi.getDiachi());
-            preparedStatement.setString(6, bacSi.getGioiTinh());
-            preparedStatement.setString(7, bacSi.getChuyenKhoa());
-            preparedStatement.setString(8, bacSi.getKinhNghiemLamViec());
-            preparedStatement.setString(9, bacSi.getHocVan());
-            preparedStatement.setString(10, bacSi.getHinhAnh());
+            preparedStatement.setDate(5, sqlDate);
+            preparedStatement.setString(6, bacSi.getDiachi());
+            preparedStatement.setString(7, bacSi.getGioiTinh());
+            preparedStatement.setString(8, bacSi.getChuyenKhoa());
+            preparedStatement.setString(9, bacSi.getKinhNghiemLamViec());
+            preparedStatement.setString(10, bacSi.getHocVan());
+            preparedStatement.setString(11, bacSi.getHinhAnh());
 
             // Đặt tham số cho WHERE clause (maBacSi)
-            preparedStatement.setString(11, id);
+            preparedStatement.setString(12, id);
 
             // Thực hiện cập nhật dữ liệu và lấy số dòng bị ảnh hưởng
             rowsAffected = preparedStatement.executeUpdate();
@@ -185,7 +201,6 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
 //            preparedStatement = connection.prepareStatement(deleteBenhNhanSql);
 //            preparedStatement.setString(1, id);
 //            rowsAffected += preparedStatement.executeUpdate();
-
             // Bước 4: Xóa bác sĩ từ bảng bacsi
             String deleteBacSiSql = "DELETE FROM bacsi WHERE maBacSi = ?";
             preparedStatement = connection.prepareStatement(deleteBacSiSql);
@@ -250,53 +265,46 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
 
     @Override
     public ArrayList<bacSiModel> selectAll() {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        ArrayList<bacSiModel> list = new ArrayList<>();
+        ArrayList<bacSiModel> dsBS = new ArrayList<>();
 
-        try {
-            connection = ConnectDB.getConnection();
-            String sql = "SELECT * FROM bacsi";
-            preparedStatement = connection.prepareStatement(sql);
-            resultSet = preparedStatement.executeQuery();
+        // Tạo câu lệnh SQL cụ thể
+        String sql = "SELECT * FROM bacsi";
 
-            while (resultSet.next()) {
-                bacSiModel bacSi = new bacSiModel();
-                bacSi.setMaBacSi(resultSet.getString("maBacSi"));
-                bacSi.setHoVaTen(resultSet.getString("hoVaTen"));
-                bacSi.setSoDienThoai(resultSet.getString("soDienThoai"));
-                bacSi.setEmail(resultSet.getString("email"));
-                bacSi.setDiachi(resultSet.getString("diaChi"));
-                bacSi.setGioiTinh(resultSet.getString("gioiTinh"));
-                bacSi.setChuyenKhoa(resultSet.getString("chuyenKhoa"));
-                bacSi.setKinhNgiemLamViec(resultSet.getString("kinhNghiemLamViec"));
-                bacSi.setHocVan(resultSet.getString("hocVan"));
-                bacSi.setHinhAnh(resultSet.getString("hinhAnh"));
+        // Sử dụng try-with-resources để tự động đóng tài nguyên
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement ps = connection.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
-                list.add(bacSi);
+            if (connection == null) {
+                System.err.println("Kết nối cơ sở dữ liệu thất bại.");
+                return dsBS; // Trả về danh sách rỗng
             }
-        } catch (SQLException e) {
+
+            // Duyệt qua từng dòng dữ liệu
+            while (rs.next()) {
+                // Tạo đối tượng bacSiModel
+                bacSiModel bacSi = new bacSiModel(
+                        rs.getString("maBacSi"),
+                        rs.getString("hoVaTen"),
+                        rs.getString("soDienThoai"),
+                        rs.getString("email"),
+                        rs.getDate("ngaySinh"),
+                        rs.getString("diaChi"),
+                        rs.getString("gioiTinh"),
+                        rs.getString("chuyenKhoa"),
+                        rs.getString("kinhNghiemLamViec"),
+                        rs.getString("hocvan"),
+                        rs.getString("hinhAnh")
+                );
+
+                // Thêm vào danh sách
+                dsBS.add(bacSi);
+            }
+        } catch (Exception e) {
+            // In log chi tiết nếu gặp lỗi
+            System.err.println("Lỗi khi truy vấn dữ liệu từ bảng bacsi: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            ConnectDB.closeConnection(connection);
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
 
-        return list;
+        return dsBS; // Trả về danh sách bác sĩ
     }
 
     @Override
@@ -319,8 +327,9 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
                         resultSet.getString("hoVaTen"),
                         resultSet.getString("soDienThoai"),
                         resultSet.getString("email"),
-                        resultSet.getString("gioiTinh"),
+                        resultSet.getDate("ngaySinh"),
                         resultSet.getString("diaChi"),
+                        resultSet.getString("gioiTinh"),
                         resultSet.getString("chuyenKhoa"),
                         resultSet.getString("kinhNghiemLamViec"),
                         resultSet.getString("hocVan"),

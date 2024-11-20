@@ -23,7 +23,7 @@ public class ConnectDB {
         Connection conn = null;
         try {
             String userName = "sa";
-            String password = "123456789";
+            String password = "123456";
             String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBV;encrypt=true;trustServerCertificate=true";
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
