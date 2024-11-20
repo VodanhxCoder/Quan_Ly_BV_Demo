@@ -193,6 +193,7 @@ public class bacSiJpanel extends javax.swing.JPanel {
         txthocVan = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jDateNgaySinh = new com.toedter.calendar.JDateChooser();
+        jCbTimKiem = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(960, 465));
@@ -242,7 +243,7 @@ public class bacSiJpanel extends javax.swing.JPanel {
             }
         });
 
-        jlTimkiem.setText("Tìm kiếm theo mã");
+        jlTimkiem.setText("Tìm kiếm theo:");
 
         btnRefresh.setText("Làm mới");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
@@ -407,6 +408,8 @@ public class bacSiJpanel extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
 
+        jCbTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã bác sĩ", "Họ và tên", "Địa chỉ", "Số điện thoại", "Giới tính", "Chuyên khoa" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -426,7 +429,11 @@ public class bacSiJpanel extends javax.swing.JPanel {
                                 .addComponent(txtTimKiem)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbTimKiem))
-                            .addComponent(jlTimkiem))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlTimkiem)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCbTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(103, 103, 103))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,8 +462,10 @@ public class bacSiJpanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnRefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlTimkiem)
-                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlTimkiem)
+                            .addComponent(jCbTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbTimKiem))
@@ -466,7 +475,7 @@ public class bacSiJpanel extends javax.swing.JPanel {
                                 .addComponent(jbThem)
                                 .addComponent(jbSua))
                             .addComponent(jbXoa))
-                        .addContainerGap(39, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -649,7 +658,7 @@ public boolean validateInput(String maBacSi, String hoVaTen, String soDienThoai,
             } else if (sdtTonTai) {
                 JOptionPane.showMessageDialog(null, "Số điện thoại đã tồn tại!");
             } else {
-               bacSiModel bacSiModel = new bacSiModel(maBacSi, hoVaTen, soDienThoai, email, ngaySinh, diaChi, gioiTinh, chuyenKhoa, kinhNghiem, hocVan, hinhAnh);
+                bacSiModel bacSiModel = new bacSiModel(maBacSi, hoVaTen, soDienThoai, email, ngaySinh, diaChi, gioiTinh, chuyenKhoa, kinhNghiem, hocVan, hinhAnh);
 
                 int rowsAffected = bacSiController.themBacSi(bacSiModel);
 
@@ -696,6 +705,43 @@ public boolean validateInput(String maBacSi, String hoVaTen, String soDienThoai,
     private void jbTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTimKiemActionPerformed
         String idTimKiem = txtTimKiem.getText().trim();
 
+        int indexSelected = jCbTimKiem.getSelectedIndex();
+        System.out.println(indexSelected);
+        String danhMucTimKiem;
+        switch (indexSelected) {
+            case 0: {
+                danhMucTimKiem = "maBacSi";
+                break;
+            }
+            case 1: {
+                danhMucTimKiem = "hoVaTen";
+                break;
+            }
+
+            case 2: {
+                danhMucTimKiem = "diaChi";
+                break;
+            }
+            case 3: {
+                danhMucTimKiem = "soDienThoai";
+                break;
+            }
+            case 4: {
+                danhMucTimKiem = "gioiTinh";
+                break;
+            }
+            case 5: {
+                danhMucTimKiem = "chuyenKhoa";
+                break;
+            }
+
+            default:
+                danhMucTimKiem = null;
+        }
+        if (danhMucTimKiem == null) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn danh mục tìm kiếm");
+            return;
+        }
         // Kiểm tra xem ID có được nhập hay không
         if (idTimKiem.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập ID cần tìm kiếm.");
@@ -704,24 +750,26 @@ public boolean validateInput(String maBacSi, String hoVaTen, String soDienThoai,
 
         // Gọi phương thức tìm kiếm bác sĩ theo ID từ controller
         bacSiController bacSiController = new bacSiController();
-        bacSiModel bacSi = bacSiController.timBacSiTheoID(idTimKiem);
+        ArrayList<bacSiModel> danhSachBacSi = bacSiController.timBacSiTheo(danhMucTimKiem, idTimKiem);
         model.setRowCount(0);
         // Kiểm tra xem có bác sĩ nào được tìm thấy không
-        if (bacSi != null) {
-
-            model.addRow(new Object[]{
-                bacSi.getMaBacSi(),
-                bacSi.getHoVaTen(),
-                bacSi.getSoDienThoai(),
-                bacSi.getEmail(),
-                bacSi.getNgaySinh(),
-                bacSi.getDiachi(),
-                bacSi.getGioiTinh(),
-                bacSi.getChuyenKhoa(),
-                bacSi.getKinhNghiemLamViec(),
-                bacSi.getHocVan(),
-                bacSi.getHinhAnh()
-            });
+        // Thêm dữ liệu vào model
+        if (!danhSachBacSi.isEmpty()) {
+            for (bacSiModel bacSi : danhSachBacSi) {
+                model.addRow(new Object[]{
+                    bacSi.getMaBacSi(),
+                    bacSi.getHoVaTen(),
+                    bacSi.getSoDienThoai(),
+                    bacSi.getEmail(),
+                    bacSi.getNgaySinh(),
+                    bacSi.getDiachi(),
+                    bacSi.getGioiTinh(),
+                    bacSi.getChuyenKhoa(),
+                    bacSi.getKinhNghiemLamViec(),
+                    bacSi.getHocVan(),
+                    bacSi.getHinhAnh()
+                });
+            }
 
             // Gán customModel vào jTableBacSi để hiển thị kết quả
             jtableBacSi.setModel(model);
@@ -788,6 +836,7 @@ public boolean validateInput(String maBacSi, String hoVaTen, String soDienThoai,
     private javax.swing.JButton btnRefresh;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jCbTimKiem;
     private javax.swing.JComboBox<String> jComBoxChuyenKhoa;
     private com.toedter.calendar.JDateChooser jDateNgaySinh;
     private javax.swing.JLabel jLabel1;

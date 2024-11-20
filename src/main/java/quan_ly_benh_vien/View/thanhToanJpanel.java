@@ -4,14 +4,9 @@
  */
 package quan_ly_benh_vien.View;
 
-import java.security.SecureRandom;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import quan_ly_benh_vien.Controller.*;
 import javax.swing.JOptionPane;
 import quan_ly_benh_vien.Model.*;
-import static quan_ly_benh_vien.View.DatLichKhampanel.maDatLichList;
-import quan_ly_benh_vien.View.Login.Component.Login;
 
 /**
  *
@@ -20,7 +15,6 @@ import quan_ly_benh_vien.View.Login.Component.Login;
 public class thanhToanJpanel extends javax.swing.JPanel {
     public thanhToanJpanel() {
         initComponents();
-        loadData();
     }
 
   
@@ -131,17 +125,15 @@ public class thanhToanJpanel extends javax.swing.JPanel {
 
         jLabel22.setText("Nội Dung Chuyển Khoản : Tên Tài Khoản + Mã Giao Dịch");
 
-        lbThoiGian.setBackground(new java.awt.Color(153, 153, 153));
+        lbThoiGian.setBackground(new java.awt.Color(255, 255, 255));
+        lbThoiGian.setText("f");
         lbThoiGian.setOpaque(true);
 
-        lbMaGiaoDich.setBackground(new java.awt.Color(153, 153, 153));
-        lbMaGiaoDich.setOpaque(true);
+        lbMaGiaoDich.setText("g");
 
-        lbTongTien.setBackground(new java.awt.Color(153, 153, 153));
-        lbTongTien.setOpaque(true);
+        lbTongTien.setText("jLabel17");
 
-        lbSoLuong.setBackground(new java.awt.Color(153, 153, 153));
-        lbSoLuong.setOpaque(true);
+        lbSoLuong.setText("jLabel17");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -151,19 +143,19 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                            .addComponent(lbMaGiaoDich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbMaGiaoDich, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lbTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(631, 631, 631))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lbTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(631, 631, 631))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtSoTaiKhoan, javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +301,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         String tenTaiKhoan =txtTenDangNhap.getText();
         String tenNganHang ="";
         String thoiGianThanhToan = lbThoiGian.getText();
-        String tenDangNhap = Login.xacNhanDangNhap;
+        String tenDangNhap = null;
         
         Object selectedNganHang = cbbNganHang.getSelectedItem();
         if(selectedNganHang == null || selectedNganHang.toString().isEmpty()){
@@ -318,7 +310,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         else{
             tenNganHang = selectedNganHang.toString();
         }
-                // Kiểm tra các trường dữ liệu bị bỏ trống
+        
         if(maGiaoDich.isEmpty() || soTaiKhoan.isEmpty() || tenTaiKhoan.isEmpty()||thoiGianThanhToan.isEmpty() ){
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin");
         }else{
@@ -326,9 +318,9 @@ public class thanhToanJpanel extends javax.swing.JPanel {
             thanhToanController tt = new thanhToanController();
             tt.insertThanhToan(thanhToan);
             
-                DatLichKhamController datLichKhamController = new DatLichKhamController();
-                datLichKhamController.capNhatTrangThaiThanhToan(maDatLichList);
-                System.out.println(maDatLichList);
+//                DatLichKhamController datLichKhamController = new DatLichKhamController();
+//                datLichKhamController.capNhatTrangThaiThanhToan(maDatLichList);
+//                System.out.println(maDatLichList);
             String mess = "Chúc mừng bạn " + tenDangNhap + " đã thanh toán thành công !\n"
                         + "Tổng số tiền: " + lbTongTien.getText() + " và số lượng lịch: " + lbSoLuong.getText() + "\n"
                         + "Mã giao dịch: " + lbMaGiaoDich.getText() + ", thời gian: " + thoiGianThanhToan;
@@ -336,46 +328,46 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbThanhToanActionPerformed
   
-     private void loadData() {
-        String hienThiSoLuong = Integer.toString(DatLichKhampanel.soLuongLichDat);
-        lbSoLuong.setText(hienThiSoLuong);
-     
-
-        float tongSoTienThanhToan = DatLichKhampanel.soLuongLichDat * 300000;
-        String hienThiSoTien = " " + tongSoTienThanhToan;
-        lbTongTien.setText(hienThiSoTien);
-  
-
-        String maGiaoDich = generateRandomCode();
-        lbMaGiaoDich.setText(maGiaoDich);
-    
-
-        String thoiGianGiaoDich = getCurrentDateTime();
-        lbThoiGian.setText(thoiGianGiaoDich);
-      
-    }
-
-    //    tạo 1 hàm random ra mã đặt lịch
-    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private static final int CODE_LENGTH = 5;
-    private static final SecureRandom random = new SecureRandom();
-
-    public static String generateRandomCode() {
-        StringBuilder code = new StringBuilder(CODE_LENGTH);
-        for (int i = 0; i < CODE_LENGTH; i++) {
-            int randomIndex = random.nextInt(CHARACTERS.length());
-            char randomChar = CHARACTERS.charAt(randomIndex);
-            code.append(randomChar);
-        }
-        return code.toString().toUpperCase();
-    }
-
-    public static String getCurrentDateTime() {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
-        String formattedDateTime = now.format(formatter);
-        return formattedDateTime;
-    }
+//     private void loadData() {
+//        String hienThiSoLuong = Integer.toString(QuanLyDatLich.soLuongLichDat);
+//        lblSoLich.setText(hienThiSoLuong);
+//        lblSoLich2.setText(hienThiSoLuong);
+//
+//        float tongSoTienThanhToan = QuanLyDatLich.soLuongLichDat * 300000;
+//        String hienThiSoTien = " " + tongSoTienThanhToan;
+//        lblTongTien.setText(hienThiSoTien);
+//        lblTongTien_.setText(hienThiSoTien);
+//
+//        String maGiaoDich = generateRandomCode();
+//        lblMaGiaoDich.setText(maGiaoDich);
+//        lblMaGiaoDichQr.setText(maGiaoDich);
+//
+//        String thoiGianGiaoDich = getCurrentDateTime();
+//        lblThoiGian.setText(thoiGianGiaoDich);
+//        lblThoiGian2.setText(thoiGianGiaoDich);
+//    }
+//
+//    //    tạo 1 hàm random ra mã đặt lịch
+//    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+//    private static final int CODE_LENGTH = 5;
+//    private static final SecureRandom random = new SecureRandom();
+//
+//    public static String generateRandomCode() {
+//        StringBuilder code = new StringBuilder(CODE_LENGTH);
+//        for (int i = 0; i < CODE_LENGTH; i++) {
+//            int randomIndex = random.nextInt(CHARACTERS.length());
+//            char randomChar = CHARACTERS.charAt(randomIndex);
+//            code.append(randomChar);
+//        }
+//        return code.toString().toUpperCase();
+//    }
+//
+//    public static String getCurrentDateTime() {
+//        LocalDateTime now = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+//        String formattedDateTime = now.format(formatter);
+//        return formattedDateTime;
+//    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

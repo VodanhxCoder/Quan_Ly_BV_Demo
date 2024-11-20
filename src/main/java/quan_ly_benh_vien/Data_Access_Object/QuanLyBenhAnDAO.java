@@ -249,7 +249,7 @@ public class QuanLyBenhAnDAO implements DaoInterface<hosoBenhAnModel> {
         return list;
     }
 
-    @Override
+//    @Override
     public hosoBenhAnModel selectById(String id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -295,6 +295,11 @@ public class QuanLyBenhAnDAO implements DaoInterface<hosoBenhAnModel> {
         }
 
         return hoSo;
+    }
+
+    @Override
+    public ArrayList<hosoBenhAnModel> selectBy(String danhMuc, String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

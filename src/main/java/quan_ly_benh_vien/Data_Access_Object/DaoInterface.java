@@ -23,5 +23,5 @@ public interface DaoInterface<T> {
 
     public ArrayList<T> selectAll();    //Lấy tất cả 
 
-    public T selectById(String id); // Tìm kiếm bởi id-> chỉnh thành tìm kiếm bằng tùy chọn 
+    public ArrayList<T> selectBy(String danhMuc, String id); // Tìm kiếm bởi id-> chỉnh thành tìm kiếm bằng tùy chọn 
 }

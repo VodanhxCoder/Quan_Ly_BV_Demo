@@ -602,7 +602,7 @@ public class benhNhanJpanel extends javax.swing.JPanel {
             //    bacSiController bsControlcler = new bacSiController();
             benhNhanController benhnhanctroller = new benhNhanController();
             modelBenhNhan.setRowCount(0);
-            if (benhnhanctroller.kiemTraMaBenhNhanTrung(idTimKiem) ) {
+            if ((benhnhanctroller.kiemTraMaBenhNhanTrung(idTimKiem))) {
                 //  benhNhanController benhNhanController = new benhNhanController();
                 benhnhan = benhnhanctroller.timBenhNhanTheoID(idTimKiem);
 
@@ -627,7 +627,7 @@ public class benhNhanJpanel extends javax.swing.JPanel {
             ArrayList<hosoBenhAnModel> danhsachsoso;
             bacSiController bsController = new bacSiController();
             benhNhanController benhNhanController = new benhNhanController();
-            if (benhNhanController.kiemTraMaBenhNhanTrung(idTimKiem) || "".equals(idTimKiem)) {
+            if (benhNhanController.kiemTraMaBenhNhanTrung(idTimKiem) ) {
                 benhAnController benhAnController = new benhAnController();
                 danhsachsoso = benhAnController.layDanhSachHoSoTheoBenhNhan(idTimKiem);
                 DefaultTableModel customModel = new DefaultTableModel();
@@ -745,7 +745,7 @@ public class benhNhanJpanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jbXemActionPerformed
 
     private void jbXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbXoaActionPerformed
-
+        
         if (radBenhNhan.isSelected()) {
             String idXoa = txtMaBN.getText().trim();
             if (idXoa.isEmpty()) {
@@ -793,6 +793,8 @@ public class benhNhanJpanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(null, "Chọn Bệnh Án hoặc Bệnh Nhân để xóa");
         }
+        txtTenDangNhap.setEnabled(true);
+        txtMatKhau.setEnabled(true);
     }//GEN-LAST:event_jbXoaActionPerformed
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed

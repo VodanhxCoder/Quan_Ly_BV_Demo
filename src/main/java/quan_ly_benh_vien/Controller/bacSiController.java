@@ -44,8 +44,8 @@ public class bacSiController {
         }
     }
 
-    public bacSiModel timBacSiTheoID(String id) {
-        return bacSiConnect.selectById(id);
+    public ArrayList<bacSiModel> timBacSiTheo(String danhMuc,String id) {
+        return bacSiConnect.selectBy(danhMuc,id);
     }
 
     public int capNhatThongTinBacSi(bacSiModel bacSi, String id) {

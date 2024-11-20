@@ -308,20 +308,21 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
     }
 
     @Override
-    public bacSiModel selectById(String id) {
+    public ArrayList<bacSiModel> selectBy(String danhMuc,String id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        
+        ArrayList<bacSiModel> list = new ArrayList<>();
         bacSiModel bacSi = null;
-
         try {
             connection = ConnectDB.getConnection();
-            String sql = "SELECT * FROM bacsi WHERE maBacSi = ?";
+            String sql = "SELECT * FROM bacsi WHERE "+danhMuc+" = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, id);
             resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 bacSi = new bacSiModel(
                         resultSet.getString("maBacSi"),
                         resultSet.getString("hoVaTen"),
@@ -335,6 +336,7 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
                         resultSet.getString("hocVan"),
                         resultSet.getString("hinhAnh")
                 );
+                list.add(bacSi);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -356,7 +358,7 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
             }
         }
 
-        return bacSi;
+        return list;
     }
 
 }

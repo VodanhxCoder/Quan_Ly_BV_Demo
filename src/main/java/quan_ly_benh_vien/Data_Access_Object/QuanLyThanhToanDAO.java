@@ -81,8 +81,9 @@ public class QuanLyThanhToanDAO implements DaoInterface<thanhToanModel> {
     }
 
     @Override
-    public thanhToanModel selectById(String id) {
+    public ArrayList<thanhToanModel> selectBy(String danhMuc, String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 
 }
