@@ -92,7 +92,9 @@ VALUES
 (CONVERT(varchar(32), HASHBYTES('MD5', 'leminhtuanqp123'), 2), N'Lê Minh Tuấn', 'leminhtuan@gmail.com', CONVERT(varchar(32), HASHBYTES('MD5', '@Khueqp123'), 2), N'Nam', 'user'),
 (CONVERT(varchar(32), HASHBYTES('MD5', 'hoangnhungqp123'), 2), N'Hoàng Thị Nhung', 'hoangnhung@gmail.com', CONVERT(varchar(32), HASHBYTES('MD5', '@Khueqp123'), 2), N'Nữ', 'user'),
 (CONVERT(varchar(32), HASHBYTES('MD5', 'phamvanhungqp123'), 2), N'Phạm Văn Hùng', 'phamvanhung@gmail.com', CONVERT(varchar(32), HASHBYTES('MD5', '@Khueqp123'), 2), N'Nam', 'user'),
-(CONVERT(varchar(32), HASHBYTES('MD5', 'tranphuongqp123'), 2), N'Trần Thị Phương', 'tranphuong@gmail.com', CONVERT(varchar(32), HASHBYTES('MD5', '@Khueqp123'), 2), N'Nữ', 'user');
+(CONVERT(varchar(32), HASHBYTES('MD5', 'tranphuongqp123'), 2), N'Trần Thị Phương', 'tranphuong@gmail.com', CONVERT(varchar(32), HASHBYTES('MD5', '@Khueqp123'), 2), N'Nữ', 'user'),
+(CONVERT(varchar(32), HASHBYTES('MD5', 'Khueqp1'), 2), N'Nguyễn Minh Khuê', 'Khueqp2004@gmail.com', CONVERT(varchar(32), HASHBYTES('MD5', '@Khueqp123'), 2), N'Nam', 'admin');
+
 go
 INSERT INTO bacsi (hoVaTen, soDienThoai, email, ngaySinh, gioiTinh, chuyenKhoa, kinhNghiemLamViec, hocVan, hinhAnh, diaChi)
 VALUES
