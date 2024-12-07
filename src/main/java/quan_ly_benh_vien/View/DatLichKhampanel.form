@@ -39,7 +39,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                               <EmptySpace max="32767" attributes="0"/>
+=======
+                              <EmptySpace pref="57" max="32767" attributes="0"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                               <Component id="btnDatLich" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnHuyLich" min="-2" max="-2" attributes="0"/>
@@ -383,9 +387,12 @@
               </StringArray>
             </Property>
           </Properties>
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbNgayActionPerformed"/>
           </Events>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -456,12 +463,41 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
+=======
+                              <Component id="lblCaKham9" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblCaKham10" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblCaKham11" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblCaKham12" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblCaKham5" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblCaKham6" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblCaKham7" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblCaKham8" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblCaKham13" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblCaKham14" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblCaKham15" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                               <Component id="lblCaKham1" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblCaKham2" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblCaKham3" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
                               <Component id="lblCaKham9" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -493,17 +529,28 @@
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+=======
+                              <Component id="lblCaKham4" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <Group type="102" alignment="0" attributes="0">
+=======
+                  <Group type="102" attributes="0">
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblCaKham1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="lblCaKham2" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="lblCaKham3" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+<<<<<<< HEAD
                           <Component id="lblCaKham9" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -524,6 +571,29 @@
                           <Component id="lblCaKham15" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="lblCaKham13" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="lblCaKham4" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+=======
+                          <Component id="lblCaKham4" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCaKham5" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="lblCaKham6" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="lblCaKham7" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="lblCaKham8" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCaKham9" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="lblCaKham10" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="lblCaKham11" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="lblCaKham12" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCaKham14" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="lblCaKham15" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="lblCaKham13" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -707,6 +777,31 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCaKham11MouseClicked"/>
               </Events>
             </Component>
+<<<<<<< HEAD
+=======
+            <Component class="javax.swing.JLabel" name="lblCaKham9">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="13:30 - 14:00"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
+                <Property name="opaque" type="boolean" value="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCaKham9MouseClicked"/>
+              </Events>
+            </Component>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
             <Component class="javax.swing.JLabel" name="lblCaKham4">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -773,6 +868,31 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCaKham6MouseClicked"/>
               </Events>
             </Component>
+<<<<<<< HEAD
+=======
+            <Component class="javax.swing.JLabel" name="lblCaKham12">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="17:30 - 18:00"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
+                <Property name="opaque" type="boolean" value="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCaKham12MouseClicked"/>
+              </Events>
+            </Component>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
             <Component class="javax.swing.JLabel" name="lblCaKham3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -817,6 +937,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCaKham14MouseClicked"/>
               </Events>
             </Component>
+<<<<<<< HEAD
             <Component class="javax.swing.JLabel" name="lblCaKham9">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -839,6 +960,8 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCaKham9MouseClicked"/>
               </Events>
             </Component>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
           </SubComponents>
         </Container>
       </SubComponents>

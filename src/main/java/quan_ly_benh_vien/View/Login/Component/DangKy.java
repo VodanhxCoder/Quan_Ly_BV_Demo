@@ -15,9 +15,13 @@ import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import quan_ly_benh_vien.Controller.TaiKhoanController;
+<<<<<<< HEAD
 import quan_ly_benh_vien.Controller.benhNhanController;
 import quan_ly_benh_vien.Model.QuanLyTaiKhoanModel;
 import quan_ly_benh_vien.Model.benhNhanModel;
+=======
+import quan_ly_benh_vien.Model.QuanLyTaiKhoanModel;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
 /**
  *
@@ -212,7 +216,10 @@ public class DangKy extends javax.swing.JPanel {
 
         add(jLayeredPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
+<<<<<<< HEAD
 //Duoc su dung boi file khac
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
     public static boolean validateHotenAndEmail(String hoVaTen, String email, String gioiTinh) {
         // Kiểm tra họ và tên
@@ -241,7 +248,10 @@ public class DangKy extends javax.swing.JPanel {
 
         return true; // Tất cả thông tin hợp lệ
     }
+<<<<<<< HEAD
 //validate cho dang ky 
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
     public static boolean validateRegistration(String hoVaTen, String tenDangNhap, String matKhau, String email, String gioiTinh) {
         // Regex định dạng tên đăng nhập
@@ -306,8 +316,13 @@ public class DangKy extends javax.swing.JPanel {
         String matKhau = new String(txtMatKhau.getPassword());
         String email = txtEmail.getText();
         String reMatKhau = new String(txtXacNhanMatKhau.getPassword());
+<<<<<<< HEAD
         String gioiTinh = null;
 
+=======
+        String gioiTinh= null;
+        
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         if (radNam.isSelected()) {
             gioiTinh = "Nam";
         } else if (radNu.isSelected()) {
@@ -320,11 +335,14 @@ public class DangKy extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Mật khẩu nhập lại không khớp.");
             return;
         }
+<<<<<<< HEAD
         //Kiem tra dieu khoản đã đc chọn hay chưa 
         if (!checkDieuKhoan.isSelected()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa đồng ý với điều khoản!");
             return;
         }
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         //Tạo mã hóa
         String enrTenDangNhap = null;
         String enrMatKhau = null;
@@ -341,7 +359,10 @@ public class DangKy extends javax.swing.JPanel {
 
 // Kiểm tra tên đăng nhập và email đã tồn tại
         TaiKhoanController dangKyController = new TaiKhoanController();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         boolean tenDaTonTai = dangKyController.kiemTraTenDangNhapTrung(enrTenDangNhap);
         boolean emailDaTonTai = dangKyController.kiemTraEmailTrung(email);
 
@@ -350,6 +371,7 @@ public class DangKy extends javax.swing.JPanel {
         } else if (emailDaTonTai) {
             JOptionPane.showMessageDialog(null, "Email đã tồn tại!");
         } else {
+<<<<<<< HEAD
             benhNhanController bnController = new benhNhanController();
 
             benhNhanModel bnModel = new benhNhanModel(enrTenDangNhap, hoVaTen, null, email, null, gioiTinh, null, null);
@@ -372,6 +394,25 @@ public class DangKy extends javax.swing.JPanel {
                 setVisible(false);
             }
 
+=======
+            QuanLyTaiKhoanModel dangKy = new QuanLyTaiKhoanModel(hoVaTen, enrTenDangNhap, enrMatKhau, email, gioiTinh);
+            //Kiem tra dieu khoản đã đc chọn hay chưa 
+            if (!checkDieuKhoan.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Bạn chưa đồng ý với điều khoản!");
+            } else {
+                // Gọi controller để thực hiện đăng ký
+                int rowsAffected = dangKyController.dangKyTaiKhoan(dangKy, false);
+                if (rowsAffected > 0) { //Khi đăng ký thành công sẽ trả về 1 
+                    JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thành công!");
+                    System.out.println(txtTenDangNhap.getText());
+                    Login JpLogin = new Login();
+                    JpLogin.setVisible(true);
+                    setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thất bại!");
+                }
+            }
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         }
 
 

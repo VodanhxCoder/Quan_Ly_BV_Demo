@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package quan_ly_benh_vien.Data_Access_Object;
 
 import quan_ly_benh_vien.Model.bacSiModel;
@@ -488,3 +489,369 @@ public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
     }
 
 }
+=======
+package quan_ly_benh_vien.Data_Access_Object;
+
+import quan_ly_benh_vien.Model.bacSiModel;
+import quan_ly_benh_vien.Model.nguoiModel;
+import quan_ly_benh_vien.Controller.ConnectDB;
+import quan_ly_benh_vien.Data_Access_Object.DaoInterface;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class QuanLyBacSiDAO implements DaoInterface<bacSiModel> {
+
+    private static QuanLyBacSiDAO instance;
+
+    public QuanLyBacSiDAO() {
+
+    }
+
+    // Phương thức để lấy ra instance của QuanLyTaiKhoanDao
+    public static synchronized QuanLyBacSiDAO getInstance() {
+        if (instance == null) {
+            instance = new QuanLyBacSiDAO();
+        }
+        return instance;
+    }
+
+//    kiểm tra mã bác sĩ bị trùng
+    public boolean KtraTrungLap(String thuocTinhKtra, String giaTriKtra) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = ConnectDB.getConnection();
+
+            // Kiểm tra xem mã bác sĩ đã tồn tại chưa
+            String checkExistQuery = "SELECT * FROM bacsi WHERE " + thuocTinhKtra + "=?";
+            preparedStatement = connection.prepareStatement(checkExistQuery);
+            preparedStatement.setString(1, giaTriKtra);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Lỗi xảy ra
+        } finally {
+            // Đóng tài nguyên
+            ConnectDB.closeConnection(connection);
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    public int insert(bacSiModel bacSi) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int rowsAffected = 0;
+        try {
+            // Lấy kết nối tới cơ sở dữ liệu
+            connection = ConnectDB.getConnection();
+            java.sql.Date sqlDate = null;
+            // Kiểm tra nếu ngày không null
+            if (bacSi.getNgaySinh() != null) {
+                // Chuyển đổi từ java.util.Date sang java.sql.Date
+                sqlDate = new java.sql.Date(bacSi.getNgaySinh().getTime());
+                // Sử dụng sqlDate trong câu lệnh SQL
+                System.out.println("Ngày đã chuyển đổi thành java.sql.Date: " + sqlDate);
+            }
+            // Chuẩn bị câu truy vấn SQL để chèn dữ liệu
+            String sql = "INSERT INTO bacsi (maBacSi, hoVaTen, soDienThoai, email,ngaySinh,diaChi, gioiTinh, chuyenKhoa, kinhNghiemLamViec, hocVan, hinhAnh) VALUES ( ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            preparedStatement = connection.prepareStatement(sql);
+
+            // Đặt các tham số cho câu truy vấn SQL từ đối tượng BacSiModel
+            preparedStatement.setString(1, bacSi.getMaBacSi());
+            preparedStatement.setString(2, bacSi.getHoVaTen());
+            preparedStatement.setString(3, bacSi.getSoDienThoai());
+            preparedStatement.setString(4, bacSi.getEmail());
+            preparedStatement.setDate(5, sqlDate);
+            preparedStatement.setString(6, bacSi.getDiachi());
+            preparedStatement.setString(7, bacSi.getGioiTinh());
+            preparedStatement.setString(8, bacSi.getChuyenKhoa());
+            preparedStatement.setString(9, bacSi.getKinhNghiemLamViec());
+            preparedStatement.setString(10, bacSi.getHocVan());
+            preparedStatement.setString(11, bacSi.getHinhAnh());
+
+            // Thực hiện chèn dữ liệu và lấy số dòng bị ảnh hưởng
+            rowsAffected = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Đóng kết nối và tài nguyên
+            ConnectDB.closeConnection(connection);
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return rowsAffected;
+    }
+
+    @Override
+    public int update(bacSiModel bacSi, String id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int rowsAffected = 0;
+
+        try {
+            // Lấy kết nối tới cơ sở dữ liệu
+            connection = ConnectDB.getConnection();
+
+            connection = ConnectDB.getConnection();
+            java.sql.Date sqlDate = null;
+            // Kiểm tra nếu ngày không null
+            if (bacSi.getNgaySinh() != null) {
+                // Chuyển đổi từ java.util.Date sang java.sql.Date
+                sqlDate = new java.sql.Date(bacSi.getNgaySinh().getTime());
+                // Sử dụng sqlDate trong câu lệnh SQL
+                System.out.println("Ngày đã chuyển đổi thành java.sql.Date: " + sqlDate);
+            }
+
+            // Chuẩn bị câu truy vấn SQL để cập nhật dữ liệu
+            String sql = "UPDATE bacsi SET maBacSi = ?, hoVaTen = ?, soDienThoai = ?, email = ?,ngaySinh=?, diaChi = ?, gioiTinh = ?, chuyenKhoa = ?, kinhNghiemLamViec = ?, hocVan = ?, hinhAnh = ? WHERE maBacSi = ?";
+            preparedStatement = connection.prepareStatement(sql);
+
+            // Đặt các tham số cho câu truy vấn SQL từ đối tượng T
+            preparedStatement.setString(1, bacSi.getMaBacSi());
+            preparedStatement.setString(2, bacSi.getHoVaTen());
+            preparedStatement.setString(3, bacSi.getSoDienThoai());
+            preparedStatement.setString(4, bacSi.getEmail());
+            preparedStatement.setDate(5, sqlDate);
+            preparedStatement.setString(6, bacSi.getDiachi());
+            preparedStatement.setString(7, bacSi.getGioiTinh());
+            preparedStatement.setString(8, bacSi.getChuyenKhoa());
+            preparedStatement.setString(9, bacSi.getKinhNghiemLamViec());
+            preparedStatement.setString(10, bacSi.getHocVan());
+            preparedStatement.setString(11, bacSi.getHinhAnh());
+
+            // Đặt tham số cho WHERE clause (maBacSi)
+            preparedStatement.setString(12, id);
+
+            // Thực hiện cập nhật dữ liệu và lấy số dòng bị ảnh hưởng
+            rowsAffected = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Đóng kết nối và tài nguyên
+            ConnectDB.closeConnection(connection);
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return rowsAffected;
+    }
+
+    @Override
+    public int deleteById(String id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int rowsAffected = 0;
+
+        try {
+            connection = ConnectDB.getConnection();
+            connection.setAutoCommit(false);
+
+//            // Bước 1: Xóa tất cả hồ sơ bệnh án của bệnh nhân liên quan đến bác sĩ
+//            String deleteHoSoBenhAnSql = "DELETE FROM hosobenhan WHERE maBacSi = ?";
+//            preparedStatement = connection.prepareStatement(deleteHoSoBenhAnSql);
+//            preparedStatement.setString(1, id);
+//            rowsAffected = preparedStatement.executeUpdate();
+//
+//            // Bước 2: Xóa tất cả lịch khám của bệnh nhân liên quan đến bác sĩ
+//            String deleteLichKhamSql = "DELETE FROM lichKham WHERE maBacSi = ?";
+//            preparedStatement = connection.prepareStatement(deleteLichKhamSql);
+//            preparedStatement.setString(1, id);
+//            rowsAffected += preparedStatement.executeUpdate();
+//
+//            // Bước 3: Xóa tất cả bệnh nhân liên quan đến bác sĩ
+//            String deleteBenhNhanSql = "DELETE FROM benhnhan WHERE tenDangNhap IN (SELECT DISTINCT tenDangNhap FROM lichKham WHERE maBacSi = ?)";
+//            preparedStatement = connection.prepareStatement(deleteBenhNhanSql);
+//            preparedStatement.setString(1, id);
+//            rowsAffected += preparedStatement.executeUpdate();
+            // Bước 4: Xóa bác sĩ từ bảng bacsi
+            String deleteBacSiSql = "DELETE FROM bacsi WHERE maBacSi = ?";
+            preparedStatement = connection.prepareStatement(deleteBacSiSql);
+            preparedStatement.setString(1, id);
+            rowsAffected += preparedStatement.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                if (connection != null) {
+                    connection.rollback();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.setAutoCommit(true);
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return rowsAffected;
+    }
+
+    @Override
+    public void deleteAll() {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            // Lấy kết nối tới cơ sở dữ liệu
+            connection = ConnectDB.getConnection();
+
+            // Chuẩn bị câu truy vấn SQL để xóa tất cả dữ liệu
+            String sql = "DELETE FROM bacsi";
+            preparedStatement = connection.prepareStatement(sql);
+
+            // Thực hiện xóa dữ liệu
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Đóng kết nối và tài nguyên
+            ConnectDB.closeConnection(connection);
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    public ArrayList<bacSiModel> selectAll() {
+        ArrayList<bacSiModel> dsBS = new ArrayList<>();
+
+        // Tạo câu lệnh SQL cụ thể
+        String sql = "SELECT * FROM bacsi";
+
+        // Sử dụng try-with-resources để tự động đóng tài nguyên
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement ps = connection.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
+            if (connection == null) {
+                System.err.println("Kết nối cơ sở dữ liệu thất bại.");
+                return dsBS; // Trả về danh sách rỗng
+            }
+
+            // Duyệt qua từng dòng dữ liệu
+            while (rs.next()) {
+                // Tạo đối tượng bacSiModel
+                bacSiModel bacSi = new bacSiModel(
+                        rs.getString("maBacSi"),
+                        rs.getString("hoVaTen"),
+                        rs.getString("soDienThoai"),
+                        rs.getString("email"),
+                        rs.getDate("ngaySinh"),
+                        rs.getString("diaChi"),
+                        rs.getString("gioiTinh"),
+                        rs.getString("chuyenKhoa"),
+                        rs.getString("kinhNghiemLamViec"),
+                        rs.getString("hocvan"),
+                        rs.getString("hinhAnh")
+                );
+
+                // Thêm vào danh sách
+                dsBS.add(bacSi);
+            }
+        } catch (Exception e) {
+            // In log chi tiết nếu gặp lỗi
+            System.err.println("Lỗi khi truy vấn dữ liệu từ bảng bacsi: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return dsBS; // Trả về danh sách bác sĩ
+    }
+
+    @Override
+    public ArrayList<bacSiModel> selectBy(String danhMuc,String id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        
+        ArrayList<bacSiModel> list = new ArrayList<>();
+        bacSiModel bacSi = null;
+        try {
+            connection = ConnectDB.getConnection();
+            String sql = "SELECT * FROM bacsi WHERE "+danhMuc+" = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                bacSi = new bacSiModel(
+                        resultSet.getString("maBacSi"),
+                        resultSet.getString("hoVaTen"),
+                        resultSet.getString("soDienThoai"),
+                        resultSet.getString("email"),
+                        resultSet.getDate("ngaySinh"),
+                        resultSet.getString("diaChi"),
+                        resultSet.getString("gioiTinh"),
+                        resultSet.getString("chuyenKhoa"),
+                        resultSet.getString("kinhNghiemLamViec"),
+                        resultSet.getString("hocVan"),
+                        resultSet.getString("hinhAnh")
+                );
+                list.add(bacSi);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectDB.closeConnection(connection);
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return list;
+    }
+
+}
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6

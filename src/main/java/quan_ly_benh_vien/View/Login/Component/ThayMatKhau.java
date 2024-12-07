@@ -158,7 +158,11 @@ public class ThayMatKhau extends javax.swing.JPanel {
         // TODO add your handling code here:
         Login JpLogin = new Login();
         JpLogin.setVisible(true);
+<<<<<<< HEAD
         this.setVisible(false);
+=======
+        setVisible(false);
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauActionPerformed

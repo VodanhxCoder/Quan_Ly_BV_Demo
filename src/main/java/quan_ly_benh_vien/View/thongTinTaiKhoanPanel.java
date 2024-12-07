@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package quan_ly_benh_vien.View;
+<<<<<<< HEAD
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -13,14 +14,24 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import quan_ly_benh_vien.Controller.TaiKhoanController;
 import quan_ly_benh_vien.Controller.bacSiController;
+=======
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 import quan_ly_benh_vien.Controller.benhNhanController;
 import quan_ly_benh_vien.Data_Access_Object.QuanLyBenhAnDAO;
 import quan_ly_benh_vien.Model.benhNhanModel;
 import quan_ly_benh_vien.View.Login.Component.Login;
 import quan_ly_benh_vien.Data_Access_Object.QuanLyTaiKhoanDao;
+<<<<<<< HEAD
 import quan_ly_benh_vien.Model.bacSiModel;
 import quan_ly_benh_vien.Model.nguoiModel;
 import quan_ly_benh_vien.View.Login.Component.DangKy;
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
 /**
  *
@@ -31,12 +42,16 @@ public class thongTinTaiKhoanPanel extends javax.swing.JPanel {
     /**
      * Creates new form thongTinTaiKhoanPanel
      */
+<<<<<<< HEAD
     private String checkemail = null;
 
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     public thongTinTaiKhoanPanel() {
         initComponents();
         hienThiTaiKhoan();
     }
+<<<<<<< HEAD
 
     //hàm xử lý giới tính 
     private boolean checkGioiTinh(String gioiTinh) {
@@ -117,6 +132,49 @@ public class thongTinTaiKhoanPanel extends javax.swing.JPanel {
         }
     }
 
+=======
+    public void hienThiTaiKhoan() {
+    String tenDangNhap = null;
+    try {
+        tenDangNhap = QuanLyTaiKhoanDao.MD5Encryptor(Login.xacNhanDangNhap);
+    } catch (NoSuchAlgorithmException ex) {
+        Logger.getLogger(thongTinTaiKhoanPanel.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (UnsupportedEncodingException ex) {
+        Logger.getLogger(thongTinTaiKhoanPanel.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    if (Login.xacNhanUser.equals("user")) {
+        benhNhanModel benhnhanModel = new benhNhanModel();
+        benhNhanController benhNhanCon = new benhNhanController();
+        benhnhanModel = benhNhanCon.layThongTinTaiKhoan(tenDangNhap);
+
+        // Kiểm tra nếu model không null trước khi lấy dữ liệu
+        if (benhnhanModel != null) {
+            // Set giá trị vào các JTextField
+            txtHoVaTen.setText(benhnhanModel.getHoVaTen());
+            txtSoDienThoai.setText(benhnhanModel.getSoDienThoai());
+            txtEmail.setText(benhnhanModel.getEmail());
+            txtDiaChi.setText(benhnhanModel.getDiachi());
+            txtGioiTinh.setText(benhnhanModel.getGioiTinh());
+        } else {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin tài khoản bệnh nhân!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }else if(Login.xacNhanUser.equals("admin")){
+        JOptionPane.showMessageDialog(null, "Xin Chào ADMIN");
+         txtHoVaTen.setEnabled(false);
+            txtSoDienThoai.setEnabled(false);
+            txtEmail.setEnabled(false);
+            txtDiaChi.setEnabled(false);
+            txtGioiTinh.setEnabled(false);
+            btnSua.setEnabled(false);
+            btnXoaTaiKhoan.setEnabled(false);
+            btnAnh.setEnabled(false);
+    }
+}
+        
+        
+    
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,7 +184,10 @@ public class thongTinTaiKhoanPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
         buttonGroup1 = new javax.swing.ButtonGroup();
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jLabel1 = new javax.swing.JLabel();
         btnAnh = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -135,20 +196,29 @@ public class thongTinTaiKhoanPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnSua = new javax.swing.JButton();
+<<<<<<< HEAD
+=======
+        btnXoaTaiKhoan = new javax.swing.JButton();
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         txtHoVaTen = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtSoDienThoai = new javax.swing.JTextField();
         txtDiaChi = new javax.swing.JTextField();
+<<<<<<< HEAD
         radNam = new javax.swing.JRadioButton();
         radNu = new javax.swing.JRadioButton();
         lbNgaySinh = new javax.swing.JLabel();
         dtNgaySinh = new com.toedter.calendar.JDateChooser();
+=======
+        txtGioiTinh = new javax.swing.JTextField();
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
         jLabel1.setText("Hình Ảnh");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnAnh.setText("tải ảnh");
 
+<<<<<<< HEAD
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("Họ và tên:");
@@ -186,11 +256,27 @@ public class thongTinTaiKhoanPanel extends javax.swing.JPanel {
         lbNgaySinh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbNgaySinh.setForeground(new java.awt.Color(0, 102, 102));
         lbNgaySinh.setText("Ngày Sinh:");
+=======
+        jLabel2.setText("Họ và tên:");
+
+        jLabel3.setText("Số điện thoại:");
+
+        jLabel4.setText("Email:");
+
+        jLabel5.setText("Địa chỉ:");
+
+        jLabel6.setText("Giới tính:");
+
+        btnSua.setText("Sửa");
+
+        btnXoaTaiKhoan.setText("Xóa tài khoản");
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -226,15 +312,68 @@ public class thongTinTaiKhoanPanel extends javax.swing.JPanel {
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {dtNgaySinh, txtDiaChi, txtEmail, txtHoVaTen, txtSoDienThoai});
+=======
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel6)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(46, 46, 46)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtHoVaTen, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSoDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(116, Short.MAX_VALUE)
+                .addComponent(btnSua)
+                .addGap(112, 112, 112)
+                .addComponent(btnXoaTaiKhoan)
+                .addContainerGap(117, Short.MAX_VALUE))
+        );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtDiaChi, txtEmail, txtGioiTinh, txtHoVaTen, txtSoDienThoai});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAnh, jLabel1});
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(btnAnh)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+=======
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAnh)
+                .addGap(18, 18, 18)
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtHoVaTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -247,16 +386,20 @@ public class thongTinTaiKhoanPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
+<<<<<<< HEAD
                     .addComponent(radNam)
                     .addComponent(radNu))
                 .addGap(18, 18, 18)
@@ -341,23 +484,43 @@ public class thongTinTaiKhoanPanel extends javax.swing.JPanel {
         suaBenhNhan();
     }//GEN-LAST:event_btnSuaActionPerformed
 
+=======
+                    .addComponent(txtGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXoaTaiKhoan)
+                    .addComponent(btnSua)))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnh;
     private javax.swing.JButton btnSua;
+<<<<<<< HEAD
     private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser dtNgaySinh;
+=======
+    private javax.swing.JButton btnXoaTaiKhoan;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+<<<<<<< HEAD
     private javax.swing.JLabel lbNgaySinh;
     private javax.swing.JRadioButton radNam;
     private javax.swing.JRadioButton radNu;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtEmail;
+=======
+    private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtGioiTinh;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     private javax.swing.JTextField txtHoVaTen;
     private javax.swing.JTextField txtSoDienThoai;
     // End of variables declaration//GEN-END:variables

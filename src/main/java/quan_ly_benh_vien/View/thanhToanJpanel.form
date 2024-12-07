@@ -25,6 +25,7 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel8" min="-2" pref="124" max="-2" attributes="0"/>
                           <Component id="lbMaGiaoDich" min="-2" pref="169" max="-2" attributes="0"/>
@@ -41,6 +42,24 @@
                                   <Component id="lbTongTien" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="631" max="-2" attributes="0"/>
+=======
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel8" pref="124" max="32767" attributes="0"/>
+                          <Component id="lbMaGiaoDich" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lbTongTien" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="631" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel9" min="-2" pref="163" max="-2" attributes="0"/>
+                                  <Component id="lbSoLuong" min="-2" pref="163" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                           </Group>
                       </Group>
                   </Group>
@@ -91,21 +110,39 @@
                                       <Component id="jTextField7" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
+<<<<<<< HEAD
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       <Component id="jLabel22" min="-2" pref="342" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel15" min="-2" pref="86" max="-2" attributes="0"/>
                                           <Component id="jLabel16" min="-2" pref="86" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
+<<<<<<< HEAD
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jTextField8" max="32767" attributes="0"/>
                                           <Component id="jTextField9" pref="277" max="32767" attributes="0"/>
                                           <Component id="jLabel21" alignment="0" min="-2" pref="231" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+=======
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel21" min="-2" pref="173" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jTextField8" max="32767" attributes="0"/>
+                                              <Component id="jTextField9" pref="277" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel22" min="-2" pref="342" max="-2" attributes="0"/>
+                                  </Group>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                               </Group>
                               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                           </Group>
@@ -161,7 +198,11 @@
                           <Component id="jLabel8" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                           <Component id="jLabel9" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
+<<<<<<< HEAD
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+=======
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -174,7 +215,11 @@
                           <Component id="jLabel16" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="jTextField9" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
+<<<<<<< HEAD
                       <EmptySpace pref="14" max="32767" attributes="0"/>
+=======
+                      <EmptySpace max="32767" attributes="0"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                   </Group>
               </Group>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -190,7 +235,11 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
+<<<<<<< HEAD
                   <Component id="jLabel21" min="-2" pref="218" max="-2" attributes="0"/>
+=======
+                  <Component id="jLabel21" min="-2" pref="137" max="-2" attributes="0"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -220,9 +269,12 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="Thanh To&#xe1;n B&#x1eb1;ng Th&#x1ebb; Ng&#xe2;n H&#xe0;ng"/>
       </Properties>
     </Component>
@@ -241,61 +293,88 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+<<<<<<< HEAD
           <Image iconType="3" name="/image/Visa-icon - Copy.png"/>
+=======
+          <Image iconType="3" name="/hinhAnh/Mastercard-icon.png"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+<<<<<<< HEAD
           <Image iconType="3" name="/image/Mastercard-icon - Copy.png"/>
+=======
+          <Image iconType="3" name="/hinhAnh/Visa-icon.png"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+<<<<<<< HEAD
           <Image iconType="3" name="/image/Paypal-icon - Copy.png"/>
+=======
+          <Image iconType="3" name="/hinhAnh/Paypal-icon.png"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="Th&#x1edd;i Gian Giao D&#x1ecb;ch"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="T&#x1ed5;ng S&#x1ed1; Ti&#x1ec1;n Thanh To&#xe1;n"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="M&#xe3; Giao D&#x1ecb;ch"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="S&#x1ed1; L&#x1b0;&#x1ee3;ng L&#x1ecb;ch Kh&#xe1;m"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n Ng&#xe2;n H&#xe0;ng"/>
       </Properties>
     </Component>
@@ -319,9 +398,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="S&#x1ed1; T&#xe0;i Kho&#x1ea3;n Ng&#xe2;n H&#xe0;ng"/>
       </Properties>
     </Component>
@@ -332,10 +414,14 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="T&#xea;n Ch&#x1ee7; T&#xe0;i Kho&#x1ea3;n"/>
+=======
+        <Property name="text" type="java.lang.String" value="T&#xea;n &#x110;&#x103;ng Nh&#x1ead;p"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTenDangNhap">
@@ -345,9 +431,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbThanhToan">
       <Properties>
+<<<<<<< HEAD
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="12" style="1"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="Thanh To&#xe1;n"/>
       </Properties>
       <Events>
@@ -359,17 +448,23 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="Chuy&#x1ec3;n Kho&#x1ea3;n / Qu&#xe9;t M&#xe3; QR"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="Ch&#x1ee7; T&#xe0;i Kho&#x1ea3;n"/>
       </Properties>
     </Component>
@@ -380,9 +475,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="S&#x1ed1; T&#xe0;i Kho&#x1ea3;n"/>
       </Properties>
     </Component>
@@ -407,48 +505,73 @@
     <Component class="javax.swing.JLabel" name="jLabel21">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+<<<<<<< HEAD
           <Image iconType="3" name="/image/QR - Copy.jpg"/>
+=======
+          <Image iconType="3" name="/hinhAnh/QR.jpg"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
       <Properties>
+<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="text" type="java.lang.String" value="N&#x1ed9;i Dung Chuy&#x1ec3;n Kho&#x1ea3;n : T&#xea;n T&#xe0;i Kho&#x1ea3;n + M&#xe3; Giao D&#x1ecb;ch"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbThoiGian">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+<<<<<<< HEAD
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
+=======
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="f"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbMaGiaoDich">
       <Properties>
+<<<<<<< HEAD
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
+=======
+        <Property name="text" type="java.lang.String" value="g"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbTongTien">
       <Properties>
+<<<<<<< HEAD
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
+=======
+        <Property name="text" type="java.lang.String" value="jLabel17"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbSoLuong">
       <Properties>
+<<<<<<< HEAD
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
+=======
+        <Property name="text" type="java.lang.String" value="jLabel17"/>
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
       </Properties>
     </Component>
   </SubComponents>

@@ -131,7 +131,10 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPasswordActionPerformed"/>
+<<<<<<< HEAD
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPasswordKeyPressed"/>
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnDangNhap">

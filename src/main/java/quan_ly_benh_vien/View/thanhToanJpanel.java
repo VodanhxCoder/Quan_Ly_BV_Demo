@@ -4,6 +4,7 @@
  */
 package quan_ly_benh_vien.View;
 
+<<<<<<< HEAD
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -17,6 +18,11 @@ import quan_ly_benh_vien.Model.*;
 import static quan_ly_benh_vien.View.DatLichKhampanel.maDatLichList;
 import quan_ly_benh_vien.Data_Access_Object.QuanLyTaiKhoanDao;
 import quan_ly_benh_vien.View.Login.Component.Login;
+=======
+import quan_ly_benh_vien.Controller.*;
+import javax.swing.JOptionPane;
+import quan_ly_benh_vien.Model.*;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
 /**
  *
@@ -25,7 +31,10 @@ import quan_ly_benh_vien.View.Login.Component.Login;
 public class thanhToanJpanel extends javax.swing.JPanel {
     public thanhToanJpanel() {
         initComponents();
+<<<<<<< HEAD
         loadData();
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     }
 
   
@@ -66,7 +75,10 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+<<<<<<< HEAD
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jLabel1.setText("Thanh Toán Bằng Thẻ Ngân Hàng");
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 255));
@@ -74,6 +86,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         jLabel2.setText("Thẻ Tín Dụng/Ghi Nợ");
         jLabel2.setOpaque(true);
 
+<<<<<<< HEAD
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Visa-icon - Copy.png"))); // NOI18N
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Mastercard-icon - Copy.png"))); // NOI18N
@@ -93,11 +106,30 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         jLabel9.setText("Số Lượng Lịch Khám");
 
         jLabel10.setForeground(new java.awt.Color(0, 102, 102));
+=======
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhAnh/Mastercard-icon.png"))); // NOI18N
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhAnh/Visa-icon.png"))); // NOI18N
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhAnh/Paypal-icon.png"))); // NOI18N
+
+        jLabel6.setText("Thời Gian Giao Dịch");
+
+        jLabel7.setText("Tổng Số Tiền Thanh Toán");
+
+        jLabel8.setText("Mã Giao Dịch");
+
+        jLabel9.setText("Số Lượng Lịch Khám");
+
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jLabel10.setText("Chọn Ngân Hàng");
 
         cbbNganHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ViettinBank", "VietcomBank", "BIDV", "AgriBank", "MB", "TechcomBank", "ACB" }));
 
+<<<<<<< HEAD
         jLabel11.setForeground(new java.awt.Color(0, 102, 102));
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jLabel11.setText("Số Tài Khoản Ngân Hàng");
 
         txtSoTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
@@ -106,8 +138,12 @@ public class thanhToanJpanel extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
         jLabel12.setForeground(new java.awt.Color(0, 102, 102));
         jLabel12.setText("Tên Chủ Tài Khoản");
+=======
+        jLabel12.setText("Tên Đăng Nhập");
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
         txtTenDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +151,10 @@ public class thanhToanJpanel extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
         jbThanhToan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jbThanhToan.setText("Thanh Toán");
         jbThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,15 +163,23 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+<<<<<<< HEAD
         jLabel13.setForeground(new java.awt.Color(0, 102, 102));
         jLabel13.setText("Chuyển Khoản / Quét Mã QR");
 
         jLabel14.setForeground(new java.awt.Color(0, 102, 102));
+=======
+        jLabel13.setText("Chuyển Khoản / Quét Mã QR");
+
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jLabel14.setText("Chủ Tài Khoản");
 
         jLabel15.setText("Ngân Hàng");
 
+<<<<<<< HEAD
         jLabel16.setForeground(new java.awt.Color(0, 102, 102));
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jLabel16.setText("Số Tài Khoản");
 
         jTextField7.setEditable(false);
@@ -144,6 +191,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         jTextField9.setEditable(false);
         jTextField9.setText("105873670250");
 
+<<<<<<< HEAD
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/QR - Copy.jpg"))); // NOI18N
 
         jLabel22.setForeground(new java.awt.Color(0, 102, 102));
@@ -160,6 +208,21 @@ public class thanhToanJpanel extends javax.swing.JPanel {
 
         lbSoLuong.setBackground(new java.awt.Color(153, 153, 153));
         lbSoLuong.setOpaque(true);
+=======
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhAnh/QR.jpg"))); // NOI18N
+
+        jLabel22.setText("Nội Dung Chuyển Khoản : Tên Tài Khoản + Mã Giao Dịch");
+
+        lbThoiGian.setBackground(new java.awt.Color(255, 255, 255));
+        lbThoiGian.setText("f");
+        lbThoiGian.setOpaque(true);
+
+        lbMaGiaoDich.setText("g");
+
+        lbTongTien.setText("jLabel17");
+
+        lbSoLuong.setText("jLabel17");
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -169,6 +232,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbMaGiaoDich, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,6 +246,21 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                                     .addComponent(lbSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lbTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(631, 631, 631))))
+=======
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                            .addComponent(lbMaGiaoDich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(108, 108, 108)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lbTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(631, 631, 631))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtSoTaiKhoan, javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,17 +300,31 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                                         .addGap(79, 79, 79)
                                         .addComponent(jTextField7))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< HEAD
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jTextField8)
                                             .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
                                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+=======
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jTextField8)
+                                                .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                                 .addGap(98, 98, 98))))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(151, 151, 151)
@@ -271,7 +364,11 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                         .addGap(2, 2, 2))
+=======
+                        .addGap(24, 24, 24))
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -281,7 +378,11 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)))
+=======
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -293,7 +394,11 @@ public class thanhToanJpanel extends javax.swing.JPanel {
                         .addComponent(cbbNganHang, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -326,6 +431,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         String tenTaiKhoan =txtTenDangNhap.getText();
         String tenNganHang ="";
         String thoiGianThanhToan = lbThoiGian.getText();
+<<<<<<< HEAD
         String tenDangNhap =null;
         try {
             tenDangNhap = QuanLyTaiKhoanDao.MD5Encryptor(Login.xacNhanDangNhap);
@@ -334,6 +440,9 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(thanhToanJpanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+=======
+        String tenDangNhap = null;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         
         Object selectedNganHang = cbbNganHang.getSelectedItem();
         if(selectedNganHang == null || selectedNganHang.toString().isEmpty()){
@@ -342,7 +451,11 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         else{
             tenNganHang = selectedNganHang.toString();
         }
+<<<<<<< HEAD
                 // Kiểm tra các trường dữ liệu bị bỏ trống
+=======
+        
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         if(maGiaoDich.isEmpty() || soTaiKhoan.isEmpty() || tenTaiKhoan.isEmpty()||thoiGianThanhToan.isEmpty() ){
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin");
         }else{
@@ -350,9 +463,15 @@ public class thanhToanJpanel extends javax.swing.JPanel {
             thanhToanController tt = new thanhToanController();
             tt.insertThanhToan(thanhToan);
             
+<<<<<<< HEAD
                 DatLichKhamController datLichKhamController = new DatLichKhamController();
                 datLichKhamController.capNhatTrangThaiThanhToan(maDatLichList);
                 System.out.println(maDatLichList);
+=======
+//                DatLichKhamController datLichKhamController = new DatLichKhamController();
+//                datLichKhamController.capNhatTrangThaiThanhToan(maDatLichList);
+//                System.out.println(maDatLichList);
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
             String mess = "Chúc mừng bạn " + tenDangNhap + " đã thanh toán thành công !\n"
                         + "Tổng số tiền: " + lbTongTien.getText() + " và số lượng lịch: " + lbSoLuong.getText() + "\n"
                         + "Mã giao dịch: " + lbMaGiaoDich.getText() + ", thời gian: " + thoiGianThanhToan;
@@ -360,6 +479,7 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbThanhToanActionPerformed
   
+<<<<<<< HEAD
      private void loadData() {
         String hienThiSoLuong = Integer.toString(DatLichKhampanel.soLuongLichDat);
         lbSoLuong.setText(hienThiSoLuong);
@@ -400,6 +520,48 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         String formattedDateTime = now.format(formatter);
         return formattedDateTime;
     }
+=======
+//     private void loadData() {
+//        String hienThiSoLuong = Integer.toString(QuanLyDatLich.soLuongLichDat);
+//        lblSoLich.setText(hienThiSoLuong);
+//        lblSoLich2.setText(hienThiSoLuong);
+//
+//        float tongSoTienThanhToan = QuanLyDatLich.soLuongLichDat * 300000;
+//        String hienThiSoTien = " " + tongSoTienThanhToan;
+//        lblTongTien.setText(hienThiSoTien);
+//        lblTongTien_.setText(hienThiSoTien);
+//
+//        String maGiaoDich = generateRandomCode();
+//        lblMaGiaoDich.setText(maGiaoDich);
+//        lblMaGiaoDichQr.setText(maGiaoDich);
+//
+//        String thoiGianGiaoDich = getCurrentDateTime();
+//        lblThoiGian.setText(thoiGianGiaoDich);
+//        lblThoiGian2.setText(thoiGianGiaoDich);
+//    }
+//
+//    //    tạo 1 hàm random ra mã đặt lịch
+//    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+//    private static final int CODE_LENGTH = 5;
+//    private static final SecureRandom random = new SecureRandom();
+//
+//    public static String generateRandomCode() {
+//        StringBuilder code = new StringBuilder(CODE_LENGTH);
+//        for (int i = 0; i < CODE_LENGTH; i++) {
+//            int randomIndex = random.nextInt(CHARACTERS.length());
+//            char randomChar = CHARACTERS.charAt(randomIndex);
+//            code.append(randomChar);
+//        }
+//        return code.toString().toUpperCase();
+//    }
+//
+//    public static String getCurrentDateTime() {
+//        LocalDateTime now = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+//        String formattedDateTime = now.format(formatter);
+//        return formattedDateTime;
+//    }
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

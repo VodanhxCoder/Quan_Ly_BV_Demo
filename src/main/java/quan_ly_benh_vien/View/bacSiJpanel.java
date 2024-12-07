@@ -4,14 +4,20 @@ import quan_ly_benh_vien.Controller.bacSiController;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.io.File;
+<<<<<<< HEAD
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+<<<<<<< HEAD
 import java.util.logging.Level;
 import java.util.logging.Logger;
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -22,26 +28,37 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+<<<<<<< HEAD
 import quan_ly_benh_vien.Controller.TaiKhoanController;
 import quan_ly_benh_vien.Data_Access_Object.QuanLyTaiKhoanDao;
 import quan_ly_benh_vien.Model.QuanLyTaiKhoanModel;
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 import quan_ly_benh_vien.Model.bacSiModel;
 
 public class bacSiJpanel extends javax.swing.JPanel {
 
+<<<<<<< HEAD
     private String emailCheck, soDienThoaiCheck;
+=======
+    private String emailCheck, maBacSiCheck, soDienThoaiCheck;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     private DefaultTableModel model;
 
     public bacSiJpanel() throws SQLException {
         initComponents();
 
         // Khởi tạo model cho bảng
+<<<<<<< HEAD
         model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Không cho phép chỉnh sửa
             }
         };
+=======
+        model = new DefaultTableModel();
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         model.addColumn("Mã Bác Sĩ");
         model.addColumn("Họ và Tên");
         model.addColumn("Số Điện Thoại");
@@ -69,7 +86,11 @@ public class bacSiJpanel extends javax.swing.JPanel {
                     try {
                         //set laij gia tri cho cac bien check
                         emailCheck = null;
+<<<<<<< HEAD
 
+=======
+                        maBacSiCheck = null;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                         soDienThoaiCheck = null;
 
                         // Kiểm tra giá trị trong các cột trước khi lấy
@@ -119,9 +140,15 @@ public class bacSiJpanel extends javax.swing.JPanel {
                         } else {
                             lbTaiAnh.setIcon(null);
                         }
+<<<<<<< HEAD
                         txtTenDangNhap.setEnabled(false);
                         txtMatKhau.setEnabled(false);
                         emailCheck = txtEmail.getText();
+=======
+
+                        emailCheck = txtEmail.getText();
+                        maBacSiCheck = txtMA.getText();
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                         soDienThoaiCheck = txtSDT.getText();
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -205,10 +232,13 @@ public class bacSiJpanel extends javax.swing.JPanel {
         txthocVan = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jDateNgaySinh = new com.toedter.calendar.JDateChooser();
+<<<<<<< HEAD
         jlKinhNghiem1 = new javax.swing.JLabel();
         txtTenDangNhap = new javax.swing.JTextField();
         jlKinhNghiem2 = new javax.swing.JLabel();
         txtMatKhau = new javax.swing.JTextField();
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jCbTimKiem = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -252,7 +282,10 @@ public class bacSiJpanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jtableBacSi);
         jtableBacSi.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
+<<<<<<< HEAD
         jbTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jbTimKiem.setText("Tìm kiếm");
         jbTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,7 +293,10 @@ public class bacSiJpanel extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
         jlTimkiem.setForeground(new java.awt.Color(0, 102, 102));
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jlTimkiem.setText("Tìm kiếm theo:");
 
         btnRefresh.setText("Làm mới");
@@ -272,42 +308,59 @@ public class bacSiJpanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+<<<<<<< HEAD
         jlChuyenKhoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jlChuyenKhoa.setForeground(new java.awt.Color(0, 102, 102));
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jlChuyenKhoa.setText("Chuyên khoa:");
 
         buttonGroup1.add(jradNam);
         jradNam.setText("Nam");
 
+<<<<<<< HEAD
         jlGioiTinh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jlGioiTinh.setForeground(new java.awt.Color(0, 102, 102));
         jlGioiTinh.setText("Giới tính:");
 
         txtMA.setEnabled(false);
+=======
+        jlGioiTinh.setText("Giới tính:");
+
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         txtMA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMAActionPerformed(evt);
             }
         });
 
+<<<<<<< HEAD
         jlEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jlEmail.setForeground(new java.awt.Color(0, 102, 102));
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jlEmail.setText("Email:");
 
         txtKinhnghiem.setColumns(20);
         txtKinhnghiem.setRows(5);
         jScrollPane2.setViewportView(txtKinhnghiem);
 
+<<<<<<< HEAD
         jlHoVaTen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jlHoVaTen.setForeground(new java.awt.Color(0, 102, 102));
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jlHoVaTen.setText("Họ và tên:");
 
         jComBoxChuyenKhoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Khoa da liễu", "Khoa thần kinh", "Khoa Tâm lý", "Khoa xương khớp", "Khoa tai - mũi - họng", "Khoa mắt", "Khoa xét nghiệm" }));
 
         lbTaiAnh.setBackground(new java.awt.Color(0, 0, 0));
 
+<<<<<<< HEAD
         jbMa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbMa.setForeground(new java.awt.Color(0, 102, 102));
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jbMa.setText("Mã : ");
 
         txtHoVaTen.addActionListener(new java.awt.event.ActionListener() {
@@ -323,13 +376,17 @@ public class bacSiJpanel extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
         jlKinhNghiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jlKinhNghiem.setForeground(new java.awt.Color(0, 102, 102));
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         jlKinhNghiem.setText("Kinh nghiệm:");
 
         buttonGroup1.add(jradNu);
         jradNu.setText("Nữ");
 
+<<<<<<< HEAD
         jlHocVan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jlHocVan.setForeground(new java.awt.Color(0, 102, 102));
         jlHocVan.setText("Học vấn:");
@@ -354,6 +411,16 @@ public class bacSiJpanel extends javax.swing.JPanel {
         jlKinhNghiem2.setForeground(new java.awt.Color(0, 102, 102));
         jlKinhNghiem2.setText("Mật Khẩu:");
 
+=======
+        jlHocVan.setText("Học vấn:");
+
+        jlSDT.setText("Số điện thoại:");
+
+        jlDiaChi.setText("Địa chỉ:");
+
+        jLabel1.setText("Ngày sinh:");
+
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -361,6 +428,7 @@ public class bacSiJpanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlHoVaTen)
@@ -412,6 +480,45 @@ public class bacSiJpanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(151, 151, 151))))
+=======
+                    .addComponent(jlHoVaTen)
+                    .addComponent(jlDiaChi)
+                    .addComponent(jlSDT)
+                    .addComponent(jlGioiTinh)
+                    .addComponent(jlEmail)
+                    .addComponent(jlChuyenKhoa)
+                    .addComponent(jlHocVan)
+                    .addComponent(jlKinhNghiem)
+                    .addComponent(jLabel1)
+                    .addComponent(jbMa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jradNam)
+                        .addGap(18, 18, 18)
+                        .addComponent(jradNu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(28, 28, 28))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtHoVaTen, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMA, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbTaiAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComBoxChuyenKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txthocVan, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 8, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,6 +573,7 @@ public class bacSiJpanel extends javax.swing.JPanel {
                         .addComponent(jlKinhNghiem)
                         .addGap(60, 60, 60))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlKinhNghiem1)
@@ -475,6 +583,9 @@ public class bacSiJpanel extends javax.swing.JPanel {
                     .addComponent(jlKinhNghiem2)
                     .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(76, Short.MAX_VALUE))
+=======
+                .addGap(22, 22, 22))
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         );
 
         jCbTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã bác sĩ", "Họ và tên", "Địa chỉ", "Số điện thoại", "Giới tính", "Chuyên khoa" }));
@@ -548,10 +659,21 @@ public class bacSiJpanel extends javax.swing.JPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+<<<<<<< HEAD
 public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
             String kinhNghiem, String email, Date ngaySinh, String hocVan, String gioiTinh,
             String chuyenKhoa, String hinhAnh) {
         // Kiểm tra các trường bắt buộc
+=======
+public boolean validateInput(String maBacSi, String hoVaTen, String soDienThoai, String diaChi,
+            String kinhNghiem, String email, Date ngaySinh, String hocVan, String gioiTinh,
+            String chuyenKhoa, String hinhAnh) {
+        // Kiểm tra các trường bắt buộc
+        if (maBacSi == null || maBacSi.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Mã bác sĩ không được để trống.");
+            return false;
+        }
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
         if (ngaySinh == null) {
             JOptionPane.showMessageDialog(null, "Ngày chọn không hợp lệ.");
@@ -621,6 +743,10 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
             JOptionPane.showMessageDialog(null, "Vui lòng nhập ID cần cập nhật.");
         } else {
             // Đọc thông tin mới từ các trường nhập liệu
+<<<<<<< HEAD
+=======
+            String maBacSi = txtMA.getText();
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
             String hoVaTen = txtHoVaTen.getText();
             String soDienThoai = txtSDT.getText();
             String diaChi = txtDiaChi.getText();
@@ -641,6 +767,7 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
                 gioiTinh = "Nữ";
             }
 
+<<<<<<< HEAD
             if (!validateInput(hoVaTen, soDienThoai, diaChi, kinhNghiem, email, ngaySinh, hocVan, gioiTinh, chuyenKhoa, hinhAnh)) {
                 return;
             }
@@ -650,6 +777,19 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
             boolean sdtTonTai = bacSiController.KtraTrungLap("soDienThoai", soDienThoai);
 
             if (emailTonTai && !emailCheck.equals(email)) {
+=======
+            if (!validateInput(maBacSi, hoVaTen, soDienThoai, diaChi, kinhNghiem, email, ngaySinh, hocVan, gioiTinh, chuyenKhoa, hinhAnh)) {
+                return;
+            }
+            bacSiController bacSiController = new bacSiController();
+            boolean maTonTai = bacSiController.KtraTrungLap("maBacSi", maBacSi);
+            boolean emailTonTai = bacSiController.KtraTrungLap("email", email);
+            boolean sdtTonTai = bacSiController.KtraTrungLap("soDienThoai", soDienThoai);
+
+            if (maTonTai && !maBacSiCheck.equals(maBacSi)) {
+                JOptionPane.showMessageDialog(null, "Mã bác sĩ đã tồn tại!");
+            } else if (emailTonTai && !emailCheck.equals(email)) {
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                 JOptionPane.showMessageDialog(null, "email đã tồn tại!");
             } else if (sdtTonTai && !soDienThoaiCheck.equals(soDienThoai)) {
                 JOptionPane.showMessageDialog(null, "Số điện thoại đã tồn tại!");
@@ -660,7 +800,11 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
                 }
 
                 // Tạo một đối tượng BacSiModel mới từ thông tin đã nhập
+<<<<<<< HEAD
                 bacSiModel bacSiMoi = new bacSiModel(hoVaTen, soDienThoai, email, ngaySinh, diaChi, gioiTinh, chuyenKhoa, kinhNghiem, hocVan, hinhAnh, null);
+=======
+                bacSiModel bacSiMoi = new bacSiModel(maBacSi, hoVaTen, soDienThoai, email, ngaySinh, diaChi, gioiTinh, chuyenKhoa, kinhNghiem, hocVan, hinhAnh);
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
                 // Gọi phương thức cập nhật thông tin từ controller
                 int rowsAffected = bacSiController.capNhatThongTinBacSi(bacSiMoi, idCapNhat);
@@ -675,6 +819,7 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
             }
         }
     }//GEN-LAST:event_jbSuaActionPerformed
+<<<<<<< HEAD
     private boolean validatetaikhoan(String tenDangNhap, String matKhau) {
         // Regex định dạng tên đăng nhập
         String regexTenDangNhap = "^[a-zA-Z0-9]{4,50}$";
@@ -709,6 +854,12 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
     }
     private void jbThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbThemActionPerformed
 
+=======
+
+    private void jbThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbThemActionPerformed
+
+        String maBacSi = txtMA.getText();
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         String hoVaTen = txtHoVaTen.getText();
         String soDienThoai = txtSDT.getText();
         String diaChi = txtDiaChi.getText();
@@ -719,10 +870,15 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
         String gioiTinh = "";
         String chuyenKhoa;
         String hinhAnh = null;
+<<<<<<< HEAD
         String tenDangNhap = txtTenDangNhap.getText();
         String matKhau = txtMatKhau.getText();
 
         //format Gioi tinh de chuyển sang string 
+=======
+
+        //format Ngay sinh de chuyển sang string 
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         if (jradNam.isSelected()) {
             gioiTinh = "Nam";
         } else if (jradNu.isSelected()) {
@@ -737,6 +893,7 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
         } else {
             chuyenKhoa = selectedChuyenKhoa.toString();
             // Kiểm tra xem mã bác sĩ đã tồn tại
+<<<<<<< HEAD
             if (!validateInput(hoVaTen, soDienThoai, diaChi, kinhNghiem, email, ngaySinh, hocVan, gioiTinh, chuyenKhoa, hinhAnh)) {
                 return;  // Dừng lại nếu input không hợp lệ
             }
@@ -763,11 +920,24 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
 
             if (tenDaTonTai) {
                 JOptionPane.showMessageDialog(null, "tên đăng nhập đã tồn tại!");
+=======
+            if (!validateInput(maBacSi, hoVaTen, soDienThoai, diaChi, kinhNghiem, email, ngaySinh, hocVan, gioiTinh, chuyenKhoa, hinhAnh)) {
+                return;  // Dừng lại nếu input không hợp lệ
+            }
+            bacSiController bacSiController = new bacSiController();
+            boolean maTonTai = bacSiController.KtraTrungLap("maBacSi", maBacSi);
+            boolean emailTonTai = bacSiController.KtraTrungLap("email", email);
+            boolean sdtTonTai = bacSiController.KtraTrungLap("soDienThoai", soDienThoai);
+
+            if (maTonTai) {
+                JOptionPane.showMessageDialog(null, "Mã bác sĩ đã tồn tại!");
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
             } else if (emailTonTai) {
                 JOptionPane.showMessageDialog(null, "email đã tồn tại!");
             } else if (sdtTonTai) {
                 JOptionPane.showMessageDialog(null, "Số điện thoại đã tồn tại!");
             } else {
+<<<<<<< HEAD
                 QuanLyTaiKhoanModel taikhoan = new QuanLyTaiKhoanModel(hoVaTen, tenDangNhap, matKhau, email, gioiTinh);
                 bacSiModel bacSiModel = new bacSiModel(hoVaTen, soDienThoai, email, ngaySinh, diaChi, gioiTinh, chuyenKhoa, kinhNghiem, hocVan, hinhAnh, tenDangNhap);
 
@@ -777,6 +947,11 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
                 if (rowAffected1 > 0) {
                     rowsAffected = bacSiController.themBacSi(bacSiModel);
                 }
+=======
+                bacSiModel bacSiModel = new bacSiModel(maBacSi, hoVaTen, soDienThoai, email, ngaySinh, diaChi, gioiTinh, chuyenKhoa, kinhNghiem, hocVan, hinhAnh);
+
+                int rowsAffected = bacSiController.themBacSi(bacSiModel);
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
                 // Kiểm tra kết quả và hiển thị thông báo
                 if (rowsAffected > 0) {
@@ -924,8 +1099,11 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
         // TODO add your handling code here:
         reset();
         hienthiDSBacSi();
+<<<<<<< HEAD
         txtTenDangNhap.setEnabled(true);
         txtMatKhau.setEnabled(true);
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void txtHoVaTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoVaTenActionPerformed
@@ -947,8 +1125,11 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
         jComBoxChuyenKhoa.setSelectedIndex(0);
         jradNam.setSelected(false);
         jradNu.setSelected(false);
+<<<<<<< HEAD
         txtTenDangNhap.setText("");
         txtMatKhau.setText("");
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -975,8 +1156,11 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
     private javax.swing.JLabel jlHoVaTen;
     private javax.swing.JLabel jlHocVan;
     private javax.swing.JLabel jlKinhNghiem;
+<<<<<<< HEAD
     private javax.swing.JLabel jlKinhNghiem1;
     private javax.swing.JLabel jlKinhNghiem2;
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     private javax.swing.JLabel jlSDT;
     private javax.swing.JLabel jlTimkiem;
     private javax.swing.JRadioButton jradNam;
@@ -988,9 +1172,13 @@ public boolean validateInput(String hoVaTen, String soDienThoai, String diaChi,
     private javax.swing.JTextField txtHoVaTen;
     private javax.swing.JTextArea txtKinhnghiem;
     private javax.swing.JTextField txtMA;
+<<<<<<< HEAD
     private javax.swing.JTextField txtMatKhau;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenDangNhap;
+=======
+    private javax.swing.JTextField txtSDT;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txthocVan;
     // End of variables declaration//GEN-END:variables

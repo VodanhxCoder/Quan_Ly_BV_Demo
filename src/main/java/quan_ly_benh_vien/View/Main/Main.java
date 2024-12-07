@@ -4,12 +4,17 @@
  */
 package quan_ly_benh_vien.View.Main;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 import quan_ly_benh_vien.View.bacSiJpanel;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
+<<<<<<< HEAD
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import quan_ly_benh_vien.View.Main.Component.EventMenuSelected;
@@ -20,6 +25,15 @@ import quan_ly_benh_vien.View.Login.Component.Login;
 import quan_ly_benh_vien.View.thanhToanJpanel;
 import quan_ly_benh_vien.View.thongTinTaiKhoanPanel;
 
+=======
+import quan_ly_benh_vien.View.Main.Component.EventMenuSelected;
+import quan_ly_benh_vien.View.benhNhanJpanel;
+import quan_ly_benh_vien.View.DatLichKhampanel;
+import quan_ly_benh_vien.View.thanhToanJpanel;
+import quan_ly_benh_vien.View.thongTinTaiKhoanPanel;
+
+
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 /**
  *
  * @author khue1
@@ -33,6 +47,7 @@ public class Main extends javax.swing.JFrame {
     private bacSiJpanel jpBacSi;
     private benhNhanJpanel jpBenhNhan;
     private thongTinTaiKhoanPanel jpThongTin;
+<<<<<<< HEAD
     private BacSiKham jpBacSiKham;
 
     public Main() throws SQLException {
@@ -42,12 +57,24 @@ public class Main extends javax.swing.JFrame {
         jpBenhNhan = new benhNhanJpanel();
         jpThongTin = new thongTinTaiKhoanPanel();
         jpBacSiKham = new BacSiKham(this);
+=======
+
+    public Main() throws SQLException {
+        initComponents();
+        jpDatLich = new DatLichKhampanel();
+        jpBacSi = new bacSiJpanel();
+        jpBenhNhan = new benhNhanJpanel();
+        jpThongTin = new thongTinTaiKhoanPanel();
+       
+
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         menu1.initMoving(Main.this);
         menu1.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
                 System.out.println("Index= " + index);
                 if (index == 0) {
+<<<<<<< HEAD
                     setForm(new DatLichKhampanel(Main.this));
                 } else if (index == 1) {
                     setForm(new BacSiKham(Main.this));
@@ -68,10 +95,23 @@ public class Main extends javax.swing.JFrame {
                     setForm(jpThongTin);
                 } else if (index == 8) {
                     DangXuat();
+=======
+                    setForm(jpDatLich);
+                } else if (index == 1) {
+                    setForm(jpBacSi);
+                } else if (index == 2) {
+                    setForm(jpBenhNhan);
+                } else if (index == 3) {
+                    setForm(jpBacSi);
+                }
+                else if (index ==6 ) {
+                    setForm(jpThongTin);
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
                 }
             }
         });
         //  set when system open start with home form
+<<<<<<< HEAD
         setForm(new DatLichKhampanel(this));
 
     }
@@ -96,6 +136,15 @@ public class Main extends javax.swing.JFrame {
         if (com != null) {
             mainPanel.remove(com);  // Loại bỏ panel cũ
         }
+=======
+        setForm(new DatLichKhampanel());
+       
+    }
+    public void setThanhToan(){
+        setForm(new thanhToanJpanel());
+    }
+    private void setForm(JComponent com) {
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         mainPanel.removeAll();
         mainPanel.add(com);
         mainPanel.repaint();
@@ -131,7 +180,11 @@ public class Main extends javax.swing.JFrame {
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGap(0, 629, Short.MAX_VALUE)
+=======
+            .addGap(0, 590, Short.MAX_VALUE)
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         );
 
         mainPanel.add(jLayeredPane1, java.awt.BorderLayout.CENTER);
@@ -148,7 +201,11 @@ public class Main extends javax.swing.JFrame {
         jpBackgroudLayout.setVerticalGroup(
             jpBackgroudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
             .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
+=======
+            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,6 +222,7 @@ public class Main extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+<<<<<<< HEAD
 private void DangXuat() {
         int option = JOptionPane.showConfirmDialog(this,
                 "Bạn có chắc chắn muốn đăng xuất?",
@@ -189,6 +247,8 @@ private void DangXuat() {
         quan_ly_benh_vien.View.Login.Main.Main loginFrame = new quan_ly_benh_vien.View.Login.Main.Main();
         loginFrame.setVisible(true);
     }
+=======
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
     /**
      * @param args the command line arguments

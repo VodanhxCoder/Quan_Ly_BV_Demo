@@ -20,21 +20,36 @@ import quan_ly_benh_vien.View.Login.Component.Login;
  *
  * @author khue1
  */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 public class Menu extends javax.swing.JPanel {
 
     /**
      * Creates new form Menu
      */
+<<<<<<< HEAD
     private EventMenuSelected event;
+=======
+       private EventMenuSelected event;
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
     public void addEventMenuSelected(EventMenuSelected event) {
         this.event = event;
         listMenu1.addEventMenuSelected(event);
     }
+<<<<<<< HEAD
 
     public Menu() {
         initComponents();
         LbTaiKhoan.setText("Xin chào " + Login.xacNhanDangNhap);
+=======
+    
+    public Menu() {
+        initComponents();
+        LbTaiKhoan.setText("Xin chào "+Login.xacNhanDangNhap);
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         setOpaque(false);
         listMenu1.setOpaque(false);
         init();
@@ -42,6 +57,7 @@ public class Menu extends javax.swing.JPanel {
     }
 
     //tạo mục menu , phân vùng quản lý 
+<<<<<<< HEAD
     private void init() {
         listMenu1.addItem(new Model_Menu("1", "Đặt Lịch", Model_Menu.MenuType.MENU));
         if (Login.xacNhanUser != null && Login.xacNhanUser.equals("admin")) {
@@ -59,6 +75,14 @@ public class Menu extends javax.swing.JPanel {
             listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
         }
 
+=======
+
+    private void init() {
+        listMenu1.addItem(new Model_Menu("1", "Đặt Lịch", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("2", "Quản lý bác sĩ", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("3", "Quản lý bệnh nhân", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
         //tách ô 
         listMenu1.addItem(new Model_Menu("", "My Data", Model_Menu.MenuType.TITLE));
         listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
@@ -124,6 +148,7 @@ public class Menu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
+<<<<<<< HEAD
     protected void paintChildren(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -133,11 +158,23 @@ public class Menu extends javax.swing.JPanel {
         g2.fillRect(getWidth() - 20, 0, getWidth(), getHeight());
         super.paintChildren(grphcs);
     }
+=======
+protected void paintChildren(Graphics grphcs) {
+    Graphics2D g2 = (Graphics2D) grphcs;
+    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    GradientPaint g = new GradientPaint(0, 0, Color.decode("#1CB5E0"), 0, getHeight(), Color.decode("#000046"));
+    g2.setPaint(g);
+    g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+    g2.fillRect(getWidth() - 20, 0, getWidth(), getHeight());
+    super.paintChildren(grphcs);
+}
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
 
     private int x;
     private int y;
 
     public void initMoving(JFrame fram) {
+<<<<<<< HEAD
         panelMoving.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
@@ -153,6 +190,23 @@ public class Menu extends javax.swing.JPanel {
             }
         });
     }
+=======
+    panelMoving.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mousePressed(MouseEvent me) {
+            x = me.getX();
+            y = me.getY();
+        }
+
+    });
+    panelMoving.addMouseMotionListener(new MouseMotionAdapter() {
+        @Override
+        public void mouseDragged(MouseEvent me) {
+            fram.setLocation(me.getXOnScreen() - x, me.getYOnScreen() - y);
+        }
+    });
+}
+>>>>>>> 96401bc93da2f4db16dbd96e6dd672a4297133c6
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LbTaiKhoan;
     private quan_ly_benh_vien.View.Main.Component.ListMenu<String> listMenu1;
