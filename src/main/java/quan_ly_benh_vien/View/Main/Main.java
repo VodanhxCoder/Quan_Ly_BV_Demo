@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import quan_ly_benh_vien.View.Main.Component.EventMenuSelected;
 import quan_ly_benh_vien.View.benhNhanJpanel;
 import quan_ly_benh_vien.View.DatLichKhampanel;
@@ -40,25 +41,31 @@ public class Main extends javax.swing.JFrame {
         jpBacSi = new bacSiJpanel();
         jpBenhNhan = new benhNhanJpanel();
         jpThongTin = new thongTinTaiKhoanPanel();
-        jpBacSiKham = new BacSiKham();
+        jpBacSiKham = new BacSiKham(this);
         menu1.initMoving(Main.this);
         menu1.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
                 System.out.println("Index= " + index);
                 if (index == 0) {
-                    setForm(jpDatLich);
+                    setForm(new DatLichKhampanel(Main.this));
                 } else if (index == 1) {
-                    setForm(jpBacSi);
+                    setForm(new BacSiKham(Main.this));
                 } else if (index == 2) {
-                    setForm(jpBenhNhan);
+                    try {
+                        setForm(new benhNhanJpanel());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else if (index == 3) {
-                    setForm(jpBacSi);
+                    try {
+                        setForm(new bacSiJpanel());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 } else if (index == 6) {
                     setForm(jpThongTin);
-                    // setForm(jpThongTin);
-                } else if (index == 7) {
-                    setForm(jpBacSiKham);
                 } else if (index == 8) {
                     DangXuat();
                 }
@@ -73,7 +80,22 @@ public class Main extends javax.swing.JFrame {
         setForm(new thanhToanJpanel());
     }
 
+    public void KhamBenhNhan(String maBenhNhan) throws SQLException {
+
+        benhNhanJpanel panel = new benhNhanJpanel();
+        setForm(panel);
+
+        // Thực thi lệnh sau khi panel đã được thêm vào
+        SwingUtilities.invokeLater(() -> {
+            System.out.println("Panel bệnh nhân đã được hiển thị!");
+            panel.TimKiemVaChonBenhNhan(maBenhNhan);
+        });
+    }
+
     private void setForm(JComponent com) {
+        if (com != null) {
+            mainPanel.remove(com);  // Loại bỏ panel cũ
+        }
         mainPanel.removeAll();
         mainPanel.add(com);
         mainPanel.repaint();
@@ -109,7 +131,7 @@ public class Main extends javax.swing.JFrame {
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
+            .addGap(0, 629, Short.MAX_VALUE)
         );
 
         mainPanel.add(jLayeredPane1, java.awt.BorderLayout.CENTER);
@@ -126,7 +148,7 @@ public class Main extends javax.swing.JFrame {
         jpBackgroudLayout.setVerticalGroup(
             jpBackgroudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

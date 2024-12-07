@@ -44,15 +44,21 @@ public class Menu extends javax.swing.JPanel {
     //tạo mục menu , phân vùng quản lý 
     private void init() {
         listMenu1.addItem(new Model_Menu("1", "Đặt Lịch", Model_Menu.MenuType.MENU));
-        if (Login.xacNhanUser!=null&&Login.xacNhanUser.equals("admin")) {
-            listMenu1.addItem(new Model_Menu("2", "Quản lý bác sĩ", Model_Menu.MenuType.MENU));
+        if (Login.xacNhanUser != null && Login.xacNhanUser.equals("admin")) {
+            listMenu1.addItem(new Model_Menu("2", "Ca Khám", Model_Menu.MenuType.MENU));
+            listMenu1.addItem(new Model_Menu("4", "Quản lý bệnh nhân", Model_Menu.MenuType.MENU));
+            listMenu1.addItem(new Model_Menu("3", "Quản lý bác sĩ", Model_Menu.MenuType.MENU));
+
+        } else if (Login.xacNhanUser.equals("doctor")) {
+            listMenu1.addItem(new Model_Menu("2", "Ca Khám", Model_Menu.MenuType.MENU));
             listMenu1.addItem(new Model_Menu("3", "Quản lý bệnh nhân", Model_Menu.MenuType.MENU));
+            listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
         } else {
-            listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
-            listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
+            listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.TITLE));
+            listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
+            listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
         }
 
-        listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
         //tách ô 
         listMenu1.addItem(new Model_Menu("", "My Data", Model_Menu.MenuType.TITLE));
         listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));

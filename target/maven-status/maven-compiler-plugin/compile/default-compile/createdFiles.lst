@@ -15,10 +15,12 @@ quan_ly_benh_vien\View\benhNhanJpanel$13.class
 quan_ly_benh_vien\View\Login\Component\DangKy$1.class
 quan_ly_benh_vien\Data_Access_Object\DatLichKhamDao.class
 quan_ly_benh_vien\View\Login\Component\ThayMatKhau.class
+quan_ly_benh_vien\View\BacSiKham$19.class
 quan_ly_benh_vien\View\BacSiKham$16.class
 quan_ly_benh_vien\View\BacSiKham$4.class
 quan_ly_benh_vien\View\bacSiJpanel$4.class
 quan_ly_benh_vien\View\Main\Component\ListMenu$1.class
+quan_ly_benh_vien\View\BacSiKham$21.class
 quan_ly_benh_vien\View\Login\subComponent\GraphicsUtilities.class
 quan_ly_benh_vien\View\BacSiKham$11.class
 quan_ly_benh_vien\View\thongTinTaiKhoanPanel$1.class
@@ -28,6 +30,7 @@ quan_ly_benh_vien\View\benhNhanJpanel$5.class
 quan_ly_benh_vien\View\Login\Component\Login$1.class
 quan_ly_benh_vien\View\Main\Main.class
 quan_ly_benh_vien\View\bacSiJpanel$7.class
+quan_ly_benh_vien\View\BacSiKham$23.class
 quan_ly_benh_vien\Controller\thanhToanController.class
 quan_ly_benh_vien\View\Login\Main\Main.class
 quan_ly_benh_vien\Data_Access_Object\QuanLyTaiKhoanDao.class
@@ -55,6 +58,7 @@ quan_ly_benh_vien\View\Login\Component\Login$8.class
 quan_ly_benh_vien\View\DatLichKhampanel$6.class
 quan_ly_benh_vien\View\BacSiKham$9.class
 quan_ly_benh_vien\Data_Access_Object\QuanLyThanhToanDAO.class
+quan_ly_benh_vien\View\benhNhanJpanel$16.class
 quan_ly_benh_vien\View\benhNhanJpanel$7.class
 quan_ly_benh_vien\View\Login\Component\Login$3.class
 quan_ly_benh_vien\View\Login\Component\QuenMatKhau.class
@@ -72,6 +76,7 @@ quan_ly_benh_vien\View\bacSiJpanel$8.class
 quan_ly_benh_vien\View\DatLichKhampanel$1.class
 quan_ly_benh_vien\View\benhNhanJpanel$1.class
 quan_ly_benh_vien\View\BacSiKham$12.class
+quan_ly_benh_vien\View\BacSiKham$22.class
 quan_ly_benh_vien\Data_Access_Object\QuanLyBenhAnDAO.class
 quan_ly_benh_vien\View\Login\subComponent\ShadowRenderer.class
 quan_ly_benh_vien\View\Login\Component\Login$2.class
@@ -104,6 +109,7 @@ quan_ly_benh_vien\View\Login\Component\DangKy$2.class
 quan_ly_benh_vien\View\benhNhanJpanel.class
 quan_ly_benh_vien\View\Main\Component\ListMenu$2.class
 quan_ly_benh_vien\View\benhNhanJpanel$15.class
+quan_ly_benh_vien\View\BacSiKham$20.class
 quan_ly_benh_vien\Model\QuanLyTaiKhoanModel.class
 quan_ly_benh_vien\View\bacSiJpanel$3.class
 quan_ly_benh_vien\Data_Access_Object\QuanLyBacSiDAO.class
@@ -140,3 +146,4 @@ quan_ly_benh_vien\View\Login\Component\DangKy$7.class
 quan_ly_benh_vien\View\Main\Component\Menu$1.class
 quan_ly_benh_vien\View\DatLichKhampanel$2.class
 quan_ly_benh_vien\View\Login\Component\Login.class
+quan_ly_benh_vien\View\DatLichKhampanel$19.class

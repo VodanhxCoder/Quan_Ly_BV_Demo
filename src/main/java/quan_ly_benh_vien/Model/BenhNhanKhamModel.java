@@ -52,7 +52,9 @@ public class BenhNhanKhamModel {
     }
 
     public String getThoiGioiKham() {
-        return thoiGioiKham;
+          // Gọi hàm để tách thông tin
+        String[] result = tachThongTin(thoiGioiKham);
+        return "["+result[0]+", "+result[1]+"]";
     }
 
     public Date getNgaySinh() {
@@ -88,6 +90,28 @@ public class BenhNhanKhamModel {
         return "BenhNhanKhamModel{" + "maDatLich=" + maDatLich + ", hoVaTen=" + hoVaTen + ", thoiGioiKham=" + thoiGioiKham + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + '}';
     }
 
- 
+   public  static String[] tachThongTin(String chuoi) {
+        // Tìm vị trí của dấu ngoặc vuông mở và đóng
+        int startIndex = chuoi.indexOf('['); 
+        int endIndex = chuoi.indexOf(']');   
+
+        // Kiểm tra 
+        if (startIndex != -1 && endIndex != -1) {
+            // Lấy nội dung 
+            String content = chuoi.substring(startIndex + 1, endIndex);
+
+            // Tách chuỗi 
+            String[] parts = content.split(", ");
+            // Phần "Thứ X" 
+            String thu = parts[0];
+            // Phần "hh:mm - hh:mm"
+            String thoiGian = parts[1];
+          
+            return new String[]{thu, thoiGian};
+        }
+
+        // Trả về mảng rỗng 
+        return new String[]{"", ""};
+    }
     
 }

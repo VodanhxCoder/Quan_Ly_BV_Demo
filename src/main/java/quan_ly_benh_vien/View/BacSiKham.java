@@ -8,18 +8,28 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import quan_ly_benh_vien.Controller.DatLichKhamController;
 import quan_ly_benh_vien.Model.BenhNhanKhamModel;
 import quan_ly_benh_vien.View.Login.Component.Login;
+import quan_ly_benh_vien.View.Main.Main;
 
 /**
  *
@@ -33,8 +43,10 @@ public class BacSiKham extends javax.swing.JPanel {
     // Mảng chứa các JLabel
     private List<JLabel> slots;
     private DefaultTableModel model;
+    private Main main;
 
-    public BacSiKham() {
+    public BacSiKham(Main main) {
+        this.main = main;
         initComponents();
         initializeSlots();
         themSuKienChoLabels();
@@ -53,7 +65,46 @@ public class BacSiKham extends javax.swing.JPanel {
         model.addColumn("Giới Tính");
         jTableBenhNhan.setModel(model);
         hienThiDanhSachBN(Login.id);
+
+        jTableBenhNhan.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int selectedRow = jTableBenhNhan.getSelectedRow(); // Lấy hàng được chọn
+                if (selectedRow != -1) { // Kiểm tra nếu hàng được chọn hợp lệ
+                    // Lấy dữ liệu từ các cột trong hàng được chọn
+                    String maBenhNhan = model.getValueAt(selectedRow, 0).toString();
+                    String tenBenhNhan = model.getValueAt(selectedRow, 1).toString();
+                    String maCaKham = model.getValueAt(selectedRow, 2).toString();
+                    String thoiGioKham = model.getValueAt(selectedRow, 3).toString();
+                    String ngaySinh = model.getValueAt(selectedRow, 4).toString();
+                    String gioiTinh = model.getValueAt(selectedRow, 5).toString();
+
+                    // Tính tuổi
+                    int tuoi = tinhTuoi(ngaySinh);
+                    // Đổ dữ liệu vào các JTextField tương ứng
+                    txtMaBenhNhan.setText(maBenhNhan);
+                    txtTenBenhNhan.setText(tenBenhNhan);
+                    txtCaKham.setText(thoiGioKham);
+                    txtTuoi.setText(String.valueOf(tuoi)); // Tuổi @Kxử lý thêm từ ngày sinh
+                    txtGioiTinh.setText(gioiTinh);
+                }
+            }
+        });
+        jTableBenhNhan.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                // Kiểm tra nếu có thay đổi trong bảng và dòng được chọn không phải dòng tiêu đề
+                if (!e.getValueIsAdjusting()) {
+                    txtMaBenhNhan.setText("");
+                    txtTenBenhNhan.setText("");
+                    txtCaKham.setText("");
+                    txtTuoi.setText("");
+                    txtGioiTinh.setText("");
+
+                }
+            }
+        });
     }
+//Khoi tao 
 
     private void initializeSlots() {
         // Khởi tạo nội dung cho các ca khám
@@ -81,23 +132,44 @@ public class BacSiKham extends javax.swing.JPanel {
         slots.add(lblCaKham14);
 
     }
+    // Danh sách giờ tương ứng
+    private static String[] timeSlots = {
+        "08:00 - 08:30", "08:30 - 09:00", "09:00 - 09:30", "09:30 - 10:00",
+        "10:00 - 10:30", "10:30 - 11:00", "11:00 - 11:30",
+        "14:00 - 14:30", "14:30 - 15:00", "15:00 - 15:30",
+        "15:30 - 16:00", "16:00 - 16:30", "16:30 - 17:00", "17:00 - 17:30"
+    };
 
+    //Methods
+    private int tinhTuoi(String ngaySinh) {
+        try {
+            // Định dạng ngày sinh (giả sử ngày sinh dạng: yyyy-MM-dd)
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate birthDate = LocalDate.parse(ngaySinh, formatter);
+            LocalDate now = LocalDate.now(); // Ngày hiện tại
+            // Tính tuổi
+            return Period.between(birthDate, now).getYears();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0; // Trả về 0 nếu xảy ra lỗi
+        }
+    }
+
+    //Hien Thi DS Len Bang --
     private void hienThiDanhSachBN(String maBacSi) {
         DatLichKhamController datLichController = new DatLichKhamController();
         ArrayList<BenhNhanKhamModel> benhNhans = datLichController.layDanhSachDatLich(maBacSi);
 
         model.setRowCount(0);
 
-      //  model.addColumn("Mã Bệnh Nhân");
+        //  model.addColumn("Mã Bệnh Nhân");
 //        model.addColumn("Mã Đặt Lịch");
 //        model.addColumn("Họ và Tên");
 //        model.addColumn("Thời Giờ Khám");
 //        model.addColumn("Ngày Sinh");
 //        model.addColumn("Giới Tính");
-
         for (BenhNhanKhamModel benhNhan : benhNhans) {
             model.addRow(new Object[]{
-                
                 benhNhan.getMaBenhnhan(),
                 benhNhan.getHoVaTen(),
                 benhNhan.getMaDatLich(),
@@ -107,7 +179,9 @@ public class BacSiKham extends javax.swing.JPanel {
             });
         }
     }
+//--
 
+    //Khi Click Label Ca Kham
     public void themSuKienChoLabels() {
         for (JLabel label : slots) {
             label.addMouseListener(new MouseAdapter() {
@@ -121,27 +195,41 @@ public class BacSiKham extends javax.swing.JPanel {
             });
         }
     }
-    // Danh sách giờ tương ứng
-    private static String[] timeSlots = {
-        "08:00 - 08:30", "08:30 - 09:00", "09:00 - 09:30", "09:30 - 10:00",
-        "10:00 - 10:30", "10:30 - 11:00", "11:00 - 11:30",
-        "14:00 - 14:30", "14:30 - 15:00", "15:00 - 15:30",
-        "15:30 - 16:00", "16:00 - 16:30", "16:30 - 17:00", "17:00 - 17:30"
-    };
+
+    private void DLCaKham(String Label, String Date) {
+        DatLichKhamController datLichController = new DatLichKhamController();
+        ArrayList<BenhNhanKhamModel> benhNhans = datLichController.layDanhSachDatLich(Login.id);
+        model.setRowCount(0);
+        for (BenhNhanKhamModel benhNhan : benhNhans) {
+            String[] DateTime = BenhNhanKhamModel.tachThongTin(benhNhan.getThoiGioiKham());
+
+            if (Date.equals(DateTime[0]) && Label.equals(DateTime[1])) {
+                model.addRow(new Object[]{
+                    benhNhan.getMaBenhnhan(),
+                    benhNhan.getHoVaTen(),
+                    benhNhan.getMaDatLich(),
+                    benhNhan.getThoiGioiKham(),
+                    benhNhan.getNgaySinh(),
+                    benhNhan.getGioiTinh()
+                });
+            }
+        }
+
+    }
 
     //lấy ca hiện tại để chọn
     private static int findCurrentSlotIndex(LocalTime now) {
         // Giờ bắt đầu và kết thúc của từng ca
         LocalTime[] startTimes = {
             LocalTime.of(8, 0), LocalTime.of(8, 30), LocalTime.of(9, 0), LocalTime.of(9, 30),
-            LocalTime.of(10, 0), LocalTime.of(10, 30), LocalTime.of(11, 0), LocalTime.of(11, 30),
-            LocalTime.of(13, 30), LocalTime.of(14, 0), LocalTime.of(14, 30), LocalTime.of(15, 0),
+            LocalTime.of(10, 0), LocalTime.of(10, 30), LocalTime.of(11, 0),
+            LocalTime.of(14, 0), LocalTime.of(14, 30), LocalTime.of(15, 0),
             LocalTime.of(15, 30), LocalTime.of(16, 0), LocalTime.of(16, 30), LocalTime.of(17, 0)
         };
         LocalTime[] endTimes = {
             LocalTime.of(8, 30), LocalTime.of(9, 0), LocalTime.of(9, 30), LocalTime.of(10, 0),
-            LocalTime.of(10, 30), LocalTime.of(11, 0), LocalTime.of(11, 30), LocalTime.of(12, 0),
-            LocalTime.of(14, 0), LocalTime.of(14, 30), LocalTime.of(15, 0), LocalTime.of(15, 30),
+            LocalTime.of(10, 30), LocalTime.of(11, 0), LocalTime.of(11, 30),
+            LocalTime.of(14, 30), LocalTime.of(15, 0), LocalTime.of(15, 30),
             LocalTime.of(16, 0), LocalTime.of(16, 30), LocalTime.of(17, 0), LocalTime.of(17, 30)
         };
 
@@ -196,9 +284,9 @@ public class BacSiKham extends javax.swing.JPanel {
         txtTuoi = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnKham = new javax.swing.JLabel();
         txtMaBenhNhan = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        btnKhamBenh = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableBenhNhan = new javax.swing.JTable();
 
@@ -210,6 +298,11 @@ public class BacSiKham extends javax.swing.JPanel {
 
         cbbNgay.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cbbNgay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7" }));
+        cbbNgay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbNgayActionPerformed(evt);
+            }
+        });
 
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("Chọn ngày");
@@ -543,21 +636,22 @@ public class BacSiKham extends javax.swing.JPanel {
         jLabel3.setText("Giới Tính");
 
         txtCaKham.setEditable(false);
-        txtCaKham.setEnabled(false);
         txtCaKham.setMaximumSize(new java.awt.Dimension(300, 22));
+        txtCaKham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCaKhamActionPerformed(evt);
+            }
+        });
 
         txtTenBenhNhan.setEditable(false);
-        txtTenBenhNhan.setEnabled(false);
         txtTenBenhNhan.setMaximumSize(new java.awt.Dimension(300, 22));
 
         txtGioiTinh.setEditable(false);
-        txtGioiTinh.setEnabled(false);
         txtGioiTinh.setMaximumSize(new java.awt.Dimension(300, 22));
 
         jLabel7.setText("Tuổi");
 
         txtTuoi.setEditable(false);
-        txtTuoi.setEnabled(false);
         txtTuoi.setMaximumSize(new java.awt.Dimension(300, 22));
 
         jLabel8.setText("Tên Bệnh Nhân");
@@ -565,24 +659,20 @@ public class BacSiKham extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Thông Tin Sơ Bộ");
 
-        btnKham.setBackground(new java.awt.Color(0, 204, 204));
-        btnKham.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnKham.setForeground(new java.awt.Color(255, 255, 255));
-        btnKham.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnKham.setText("Khám Bệnh");
-        btnKham.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnKham.setOpaque(true);
-        btnKham.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnKhamMouseClicked(evt);
-            }
-        });
-
         txtMaBenhNhan.setEditable(false);
-        txtMaBenhNhan.setEnabled(false);
         txtMaBenhNhan.setMaximumSize(new java.awt.Dimension(300, 22));
 
         jLabel9.setText("Mã bệnh nhân");
+
+        btnKhamBenh.setBackground(new java.awt.Color(0, 204, 204));
+        btnKhamBenh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnKhamBenh.setForeground(new java.awt.Color(255, 255, 255));
+        btnKhamBenh.setText("Khám Bệnh");
+        btnKhamBenh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhamBenhActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -614,9 +704,9 @@ public class BacSiKham extends javax.swing.JPanel {
                         .addGap(18, 83, Short.MAX_VALUE)
                         .addComponent(jLabel2)))
                 .addGap(12, 12, 12))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnKham, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnKhamBenh, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -649,8 +739,8 @@ public class BacSiKham extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addComponent(btnKham, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnKhamBenh, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -692,125 +782,194 @@ private void Resetcolor() {
             slot.setBackground(new Color(0, 204, 204)); // Reset màu
         }
     }
+
+    private int LayThuHienTai() {
+        // Lấy ngày hiện tại
+        LocalDate today = LocalDate.now();
+
+        // Lấy thứ trong tuần
+        DayOfWeek dayOfWeek = today.getDayOfWeek();
+
+        // Chuyển đổi sang thứ bằng tiếng Việt
+        int vietnameseDay = switch (dayOfWeek) {
+            case MONDAY ->
+                0;
+            case TUESDAY ->
+                1;
+            case WEDNESDAY ->
+                2;
+            case THURSDAY ->
+                3;
+            case FRIDAY ->
+                4;
+            case SATURDAY ->
+                5;
+            case SUNDAY ->
+                -1;
+        };
+        return vietnameseDay;
+    }
     private void btnCaHienTaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCaHienTaiMouseClicked
         // TODO add your handling code here:
-        // Xác định ca hiện tại
-        LocalTime now = LocalTime.of(8, 30);
-        int index = findCurrentSlotIndex(now);
 
+        // Xác định ca hiện tại
+        LocalTime now = LocalTime.now();
+        int index = findCurrentSlotIndex(now);
+        int ThuHienTai = LayThuHienTai();
+        if (ThuHienTai != -1) {
+            cbbNgay.setSelectedIndex(ThuHienTai);
+        } else {
+            JOptionPane.showMessageDialog(this, "Hôm nay chủ nhật, Nghỉ Khám");
+        }
         if (index != -1) {
 
             Resetcolor();
             slots.get(index).setBackground(Color.green); // Đánh dấu ca hiện tại
+            String selectedDate = (String) cbbNgay.getSelectedItem();
+            DLCaKham(slots.get(index).getText(), selectedDate);
             JOptionPane.showMessageDialog(this, "Ca hiện tại: " + timeSlots[index]);
         } else {
             JOptionPane.showMessageDialog(this, "Không có ca nào phù hợp với thời gian hiện tại!");
         }
     }//GEN-LAST:event_btnCaHienTaiMouseClicked
 
-    private void btnKhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhamMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnKhamMouseClicked
-
     private void lblCaKham14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham14MouseClicked
-//        String selectedLabel = lblCaKham14.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
-
+        String selectedLabel = lblCaKham14.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
     }//GEN-LAST:event_lblCaKham14MouseClicked
 
     private void lblCaKham7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham7MouseClicked
-//        String selectedLabel = lblCaKham7.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham7.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham7MouseClicked
 
     private void lblCaKham5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham5MouseClicked
-//        String selectedLabel = lblCaKham5.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham5.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham5MouseClicked
 
     private void lblCaKham2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham2MouseClicked
-//        String selectedLabel = lblCaKham2.getText();;
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham2.getText();;
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham2MouseClicked
 
     private void lblCaKham1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham1MouseClicked
-//        String selectedLabel = lblCaKham1.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham1.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham1MouseClicked
 
     private void lblCaKham8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham8MouseClicked
-//        String selectedLabel = lblCaKham8.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham8.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham8MouseClicked
 
     private void lblCaKham10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham10MouseClicked
-//        String selectedLabel = lblCaKham10.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham10.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham10MouseClicked
 
     private void lblCaKham9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham9MouseClicked
-//        String selectedLabel = lblCaKham9.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham9.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham9MouseClicked
 
     private void lblCaKham13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham13MouseClicked
-//        String selectedLabel = lblCaKham13.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham13.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham13MouseClicked
 
     private void lblCaKham12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham12MouseClicked
-//        String selectedLabel = lblCaKham12.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham12.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham12MouseClicked
 
     private void lblCaKham6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham6MouseClicked
-//        String selectedLabel = lblCaKham6.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham6.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham6MouseClicked
 
     private void lblCaKham3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham3MouseClicked
-//        String selectedLabel = lblCaKham3.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham3.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham3MouseClicked
 
     private void lblCaKham11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham11MouseClicked
-//        String selectedLabel = lblCaKham11.getText();
-//        String selectedDate = (String) cbbNgay.getSelectedItem();
-
+        String selectedLabel = lblCaKham11.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
 
     }//GEN-LAST:event_lblCaKham11MouseClicked
 
     private void lblCaKham4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham4MouseClicked
         // TODO add your handling code here:
+        String selectedLabel = lblCaKham4.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        DLCaKham(selectedLabel, selectedDate);
     }//GEN-LAST:event_lblCaKham4MouseClicked
+
+    private void txtCaKhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCaKhamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCaKhamActionPerformed
+
+    private void btnKhamBenhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhamBenhActionPerformed
+        DatLichKhamController datLichController = new DatLichKhamController();
+        int selectedRow = jTableBenhNhan.getSelectedRow();
+        String maCaKham = model.getValueAt(selectedRow, 2).toString();
+        int result = datLichController.xoaLichKhamTheoId(maCaKham);
+        if (result > 0) {
+            System.out.println( "Xóa lịch khám thành công!");
+        } else {
+           System.out.println( "Xóa lịch khám thất bại!");
+        }
+
+        String maBenhNhan = txtMaBenhNhan.getText();
+        System.out.println(maBenhNhan);
+        if (!maBenhNhan.equals("")) {
+            try {
+                main.KhamBenhNhan(maBenhNhan);
+            } catch (SQLException ex) {
+                Logger.getLogger(BacSiKham.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Chưa chọn bệnh nhân được khám");
+        }
+
+
+    }//GEN-LAST:event_btnKhamBenhActionPerformed
+
+    private void cbbNgayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbNgayActionPerformed
+         // TODO add your handling code here:
+         Resetcolor();
+         model.setRowCount(0);
+    }//GEN-LAST:event_cbbNgayActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCaHienTai;
-    private javax.swing.JLabel btnKham;
+    private javax.swing.JButton btnKhamBenh;
     private javax.swing.JComboBox<String> cbbNgay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

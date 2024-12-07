@@ -1,3 +1,4 @@
+
 ﻿-- Tạo database
 CREATE DATABASE QLBV;
 GO

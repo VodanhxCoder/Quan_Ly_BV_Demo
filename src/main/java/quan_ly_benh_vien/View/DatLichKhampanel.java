@@ -104,6 +104,7 @@ public class DatLichKhampanel extends javax.swing.JPanel {
     private void timBacSiTheoChuyenKhoa() {
         DatLichKhamController datLichKhamController = new DatLichKhamController();
         cbbChuyenKhoa.addActionListener((ActionEvent e) -> {
+            
             //lay lua chon trong combobox 
             int selectedIndex = cbbChuyenKhoa.getSelectedIndex();
             if (selectedIndex >= 0) { //Nêú đã chọn 
@@ -112,7 +113,7 @@ public class DatLichKhampanel extends javax.swing.JPanel {
                 System.out.println("Đã chọn chuyên khoa: " + selectedChuyenKhoa);
                 //Lấy danh sach bac sĩ và đưa vào model
                 ArrayList<bacSiModel> danhSachBacSi = datLichKhamController.layDanhSachBacSiTheoChuyenKhoa(selectedChuyenKhoa);
-
+                model.setRowCount(0);
                 for (bacSiModel bacSi : danhSachBacSi) {
                     model.addRow(new Object[]{
                         bacSi.getMaBacSi(),
@@ -264,6 +265,11 @@ public class DatLichKhampanel extends javax.swing.JPanel {
 
         cbbNgay.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cbbNgay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7" }));
+        cbbNgay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbNgayActionPerformed(evt);
+            }
+        });
 
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("Chọn ngày");
@@ -748,8 +754,15 @@ public class DatLichKhampanel extends javax.swing.JPanel {
         //gộp địa chỉ 
         String diaChi = lblPhongKham.getText() + lblDiaChi.getText();
         //Tạo ra 1 mã bác sĩ theo chuyên khoa 
-        String maBacSi = getRandomMaBacSi(jTableBacSi);
-
+        String maBacSi = "";
+        int selectedRow = jTableBacSi.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            maBacSi=(jTableBacSi.getValueAt(selectedRow, 0) != null ? jTableBacSi.getValueAt(selectedRow, 0).toString() : "");             
+        } else {
+            //Tạo ra 1 mã bác sĩ theo chuyên khoa 
+             maBacSi = getRandomMaBacSi(jTableBacSi);
+        }
         String tenDangNhap = null;
         try {
             tenDangNhap = QuanLyTaiKhoanDao.MD5Encryptor(Login.xacNhanDangNhap);
@@ -963,7 +976,16 @@ public class DatLichKhampanel extends javax.swing.JPanel {
 
     private void lblCaKham9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCaKham9MouseClicked
         // TODO add your handling code here:
+         String selectedLabel = lblCaKham9.getText();
+        String selectedDate = (String) cbbNgay.getSelectedItem();
+        String selectChuyenKhoa = (String) cbbChuyenKhoa.getSelectedItem();
+        datLich(selectedLabel, selectedDate, selectChuyenKhoa);
     }//GEN-LAST:event_lblCaKham9MouseClicked
+
+    private void cbbNgayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbNgayActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cbbNgayActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
