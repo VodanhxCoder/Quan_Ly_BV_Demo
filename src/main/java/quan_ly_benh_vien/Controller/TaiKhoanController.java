@@ -19,10 +19,10 @@ public class TaiKhoanController {
     public TaiKhoanController() {
         dangKyDao = QuanLyTaiKhoanDao.getInstance();
     }
-
-    public int dangKyTaiKhoan(QuanLyTaiKhoanModel dangKy, boolean check) {
+    //check laf dk o 
+    public int dangKyTaiKhoan(QuanLyTaiKhoanModel dangKy,String typeuser) {
         // Gọi phương thức insert của QuanLyTaiKhoanDao để thêm dữ liệu vào cơ sở dữ liệu
-        int rowsAffected = dangKyDao.insertBenhNhan(dangKy,check);
+        int rowsAffected = dangKyDao.insertBenhNhan(dangKy,typeuser);
 
         if (rowsAffected > 0) {
             System.out.println("Đăng ký thành công!");

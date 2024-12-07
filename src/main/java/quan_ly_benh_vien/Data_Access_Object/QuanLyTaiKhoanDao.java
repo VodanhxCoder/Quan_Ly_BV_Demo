@@ -251,7 +251,7 @@ public class QuanLyTaiKhoanDao implements DaoInterface<QuanLyTaiKhoanModel> {
     //----------------------------------------------------------
 
 
-    public int insertBenhNhan(QuanLyTaiKhoanModel t,boolean check) {
+    public int insertBenhNhan(QuanLyTaiKhoanModel t,String typeuser) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         int rowsAffected = 0;
@@ -269,31 +269,14 @@ public class QuanLyTaiKhoanDao implements DaoInterface<QuanLyTaiKhoanModel> {
             preparedStatement.setString(3, t.getMatKhau());
             preparedStatement.setString(4, t.getEmail());
             preparedStatement.setString(5, t.getGioiTinh());
-            preparedStatement.setString(6, "user");
+            preparedStatement.setString(6, typeuser);
 
             // Thực hiện chèn dữ liệu và lấy số dòng bị ảnh hưởng
             rowsAffected = preparedStatement.executeUpdate();
 
-            // Nếu việc chèn tài khoản thành công, tiếp tục chèn dữ liệu vào bảng BenhNhan
-            if (rowsAffected > 0&&!check) {
-                String sqlBenhNhan = "INSERT INTO BenhNhan (hovaTen, gioiTinh, diaChi, soDienThoai, email, tenDangNhap) VALUES (?, ?, ?, ?, ?, ?)";
-                preparedStatement = connection.prepareStatement(sqlBenhNhan);
-
-                // Đặt các tham số cho câu truy vấn SQL từ đối tượng DangKy
-                preparedStatement.setString(1, t.getHoVaTen());  // Giả sử tên bệnh nhân là tên người đăng ký
-                preparedStatement.setString(2, t.getGioiTinh());
-                preparedStatement.setString(3, null);  // Giả sử bạn có địa chỉ từ form đăng ký
-                preparedStatement.setString(4, null);  // Số điện thoại từ form đăng ký
-                preparedStatement.setString(5, t.getEmail());  // Email từ form đăng ký
-                preparedStatement.setString(6, t.getTenDangNhap());  // Lấy tên đăng nhập từ tài khoản đã đăng ký
-
-                // Thực hiện chèn dữ liệu vào bảng BenhNhan
-                rowsAffected = preparedStatement.executeUpdate();
-            }
-
             // Kiểm tra số dòng bị ảnh hưởng và thông báo
             if (rowsAffected > 0) {
-                System.out.println("Đăng ký và chèn dữ liệu thành công!");
+                System.out.println("Đăng ký thành công!");
             } else {
                 System.out.println("Đăng ký thất bại!");
             }

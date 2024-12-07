@@ -4,13 +4,18 @@
  */
 package quan_ly_benh_vien.View;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import quan_ly_benh_vien.Controller.*;
 import javax.swing.JOptionPane;
 import quan_ly_benh_vien.Model.*;
 import static quan_ly_benh_vien.View.DatLichKhampanel.maDatLichList;
+import quan_ly_benh_vien.Data_Access_Object.QuanLyTaiKhoanDao;
 import quan_ly_benh_vien.View.Login.Component.Login;
 
 /**
@@ -321,7 +326,14 @@ public class thanhToanJpanel extends javax.swing.JPanel {
         String tenTaiKhoan =txtTenDangNhap.getText();
         String tenNganHang ="";
         String thoiGianThanhToan = lbThoiGian.getText();
-        String tenDangNhap = Login.xacNhanDangNhap;
+        String tenDangNhap =null;
+        try {
+            tenDangNhap = QuanLyTaiKhoanDao.MD5Encryptor(Login.xacNhanDangNhap);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(thanhToanJpanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(thanhToanJpanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         Object selectedNganHang = cbbNganHang.getSelectedItem();
         if(selectedNganHang == null || selectedNganHang.toString().isEmpty()){

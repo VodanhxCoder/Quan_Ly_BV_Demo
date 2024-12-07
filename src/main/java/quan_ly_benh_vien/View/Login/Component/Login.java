@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Area;
@@ -32,6 +33,9 @@ import javax.swing.JOptionPane;
 
 import javax.swing.SwingUtilities;
 import quan_ly_benh_vien.Controller.TaiKhoanController;
+import quan_ly_benh_vien.Controller.bacSiController;
+import quan_ly_benh_vien.Controller.benhNhanController;
+import quan_ly_benh_vien.Model.benhNhanModel;
 
 public class Login extends javax.swing.JPanel {
 
@@ -39,7 +43,8 @@ public class Login extends javax.swing.JPanel {
 
     //Xác thuc dang nhap
     public static String xacNhanDangNhap;
-    public static String xacNhanUser="";
+    public static String xacNhanUser = "";
+    public static String id ="";
 
     public Login() {
         initComponents();
@@ -69,6 +74,7 @@ public class Login extends javax.swing.JPanel {
             }
         });
     }
+    private Icon image;
 
     public Icon getImage() {
         return image;
@@ -77,8 +83,6 @@ public class Login extends javax.swing.JPanel {
     public void setImage(Icon image) {
         this.image = image;
     }
-
-    private Icon image;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -108,6 +112,11 @@ public class Login extends javax.swing.JPanel {
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
+            }
+        });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
             }
         });
 
@@ -251,28 +260,7 @@ public class Login extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserActionPerformed
-
-    private void lbDangkyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangkyMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbDangkyMouseEntered
-
-    private void lbDangkyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangkyMouseClicked
-        // TODO add your handling code here:
-        //gọi card đăng ký
-        cardLayout.show(JpComponent, "cardDangky");
-
-    }//GEN-LAST:event_lbDangkyMouseClicked
-
-    private void lbDangkyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lbDangkyFocusGained
-        // TODO add your handling code here:
-        this.lbDangky.setForeground(Color.red);
-    }//GEN-LAST:event_lbDangkyFocusGained
-
-    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+private void Logincheck() {
         String tenDangNhap = txtUser.getText().trim();
         String matKhau = new String(txtPassword.getPassword()).trim();
 
@@ -313,6 +301,15 @@ public class Login extends javax.swing.JPanel {
             Login.xacNhanDangNhap = tenDangNhap;
             String XacNhanUser1 = dangNhapController.ktraTypeUser(enrTenDangNhap);
             Login.xacNhanUser = XacNhanUser1;
+           
+          if(Login.xacNhanUser.equals("doctor")){
+              bacSiController bacsiController = new bacSiController();
+              Login.id= bacsiController.LayIdBacSi(enrTenDangNhap);
+          }else if(Login.xacNhanUser.equals("user")){
+              benhNhanController benhnhanController = new benhNhanController();
+              Login.id = benhnhanController.layIDBenhNhan(enrTenDangNhap);
+              
+          }
             JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
             JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(Login.this);
             if (mainFrame != null) {
@@ -329,6 +326,29 @@ public class Login extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Đăng nhập thất bại! Vui lòng kiểm tra lại tên đăng nhập và mật khẩu.");
         }
 
+    }
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUserActionPerformed
+
+    private void lbDangkyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangkyMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbDangkyMouseEntered
+
+    private void lbDangkyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangkyMouseClicked
+        // TODO add your handling code here:
+        //gọi card đăng ký
+        cardLayout.show(JpComponent, "cardDangky");
+
+    }//GEN-LAST:event_lbDangkyMouseClicked
+
+    private void lbDangkyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lbDangkyFocusGained
+        // TODO add your handling code here:
+        this.lbDangky.setForeground(Color.red);
+    }//GEN-LAST:event_lbDangkyFocusGained
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        Logincheck();
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
@@ -345,6 +365,12 @@ public class Login extends javax.swing.JPanel {
         cardLayout.show(JpComponent, "cardThayMK");
 
     }//GEN-LAST:event_lbThaydoiMatkhauMouseClicked
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Logincheck();
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     @Override
     protected void paintComponent(Graphics grphcs) {

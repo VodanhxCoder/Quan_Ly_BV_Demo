@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import quan_ly_benh_vien.Model.bacSiModel;
 import quan_ly_benh_vien.Model.DatLichKhamModel;
+import quan_ly_benh_vien.Model.BenhNhanKhamModel;
 
 public class DatLichKhamController {
 
@@ -22,8 +23,8 @@ public class DatLichKhamController {
         return datLichDao.insert(datLich);
     }
 
-    public ArrayList<DatLichKhamModel> layDanhSachDatLich() {
-        return datLichDao.selectAll();
+        public ArrayList<BenhNhanKhamModel> layDanhSachDatLich(String mabacSi ) {
+        return datLichDao.selectAll(mabacSi);
     }
 
     public ArrayList<DatLichKhamModel> layDanhSachDatLich2(String tenDangNhap) {
@@ -52,5 +53,6 @@ public class DatLichKhamController {
      public void capNhatTrangThaiThanhToan(List<String> listMaDatLich) {
         datLichDao.updateTrangThaiThanhToan(listMaDatLich);
     }
+
 
 }

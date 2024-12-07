@@ -8,16 +8,17 @@ public class bacSiModel extends nguoiModel {
     private String chuyenKhoa;
     private String kinhNghiemLamViec;
     private String hocVan;
+    private String tenDangNhap;
 
     public bacSiModel() {
     }
 
-    public bacSiModel(String ma, String chuyenKhoa, String kinhNghiemLamViec, String hocVan) {
-        this.ma = ma;
-        this.chuyenKhoa = chuyenKhoa;
-        this.kinhNghiemLamViec = kinhNghiemLamViec;
-        this.hocVan = hocVan;
-    }
+//    public bacSiModel(String ma, String chuyenKhoa, String kinhNghiemLamViec, String hocVan) {
+//        this.ma = ma;
+//        this.chuyenKhoa = chuyenKhoa;
+//        this.kinhNghiemLamViec = kinhNghiemLamViec;
+//        this.hocVan = hocVan;
+//    }
 
     public bacSiModel(String ma,String hoVaTen, String soDienThoai, String email, Date ngaySinh,
             String diaChi, String gioiTinh, String chuyenKhoa, String kinhNghiemLamViec,
@@ -31,11 +32,12 @@ public class bacSiModel extends nguoiModel {
 
     public bacSiModel(String hoVaTen, String soDienThoai, String email, Date ngaySinh,
             String diaChi, String gioiTinh, String chuyenKhoa, String kinhNghiemLamViec,
-            String hocVan, String hinhAnh) {
+            String hocVan, String hinhAnh, String tenDangNhap) {
         super(hoVaTen, soDienThoai, email, ngaySinh, gioiTinh, hinhAnh, diaChi);
         this.chuyenKhoa = chuyenKhoa;
         this.kinhNghiemLamViec = kinhNghiemLamViec;
         this.hocVan = hocVan;
+        this.tenDangNhap=tenDangNhap;
     }
 
     public String getMaBacSi() {
@@ -69,4 +71,10 @@ public class bacSiModel extends nguoiModel {
     public void setHocVan(String hocVan) {
         this.hocVan = hocVan;
     }
+
+    public String getTenDangNhap() {
+        return tenDangNhap;
+    }
+    
+    
 }

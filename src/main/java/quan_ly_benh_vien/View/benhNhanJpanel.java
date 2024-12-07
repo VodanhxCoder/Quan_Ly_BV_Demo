@@ -34,9 +34,16 @@ import quan_ly_benh_vien.View.Login.Component.DangKy;
 public class benhNhanJpanel extends javax.swing.JPanel {
 
     private DefaultTableModel modelBenhNhan;
+    private DefaultTableModel customModel;
 
     public benhNhanJpanel() throws SQLException {
-        modelBenhNhan = new DefaultTableModel();
+        //Khoi tao  bang benh nhan
+        modelBenhNhan = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Không cho phép chỉnh sửa
+            }
+        };
         modelBenhNhan.addColumn("Mã Bênh Nhân");
         modelBenhNhan.addColumn("Họ Và Tên");
         modelBenhNhan.addColumn("Số Điện Thoại");
@@ -45,6 +52,22 @@ public class benhNhanJpanel extends javax.swing.JPanel {
         modelBenhNhan.addColumn("Địa Chỉ");
         modelBenhNhan.addColumn("Giới Tính");
         modelBenhNhan.addColumn("Hình Ảnh");
+
+        //Khoi tao bang Benh an
+        customModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Không cho phép chỉnh sửa
+            }
+        };
+        customModel.addColumn("Mã hồ sơ");
+        customModel.addColumn("Mã bác sĩ");
+        customModel.addColumn("Mã bệnh nhân");
+        customModel.addColumn("Triệu chứng");
+        customModel.addColumn("Tiền sử bệnh án");
+        customModel.addColumn("Chuẩn đoán");
+        customModel.addColumn("Kết luận");
+        //khoi tao 
         initComponents();
         loadBenhNhan();
 
@@ -798,19 +821,11 @@ public class benhNhanJpanel extends javax.swing.JPanel {
         txtTenDangNhap.setEnabled(true);
         txtMatKhau.setEnabled(true);
         reset();
+        //Load Benh An len bang
         if (radBenhAn.isSelected()) {
             benhAnController benhAnController = new benhAnController();
             ArrayList<hosoBenhAnModel> dshs = benhAnController.layDanhSachHoSo();
-
-            DefaultTableModel customModel = new DefaultTableModel();
-            customModel.addColumn("Mã hồ sơ");
-            customModel.addColumn("Mã bác sĩ");
-            customModel.addColumn("Mã bệnh nhân");
-            customModel.addColumn("Triệu chứng");
-            customModel.addColumn("Tiền sử bệnh án");
-            customModel.addColumn("Chuẩn đoán");
-            customModel.addColumn("Kết luận");
-
+            customModel.setRowCount(0);
             for (hosoBenhAnModel hs : dshs) {
                 customModel.addRow(new Object[]{
                     hs.getMaHoSo(),
@@ -957,14 +972,6 @@ public class benhNhanJpanel extends javax.swing.JPanel {
         ArrayList<hosoBenhAnModel> dshoSoTimKiem = hoSoBenhAnController.timHoSoTheo(danhMuc, idTimKiem);
 
         if (!dshoSoTimKiem.isEmpty()) {
-            DefaultTableModel customModel = new DefaultTableModel();
-            customModel.addColumn("Mã hồ sơ");
-            customModel.addColumn("Mã bác sĩ");
-            customModel.addColumn("Mã bệnh nhân");
-            customModel.addColumn("Triệu chứng");
-            customModel.addColumn("Tiền sử bệnh án");
-            customModel.addColumn("Chuẩn đoán");
-            customModel.addColumn("Kết luận");
 
             for (hosoBenhAnModel hoSoTimKiem : dshoSoTimKiem) {
                 customModel.addRow(new Object[]{
@@ -1073,7 +1080,8 @@ public class benhNhanJpanel extends javax.swing.JPanel {
 
             benhNhanModel bnModel = new benhNhanModel(tenDangNhap, hoTen, soDienThoai, email, ngaySinh, gioiTinh, diaChi, hinhAnh);
             QuanLyTaiKhoanModel taikhoan = new QuanLyTaiKhoanModel(hoTen, tenDangNhap, MatKhau, email, gioiTinh);
-            int rowAffected1 = tkcontroller.dangKyTaiKhoan(taikhoan, true);
+    
+            int rowAffected1 = tkcontroller.dangKyTaiKhoan(taikhoan,"user");
             int rowAffected = benhNhanController.themBenhNhan(bnModel);
 
             if (rowAffected > 0 && rowAffected1 > 0) {
@@ -1238,7 +1246,7 @@ public class benhNhanJpanel extends javax.swing.JPanel {
             hienthiDanhSachBenhNhan();
             reset();
         } else {
-            JOptionPane.showMessageDialog(null, "Không tìm thấy bệnh nhân có ID: " + maBenhNhan);
+            JOptionPane.showMessageDialog(null, "Không tìm thấy bệnh nhân");
         }
 
     }

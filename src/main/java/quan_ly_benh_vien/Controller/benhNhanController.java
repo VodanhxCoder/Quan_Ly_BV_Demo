@@ -61,9 +61,12 @@ public class benhNhanController {
     public int themBenhNhan(hosoBenhAnModel hoSo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+    public String layIDBenhNhan(String tenDangNhap){
+      String id= benhNhanCon.getIdBenhNhan(tenDangNhap);
+      return id;
+    }
     public benhNhanModel layThongTinTaiKhoan(String tenDangNhap){
-        return benhNhanCon.laytaikhoan(tenDangNhap);
+        return benhNhanCon.layTTtaikhoan(tenDangNhap);
     }
 
     

@@ -15,7 +15,9 @@ import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import quan_ly_benh_vien.Controller.TaiKhoanController;
+import quan_ly_benh_vien.Controller.benhNhanController;
 import quan_ly_benh_vien.Model.QuanLyTaiKhoanModel;
+import quan_ly_benh_vien.Model.benhNhanModel;
 
 /**
  *
@@ -210,6 +212,7 @@ public class DangKy extends javax.swing.JPanel {
 
         add(jLayeredPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
+//Duoc su dung boi file khac
 
     public static boolean validateHotenAndEmail(String hoVaTen, String email, String gioiTinh) {
         // Kiểm tra họ và tên
@@ -238,6 +241,7 @@ public class DangKy extends javax.swing.JPanel {
 
         return true; // Tất cả thông tin hợp lệ
     }
+//validate cho dang ky 
 
     public static boolean validateRegistration(String hoVaTen, String tenDangNhap, String matKhau, String email, String gioiTinh) {
         // Regex định dạng tên đăng nhập
@@ -302,8 +306,8 @@ public class DangKy extends javax.swing.JPanel {
         String matKhau = new String(txtMatKhau.getPassword());
         String email = txtEmail.getText();
         String reMatKhau = new String(txtXacNhanMatKhau.getPassword());
-        String gioiTinh= null;
-        
+        String gioiTinh = null;
+
         if (radNam.isSelected()) {
             gioiTinh = "Nam";
         } else if (radNu.isSelected()) {
@@ -314,6 +318,11 @@ public class DangKy extends javax.swing.JPanel {
         }
         if (!matKhau.equals(reMatKhau)) {
             JOptionPane.showMessageDialog(null, "Mật khẩu nhập lại không khớp.");
+            return;
+        }
+        //Kiem tra dieu khoản đã đc chọn hay chưa 
+        if (!checkDieuKhoan.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa đồng ý với điều khoản!");
             return;
         }
         //Tạo mã hóa
@@ -332,6 +341,7 @@ public class DangKy extends javax.swing.JPanel {
 
 // Kiểm tra tên đăng nhập và email đã tồn tại
         TaiKhoanController dangKyController = new TaiKhoanController();
+
         boolean tenDaTonTai = dangKyController.kiemTraTenDangNhapTrung(enrTenDangNhap);
         boolean emailDaTonTai = dangKyController.kiemTraEmailTrung(email);
 
@@ -340,23 +350,28 @@ public class DangKy extends javax.swing.JPanel {
         } else if (emailDaTonTai) {
             JOptionPane.showMessageDialog(null, "Email đã tồn tại!");
         } else {
+            benhNhanController bnController = new benhNhanController();
+
+            benhNhanModel bnModel = new benhNhanModel(enrTenDangNhap, hoVaTen, null, email, null, gioiTinh, null, null);
             QuanLyTaiKhoanModel dangKy = new QuanLyTaiKhoanModel(hoVaTen, enrTenDangNhap, enrMatKhau, email, gioiTinh);
-            //Kiem tra dieu khoản đã đc chọn hay chưa 
-            if (!checkDieuKhoan.isSelected()) {
-                JOptionPane.showMessageDialog(null, "Bạn chưa đồng ý với điều khoản!");
+            
+
+            // Gọi controller để thực hiện đăng ký
+            int rowsAffected = dangKyController.dangKyTaiKhoan(dangKy, "user");
+            int rowAffected1 =0;
+            if (rowsAffected > 0) { //Khi đăng ký thành công sẽ trả về 1 
+                  rowAffected1 = benhNhanController.themBenhNhan(bnModel);
             } else {
-                // Gọi controller để thực hiện đăng ký
-                int rowsAffected = dangKyController.dangKyTaiKhoan(dangKy, false);
-                if (rowsAffected > 0) { //Khi đăng ký thành công sẽ trả về 1 
-                    JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thành công!");
-                    System.out.println(txtTenDangNhap.getText());
-                    Login JpLogin = new Login();
-                    JpLogin.setVisible(true);
-                    setVisible(false);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thất bại!");
-                }
+                JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thất bại!");
             }
+            if(rowAffected1>0){
+                JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thành công!");
+                System.out.println(txtTenDangNhap.getText());
+                Login JpLogin = new Login();
+                JpLogin.setVisible(true);
+                setVisible(false);
+            }
+
         }
 
 

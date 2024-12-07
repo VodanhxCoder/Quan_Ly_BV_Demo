@@ -370,8 +370,53 @@ public class QuanLyBenhNhanDAO implements DaoInterface<benhNhanModel> {
 
         return list;
     }
+public String getIdBenhNhan(String tenDangNhap) {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
 
-    public benhNhanModel laytaikhoan(String tenDangNhap) {
+    String id = null;
+
+    try {
+        connection = ConnectDB.getConnection(); // Kết nối cơ sở dữ liệu
+
+        // Truy vấn 
+        String sql = "SELECT maBenhNhan FROM benhnhan WHERE tenDangNhap = ?";
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, tenDangNhap);
+        resultSet = preparedStatement.executeQuery();
+
+     /// lấy id (maBenhNhan)
+        if (resultSet.next()) {
+            id = resultSet.getString("maBenhNhan");
+        } else {
+            return null; 
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        
+        ConnectDB.closeConnection(connection);
+        if (preparedStatement != null) {
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    return id; 
+}
+
+    public benhNhanModel layTTtaikhoan(String tenDangNhap) {
         benhNhanModel model = new benhNhanModel();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -380,13 +425,14 @@ public class QuanLyBenhNhanDAO implements DaoInterface<benhNhanModel> {
             connection = ConnectDB.getConnection();
 
             // Kiểm tra xem tên đăng nhập có khớp với tài khoản đã đăng ký hay không
-            String checkLoginQuery = "SELECT hoVaTen, soDienThoai, email,ngaySinh, diaChi, gioiTinh FROM benhnhan WHERE tenDangNhap=?";
+            String checkLoginQuery = "SELECT maBenhNhan, hoVaTen, soDienThoai, email,ngaySinh, diaChi, gioiTinh FROM benhnhan WHERE tenDangNhap=?";
             preparedStatement = connection.prepareStatement(checkLoginQuery);
             preparedStatement.setString(1, tenDangNhap);
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
                 // Gán dữ liệu vào đối tượng model
+                model.setMaBenhNhan(resultSet.getString("maBenhNhan"));
                 model.setHoVaTen(resultSet.getString("hoVaTen"));
                 model.setSoDienThoai(resultSet.getString("soDienThoai"));
                 model.setEmail(resultSet.getString("email"));
@@ -405,6 +451,13 @@ public class QuanLyBenhNhanDAO implements DaoInterface<benhNhanModel> {
             if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

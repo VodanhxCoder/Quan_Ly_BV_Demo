@@ -21,11 +21,13 @@ CREATE TABLE thanhtoan (
     soTaiKhoan VARCHAR(255) NOT NULL,
     tenTaiKhoan VARCHAR(255) NOT NULL,
     tenNganHang VARCHAR(255) NOT NULL,
-    thoiGianThanhToan DATETIME NOT NULL,
+    thoiGianThanhToan VARCHAR(255) NOT NULL,
     tenDangNhap VARCHAR(255) NOT NULL,
     FOREIGN KEY (tenDangNhap) REFERENCES taikhoan(tenDangNhap) ON DELETE CASCADE
 );
 GO
+
+
 
 -- Bảng bác sĩ
 CREATE TABLE bacsi (
@@ -39,7 +41,8 @@ CREATE TABLE bacsi (
     kinhNghiemLamViec NVARCHAR(255),
     hocVan NVARCHAR(255) NOT NULL,
     hinhAnh NVARCHAR(255),
-    diaChi NVARCHAR(255) NOT NULL
+    diaChi NVARCHAR(255) NOT NULL,
+	tenDangNhap varchar(255) references taikhoan(tenDangNhap) 
 );
 GO
 

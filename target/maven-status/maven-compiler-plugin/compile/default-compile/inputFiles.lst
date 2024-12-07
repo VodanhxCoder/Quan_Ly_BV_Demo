@@ -26,6 +26,7 @@ E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\View\Login
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\Model\nguoiModel.java
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\View\Main\Main.java
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\Model\QuanLyTaiKhoanModel.java
+E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\Model\BenhNhanKhamModel.java
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\View\benhNhanJpanel.java
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\Data_Access_Object\DatLichKhamDao.java
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\Model\hosoBenhAnModel.java
@@ -39,4 +40,5 @@ E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\View\Main\
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\View\bacSiJpanel.java
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\Controller\ConnectDB.java
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\Data_Access_Object\QuanLyBenhAnDAO.java
+E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\View\BacSiKham.java
 E:\Profile_Netbeans\Quan_Ly_Benh_Vien\src\main\java\quan_ly_benh_vien\View\Login\Component\Login.java

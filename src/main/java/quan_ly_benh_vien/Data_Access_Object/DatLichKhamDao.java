@@ -9,6 +9,7 @@ import java.util.List;
 import quan_ly_benh_vien.Model.bacSiModel;
 import quan_ly_benh_vien.Model.DatLichKhamModel;
 import quan_ly_benh_vien.Controller.ConnectDB;
+import quan_ly_benh_vien.Model.BenhNhanKhamModel;
 import quan_ly_benh_vien.Model.nguoiModel;
 
 public class DatLichKhamDao implements DaoInterface<DatLichKhamModel> {
@@ -65,7 +66,6 @@ public class DatLichKhamDao implements DaoInterface<DatLichKhamModel> {
 //                System.out.println("Kinh Nghiệm Làm Việc: " + bacSi.getKinhNghiemLamViec());
 //                System.out.println("Học Vấn: " + bacSi.getHocVan());
 //                System.out.println("Hình Ảnh: " + bacSi.getHinhAnh());
-
                 list.add(bacSi);
             }
         } catch (SQLException e) {
@@ -169,55 +169,6 @@ public class DatLichKhamDao implements DaoInterface<DatLichKhamModel> {
     @Override
     public void deleteAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList<DatLichKhamModel> selectAll() {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        ArrayList<DatLichKhamModel> list = new ArrayList<>();
-
-        try {
-            connection = ConnectDB.getConnection();
-            String sql = "SELECT lichkham.*, bacsi.ChuyenKhoa "
-                    + "FROM lichkham "
-                    + "JOIN bacsi ON lichkham.maBacSi = bacsi.maBacSi";
-            preparedStatement = connection.prepareStatement(sql);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                DatLichKhamModel lichKhamModel = new DatLichKhamModel();
-                lichKhamModel.setMaDatLich(resultSet.getString("maDatLich"));
-                lichKhamModel.setGiaDichVuKham(resultSet.getFloat("giaDichVuKham"));
-                lichKhamModel.setThoiGioiKham(resultSet.getString("thoiGianKham"));
-                lichKhamModel.setDiaChiKham(resultSet.getString("diaChiKham"));
-                lichKhamModel.setTenDangNhap(resultSet.getString("tenDangNhap"));
-                lichKhamModel.setMaBacSi(resultSet.getString("maBacSi"));
-                lichKhamModel.setChuyenKhoa(resultSet.getString("ChuyenKhoa"));
-
-                list.add(lichKhamModel);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            ConnectDB.closeConnection(connection);
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return list;
     }
 
 //    lấy thông tin đặt lịch theo từng tên đăng nhập
@@ -401,5 +352,74 @@ public class DatLichKhamDao implements DaoInterface<DatLichKhamModel> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
+    @Override
+    public ArrayList<DatLichKhamModel> selectAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   public ArrayList<BenhNhanKhamModel> selectAll(String maBacSi) {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet1 = null;  // Kết quả cho truy vấn 1
+    ResultSet resultSet2 = null;  // Kết quả cho truy vấn 2
+    ArrayList<BenhNhanKhamModel> list = new ArrayList<>();
+
+    try {
+        connection = ConnectDB.getConnection();
+
+        // Truy vấn 1: Lấy thông tin từ bảng lichkham và taikhoan
+        String sql1 = "SELECT lichkham.maDatLich, lichkham.thoiGianKham, taikhoan.hoVaTen, taikhoan.gioiTinh "
+                + "FROM lichkham "
+                + "JOIN taikhoan ON lichkham.tenDangNhap = taikhoan.tenDangNhap "
+                + "WHERE lichkham.maBacSi = ? AND trangThaiThanhToan = 'Ðã thanh toán'";
+        
+        preparedStatement = connection.prepareStatement(sql1);
+        preparedStatement.setString(1, maBacSi);
+        resultSet1 = preparedStatement.executeQuery();
+
+        // Truy vấn 2: Lấy thông tin từ bảng benhnhan
+        String sql2 = "SELECT benhnhan.maBenhNhan, benhnhan.ngaySinh "
+                + "FROM lichkham "
+                + "JOIN benhnhan ON lichkham.tenDangNhap = benhnhan.tenDangNhap "
+                + "WHERE lichkham.maBacSi = ? AND trangThaiThanhToan = 'Ðã thanh toán'";
+
+        preparedStatement = connection.prepareStatement(sql2);
+        preparedStatement.setString(1, maBacSi);
+        resultSet2 = preparedStatement.executeQuery();
+
+        // Duyệt qua kết quả từ resultSet1 và resultSet2
+        while (resultSet1.next() && resultSet2.next()) {
+            BenhNhanKhamModel benhNhanKham = new BenhNhanKhamModel();
+            
+            // Lấy thông tin từ resultSet1 (lichkham, taikhoan)
+            benhNhanKham.setMaDatLich(resultSet1.getString("maDatLich"));
+            benhNhanKham.setThoiGioiKham(resultSet1.getString("thoiGianKham"));
+            benhNhanKham.setHoVaTen(resultSet1.getString("hoVaTen"));
+            benhNhanKham.setGioiTinh(resultSet1.getString("gioiTinh"));
+
+            // Lấy thông tin từ resultSet2 (benhnhan)
+            benhNhanKham.setMaBenhnhan(resultSet2.getString("maBenhNhan"));
+            benhNhanKham.setNgaySinh(resultSet2.getDate("ngaySinh"));
+
+            // Thêm vào danh sách
+            list.add(benhNhanKham);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // Đảm bảo đóng kết nối và các tài nguyên
+        ConnectDB.closeConnection(connection);
+        try {
+            if (preparedStatement != null) preparedStatement.close();
+            if (resultSet1 != null) resultSet1.close();
+            if (resultSet2 != null) resultSet2.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    return list;
+}
+
+
 }

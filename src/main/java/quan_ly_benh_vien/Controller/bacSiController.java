@@ -56,6 +56,23 @@ public class bacSiController {
             return -1;
         }
     }
+    public int bacSiTuCapNhat(bacSiModel bacSi, String id){
+          int rowsAffected = bacSiConnect.updateBacSiCoBan(bacSi, id);
+        if (rowsAffected > 0) {
+            return rowsAffected;
+        } else {
+            return -1;
+        }
+    }
+    public String LayIdBacSi(String tenDangNhap){
+        String id = bacSiConnect.getid(tenDangNhap);
+        return id;
+    }
+    
+    public bacSiModel LayTTTaiKhoan(String tenDangNhap){
+        bacSiModel bacsi = bacSiConnect.layTTTaiKhoan(tenDangNhap);
+        return bacsi;
+    }
 
   
 

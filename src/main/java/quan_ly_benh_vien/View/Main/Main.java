@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import quan_ly_benh_vien.View.Main.Component.EventMenuSelected;
 import quan_ly_benh_vien.View.benhNhanJpanel;
 import quan_ly_benh_vien.View.DatLichKhampanel;
+import quan_ly_benh_vien.View.BacSiKham;
 import quan_ly_benh_vien.View.Login.Component.Login;
 import quan_ly_benh_vien.View.thanhToanJpanel;
 import quan_ly_benh_vien.View.thongTinTaiKhoanPanel;
@@ -31,6 +32,7 @@ public class Main extends javax.swing.JFrame {
     private bacSiJpanel jpBacSi;
     private benhNhanJpanel jpBenhNhan;
     private thongTinTaiKhoanPanel jpThongTin;
+    private BacSiKham jpBacSiKham;
 
     public Main() throws SQLException {
         initComponents();
@@ -38,7 +40,7 @@ public class Main extends javax.swing.JFrame {
         jpBacSi = new bacSiJpanel();
         jpBenhNhan = new benhNhanJpanel();
         jpThongTin = new thongTinTaiKhoanPanel();
-
+        jpBacSiKham = new BacSiKham();
         menu1.initMoving(Main.this);
         menu1.addEventMenuSelected(new EventMenuSelected() {
             @Override
@@ -54,6 +56,9 @@ public class Main extends javax.swing.JFrame {
                     setForm(jpBacSi);
                 } else if (index == 6) {
                     setForm(jpThongTin);
+                    // setForm(jpThongTin);
+                } else if (index == 7) {
+                    setForm(jpBacSiKham);
                 } else if (index == 8) {
                     DangXuat();
                 }
@@ -153,15 +158,16 @@ private void DangXuat() {
             System.out.println("Đã hủy đăng xuất");
         }
     }
-  private void logout() {
-       
+
+    private void logout() {
+
         System.out.println("Đã đăng xuất!");
 
-       
         this.dispose();
         quan_ly_benh_vien.View.Login.Main.Main loginFrame = new quan_ly_benh_vien.View.Login.Main.Main();
         loginFrame.setVisible(true);
     }
+
     /**
      * @param args the command line arguments
      */
